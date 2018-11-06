@@ -1,0 +1,38 @@
+#fondo{
+	background-image: url('../Img/Fondo.gif');
+	background-repeat: no-repeat;
+	background-position: center center;	
+	background-size: cover;
+}
+
+.navbar-brand : hover{
+	cursor: pointer;
+}
+
+#fuente{
+	font-family: 'Lobster', cursive;
+}
+
+.formulario{
+	background-color: #FAFAFA;
+	width: 450px;
+	padding: 10px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	background: #FFF;
+	box-sizing: border-box;
+}
+
+#img-user{
+	width: 100px;
+	height: auto;
+	border-radius: 50%;
+}
+
+.text_login{
+	font-family: 'Lobster', cursive;
+	font-size: 180%;
+	transform: translateY(50%);
+}

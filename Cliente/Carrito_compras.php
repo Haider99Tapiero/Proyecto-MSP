@@ -3,7 +3,6 @@
 <head>
 	<meta charset="utf-8"/>
 	<title>Carrito de Compras</title>
-	<link rel="stylesheet" type="text/css" href="./css/estilos.css">
 	<script type="text/javascript"  href="./js/scripts.js"></script>
 </head>
 <body>

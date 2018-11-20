@@ -40,6 +40,7 @@
 		
 		}
 
+		// ENVIAMOS LA RESPUESTA A EL INDEX POR PARTE DE LA TABLA USUARIOS
 		if ($num_row2 == "1") {
 				
 			$data2 = mysqli_fetch_array($result2);
@@ -51,18 +52,18 @@
 
 			$rol = $data2["rol"];
 
-			if ($rol == "proveedor")  {
-
+			if ($rol == "Admin")  {
+				// ENVIAMOS DE RESPUESTA
 				$response['status'] = '2';
 				echo json_encode($response);
 
-			}else if ($rol == "cajero") {
-				
+			}else if ($rol == "Cajero") {
+				// ENVIAMOS DE RESPUESTA
 				$response['status'] = '3';
 				echo json_encode($response);
 
-			}else if ($rol == "admin") {
-
+			}else if ($rol == "NN") {
+				// ENVIAMOS DE RESPUESTA
 				$response['status'] = '4';
 				echo json_encode($response);
 				

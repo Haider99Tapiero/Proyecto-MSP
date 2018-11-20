@@ -238,20 +238,22 @@
                         },
                         success:function(data) {
                             $('#login').val("Iniciar sesion");
-                            //  ENVIA A LA CAPA DE CLIENTE
                             var datos = $.parseJSON(data);
-
+                            // CLIENTE
                             if (datos.status == "1") {
                                 $(location).attr('href','capa_cliente.php');
                             }
+                            // ADMIN
                             else if (datos.status == "2") {
-                                $(location).attr('href','capa_bodega.php');
-                            }
-                            else if (datos.status == "4") {
-                                $(location).attr('href','capa_cajero.php');
-                            }
-                            else if (datos.status == "3") {
                                 $(location).attr('href','capa_admin.php');
+                            }
+                            // CAJERO
+                            else if (datos.status == "3") {
+                                $(location).attr('href','capa_cajero.php');
+                            }   
+                            // NN
+                            else if (datos.status == "4") {
+                                $(location).attr('href','NN.php');
                             }
                             else {
                                 $("#result").html("<div class='alert alert-dismissible alert-danger'><button type='button' class='close' data-dismiss='alert'>&times;</button>!El <strong>documento </strong> o <strong>contraseña </strong>son incorrectos¡</div>");

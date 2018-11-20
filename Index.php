@@ -241,7 +241,7 @@
                             var datos = $.parseJSON(data);
                             // CLIENTE
                             if (datos.status == "1") {
-                                $(location).attr('href','capa_cliente.php');
+                                $(location).attr('href','Cliente/Carrito_compras.php');
                             }
                             // ADMIN
                             else if (datos.status == "2") {

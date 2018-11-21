@@ -1,6 +1,4 @@
-<?php 
-    include ('S_Admin.php')
-?>
+
 <!DOCTYPE html>
 <html>
 <head>

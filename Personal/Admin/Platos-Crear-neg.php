@@ -1,17 +1,18 @@
 <?php
     
     session_start();
+    include ('conexion.php');
+
+    sleep(1);
 
     $nombre = $_POST["nombre"];
     $descripcion = $_POST["descripcion"];
     $costo = $_POST["costo"];
-    $cantidad = $_POST["cantidad"];
-    $TipoPlato = $_POST["TipoPlato_id"];
+    $fileName = $_POST["fileName"];
 
     $cont="0";
     
-    include ('conexion.php');
-
+    
     // CONSULTAR SI EXISTE UN USUARIOS
 
     $cont_existente=0;
@@ -38,27 +39,24 @@
 
         $Fecha = date('m-d-Y-g-ia');
 
-        $nombre_img = $_FILES['imagen']['name'];
-        $tipo_img = $_FILES['imagen']['type'];
-        $tamano_img = $_FILES['imagen']['size'];
+        //$nombre_img = $imagen['name'];
+        //$tipo_img = $imagen['type'];
+        //$tamano_img = $imagen['size'];
 
-        $img_final=$Fecha.$nombre_img;
+        $img_final=$Fecha.$fileName;
 
         $carpeta = 'img-personal';
 
-        move_uploaded_file($_FILES['imagen']['tmp_name'], $carpeta.'/'.$img_final);
+        move_uploaded_file($fileName['tmp_name'], $carpeta.'/'.$img_final);
             
-        $sql2 = "INSERT INTO Plato (nombre, descripcion, costo, cantidad, Nombre_img, TipoPlato_idTipoPlato)
-        VALUES ('$nombre','$descripcion','$costo','$cantidad','$img_final','$TipoPlato')";
+        $sql2 = "INSERT INTO Plato (nombre, descripcion, imagen, precio)
+        VALUES ('$nombre','$descripcion','$img_final','$costo')";
 
         if (!$result2 = $db->query($sql2))
             {
                 die('No hace insercion a la tabla ['.$db->error.']');
             }
 
-        $_SESSION["Plato_crear_ok"] = "";
-
-        header ("location: Platos-Crear.php");
         
         // FIN SUBIR IMAGEN ///////////////////////////////////////////////////////////
     }

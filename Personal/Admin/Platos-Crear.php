@@ -1,42 +1,16 @@
-<?php 
-    include ('S_Admin.php');
-
-    if (isset($_SESSION["Plato_crear_ok"])) {
-        echo "<script>alert('Creado correctamente');</script>";
-        unset($_SESSION["Plato_crear_ok"]);
-    }
-    if (isset($_SESSION["Plato_editar_ok"])) {
-        echo "<script>alert('Editado correctamente');</script>";
-        unset($_SESSION["Plato_editar_ok"]);
-    }
-    if (isset($_SESSION["Plato_eliminar_ok"])) {
-        echo "<script>alert('Elminado correctamente');</script>";
-        unset($_SESSION["Plato_eliminar_ok"]);
-    }
-?>
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Index</title>
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta charset="utf-8">
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/css/font-awesome.min.css" rel="stylesheet">
-    <style type="text/css">
-        .input-group{
-            width: 100%;
-            margin-bottom: 10px;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/platos.css">
+    <title>Inicio</title>
 </head>
 <body>
-    <div class="container-fluid">
-        <div class="row">
-            <?php 
-                require('Menu-Admin.php');
-            ?>
-        </div>
-
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -51,7 +25,7 @@
                 </tr>
             </thead>
             <tbody>
-            <?php
+            <!--<?php/*
                 class Usuarios
                 {
                     public function listar()
@@ -118,67 +92,116 @@
                 $nuevo=new Usuarios();
                 $nuevo->listar();
 
-            ?>
+            */?>-->
             </tbody>
         </table>
 
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Agregar</button>
 
-        <div class="row">
-            <div id="myModal" class="modal fade" role="dialog">
-                <div class="modal-dialog modal-sm">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <p style="font-size: 20px;">Registro de nuevo plato</p>
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="LabelModalogin" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <form class="formulario" action="" id="FormPlato" autocomplete="off" >
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p style="font-size: 20px; text-align: center;">Registrar plato</p>
+                                </div>
+                            </div>
                         </div>
-                        <div class="modal-body">
-                            <form method="post" action="Platos-Crear-neg.php" enctype="multipart/form-data" autocomplete="off">
-                                <div class="input-group">
-                                    <input class="form-control" name="nombre" type="text" id="nombre" placeholder="Nombre plato" required/>
-                                </div>
-                                <div class="input-group">
-                                    <input class="form-control" name="descripcion" type="text" id="descripcion" placeholder="Descripcion plato" required/>
-                                </div>
-                                <div class="input-group">
-                                    <input class="form-control" name="costo" type="text" id="costo" placeholder="Costo" required/>
-                                </div>
-                                <div class="input-group">
-                                    <input class="form-control" name="cantidad" type="text" id="cantidad" placeholder="Cantidad" required/>
-                                </div>
-                                <div class="input-group">
-                                    <select class="form-control" name="TipoPlato_id" id="TipoPlato" required>
-                                        <option value=Seleccione:>Tipo de plato</option>
-                                        <?php
-                                            include ('conexion.php');
-                                            $sql3 ="SELECT * FROM TipoPlato ";
-
-                                            if(!$result3 = $db-> query($sql3))
-                                            {
-                                                die('No conecta [' . $db->error . ']');
-                                            }
-                                            
-                                            while ($row3 = $result3->fetch_assoc())
-                                            {
-                                                $TTipoPlato_idTipoPlato=stripslashes($row3["idTipoPlato"]);
-                                                $ddescripcion=stripslashes($row3["descripcion"]);
-                                                echo "<option value='$TTipoPlato_idTipoPlato'>$ddescripcion</option>";
-                                            }
-                                        ?>
-                                    </select>
-                                </div>
-                                <div class="input-group">
-                                    <input class="form-control" name="imagen" id="imagen" type="file">
-                                </div>
-                                <input class="btn btn-success" type="submit" name="Guardar" id="Guardar" value="Guardar">
-                            </form>
+                        <div class="form-group">
+                            <input class="form-control" name="nombre" type="text" id="nombre" placeholder="Nombre plato"/>
                         </div>
-                    </div>
+                        <div class="form-group">
+                            <input class="form-control" name="descripcion" type="text" id="descripcion" placeholder="Descripcion plato"/>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" name="costo" type="text" id="costo" placeholder="Costo"/>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" name="imagen" id="imagen" type="file">
+                        </div>
+                        <div class="form-group">
+                            <input type="button" name="Guardar" id="Guardar" value="Guardar" class="btn btn-success">
+                        </div>
+                        <div class="form-group">
+                            <span id="result"></span>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-    </div>
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="../../js/jquery-3.3.1.min.js"></script>
+    
+    <script>
+    $(document).ready(function() {
+        $('#Guardar').click(function(){
+            var nombre = $('#nombre').val();
+            var descripcion = $('#descripcion').val();
+            var costo = $('#costo').val();
+            //var files = $('#imagen');
+
+            var fileName = document.getElementById('imagen').files[0].name;
+
+            //var fileName = files[0].name;
+            //var fileSize = files[0].size;
+            //var fileType = files[0].type;
+
+
+            if($.trim(nombre).length > 0 && $.trim(descripcion).length > 0 && $.trim(costo).length > 0){
+                if (isNaN(costo)){
+                    $("#result").html("<div class='alert alert-dismissible alert-danger'><button type='button' class='close' data-dismiss='alert'>&times;</button>!Solo se permite numeros en el campo <strong>costo</strong>¡</div>");
+                    $('#costo').value = "";
+                }
+                else {
+                    $.ajax({
+                        url:"Platos-Crear-neg.php",
+                        method:"POST",
+                        data:{nombre:nombre, descripcion:descripcion, costo:costo, fileName:fileName},
+                        cache:"false",
+                        beforeSend:function() {
+                            $('#Guardar').val("Guardando...");
+                        },
+                        success:function(data) {
+                            $('#Guardar').val("Guardar");
+                            var datos = $.parseJSON(data);
+                            // CLIENTE
+                            if (datos.status == "1") {
+                                $(location).attr('href','Cliente/Carrito_compras.php');
+                            }
+                            // ADMIN
+                            else if (datos.status == "2") {
+                                $(location).attr('href','capa_admin.php');
+                            }
+                            // CAJERO
+                            else if (datos.status == "3") {
+                                $(location).attr('href','capa_cajero.php');
+                            }   
+                            // NN
+                            else if (datos.status == "4") {
+                                $(location).attr('href','NN.php');
+                            }
+                            else {
+                                $("#result").html("<div class='alert alert-dismissible alert-danger'><button type='button' class='close' data-dismiss='alert'>&times;</button>!El <strong>documento </strong> o <strong>contraseña </strong>son incorrectos¡</div>");
+                            }
+                        }
+                    });
+                }
+
+            } else {
+                $("#result").html("<div class='alert alert-dismissible alert-danger'><button type='button' class='close' data-dismiss='alert'>&times;</button>!Ningun campo puede estar vacio¡</div>");
+            };
+        });
+    });
+
+    </script>
+
+
 </body>
 </html>
+
+<!-- Allie X - Paper Love -->

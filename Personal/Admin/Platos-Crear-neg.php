@@ -33,19 +33,27 @@
 
             // SUBIR IMAGEN //////////////////////////////////////////////////////////////
 
-            date_default_timezone_set('America/Bogota');
+            if ($imagen['name'] == "") {
 
-            $Fecha = date('m-d-Y-g-ia');
+                $img_final = "";
+                
+            }else{
+                
+                date_default_timezone_set('America/Bogota');
 
-            $nombre_img = $imagen['name'];
-            $tipo_img = $imagen['type'];
-            $tamano_img = $imagen['size'];
+                $Fecha = date('m-d-Y-g-ia');
 
-            $img_final=$Fecha.$nombre_img;
+                $nombre_img = $imagen['name'];
+                $tipo_img = $imagen['type'];
+                $tamano_img = $imagen['size'];
 
-            $carpeta = 'img-personal';
+                $img_final=$Fecha.$nombre_img;
 
-            move_uploaded_file($_FILES['imagen']['tmp_name'], $carpeta.'/'.$img_final);
+                $carpeta = 'img-personal';
+
+                move_uploaded_file($_FILES['imagen']['tmp_name'], $carpeta.'/'.$img_final);
+                
+            }
                 
             $sql2 = "INSERT INTO Plato (nombre, descripcion, imagen, precio)
             VALUES ('$nombre','$descripcion','$img_final','$costo')";

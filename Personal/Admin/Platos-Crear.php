@@ -8,6 +8,10 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
     <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Last-Modified" content="0">
+    <meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
+    <meta http-equiv="Pragma" content="no-cache">
     <link rel="stylesheet" type="text/css" href="css/platos.css">
     <title>Inicio</title>
 </head>
@@ -64,9 +68,9 @@
                                     <a href='Platos-Editar.php?idPlato=".$IIdPlato."' class='btn btn-warning'>
                                         <i class='far fa-edit'></i>
                                     </a>
-                                    <a href='Platos-Eliminar-neg.php?idPlato=".$IIdPlato."' class='btn btn-danger'>
+                                    <button type='button' class='btn btn-danger EliminarPlato' value='".$IIdPlato."'>
                                         <i class='far fa-trash-alt'></i>
-                                    </a>
+                                    </button>
                                     </td>";
                             echo"<tr>";
                         }
@@ -78,8 +82,12 @@
             ?>
             </tbody>
         </table>
-
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Agregar</button>
+        <div class="row">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Agregar</button>
+        </div>
+        <div class="row">
+            <span id="resulteliminar"></span>
+        </div>
 
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="LabelModalogin" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -122,6 +130,7 @@
     
     <script>
     $(document).ready(function() {
+    // GUARDAR EL PLATO
         $('#Guardar').click(function(){
             var nombre = $('#nombre').val();
             var descripcion = $('#descripcion').val();
@@ -166,12 +175,46 @@
                 $("#result").html("<div class='alert alert-dismissible alert-danger'><button type='button' class='close' data-dismiss='alert'>&times;</button>!Ningun campo puede estar vacio¡</div>");
             };
         });
+    // FIN GUARDAR EL PLATO
+    // ELIMINAR PLATO
+        $('.EliminarPlato').click(function(){
+            var idplato = $('.EliminarPlato').val();
+
+            $.ajax({
+                url:"Platos-Eliminar-neg.php",
+                method:"POST",
+                data:{idPlato:idplato},
+                cache:"false",
+                beforeSend:function() {
+                    
+                },
+                success:function(data) {
+                    var datos = $.parseJSON(data);
+                    // SI
+                    if (datos.status == "1") {
+                        $("#resulteliminar").html("<div class='alert alert-dismissible alert-danger'><button type='button' class='close' data-dismiss='alert'>&times;</button>!Eliminado con exito¡</div>");
+                    }
+                    // NO
+                    else if (datos.status == "2") {
+                        $("#resulteliminar").html("<div class='alert alert-dismissible alert-danger'><button type='button' class='close' data-dismiss='alert'>&times;</button>!Error al eliminar el plato¡</div>");
+                    }
+                }
+            });
+        });
+    // FIN ELIMINAR PLATO
+    // OTRO
+        /*function myFunction() {
+            var txt;
+            var r = confirm("Press a button!");
+            if (r == true) {
+                txt = "You pressed OK!";
+            } else {
+                txt = "You pressed Cancel!";
+            }
+            document.getElementById("demo").innerHTML = txt;
+        }*/
+    // FIN OTRO
     });
-
     </script>
-
-
 </body>
 </html>
-
-<!-- Allie X - Paper Love -->

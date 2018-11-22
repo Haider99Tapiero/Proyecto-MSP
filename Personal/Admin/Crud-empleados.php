@@ -1,5 +1,5 @@
 <?php 
-	include ('S_Admin.php')
+	//include ('S_Admin.php')
 ?>
 <!DOCTYPE html>
 <html>
@@ -15,7 +15,7 @@
 	<div class="container-fluid">
 		<div class="row">
 			<?php 
-				require('Menu-Admin.php');
+				//require('Menu-Admin.php');
 			?>
 		</div>
 		<div class="row">

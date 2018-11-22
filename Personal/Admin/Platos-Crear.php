@@ -7,6 +7,7 @@
     <meta name="author" content="">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
     <link rel="stylesheet" type="text/css" href="css/platos.css">
     <title>Inicio</title>
 </head>
@@ -17,16 +18,14 @@
                     <th>ID</th>
                     <th>NOMBRE</th>
                     <th>DESCRIPCION</th>
-                    <th>COSTO</th>
-                    <th>CANTIDAD</th>
-                    <th>TIPO DE PLATO</th>
+                    <th>PRECIO</th>
                     <th>IMAGEN</th>
                     <th>ACCION</th>
                 </tr>
             </thead>
             <tbody>
-            <!--<?php/*
-                class Usuarios
+            <?php
+                class Platos
                 {
                     public function listar()
                     {
@@ -36,29 +35,15 @@
                         $sql = "SELECT * FROM Plato";
                         if (!$result = $db->query($sql))
                         {
-                            die('No hace consulta a Usuarios ['.$db->error.']');
+                            die('No hace consulta a platos ['.$db->error.']');
                         }
                         while ($row = $result->fetch_assoc())
                         { 
                             $IIdPlato=stripslashes($row["idPlato"]);
                             $NNombre=stripslashes($row["nombre"]);
                             $DDescripcion=stripslashes($row["descripcion"]);
-                            $CCosto=stripslashes($row["costo"]);
-                            $CCantidad=stripslashes($row["cantidad"]);
-                            $IImagen=stripslashes($row["Nombre_img"]);
-                            $TTTipoPlato_idTipoPlato=stripslashes($row["TipoPlato_idTipoPlato"]);
-                            //  CREAR UNA SUBCONSULTA AL TIPO PLATO
-                            $sql2 = "SELECT * FROM TipoPlato WHERE idTipoPlato = '$TTTipoPlato_idTipoPlato'"; 
-
-                            if (!$result2 = $db->query($sql2))
-                            {
-                                die('No hace subconsulta a tipo plato ['.$db->error.']');
-                            }
-                            while ($row2 = $result2->fetch_assoc())
-                            { 
-                                $DDDescripcion=stripslashes($row2["descripcion"]);
-                            }
-                            //  FIN DE LA SUBCONSULTA TIPO PLATO
+                            $PPrecio=stripslashes($row["precio"]);
+                            $IImagen=stripslashes($row["imagen"]);
 
                             // RUTA
                             $folder = 'img-personal/';
@@ -69,30 +54,28 @@
                                 echo"<td>$IIdPlato</td>";
                                 echo"<td>$NNombre</td>";  
                                 echo"<td>$DDescripcion</td>";  
-                                echo"<td>$CCosto</td>";  
-                                echo"<td>$CCantidad</td>";  
-                                echo"<td>$DDDescripcion</td>";
+                                echo"<td>$PPrecio</td>";  
                                 if ($IImagen == '') {
                                     echo "<td>Sin asignar imagen</td>";
                                 }else{
-                                    echo'<td><a class="btn btn-info" target="_blank" href="'.$imagen.'">Ver imagen</a></td>';
+                                    echo'<td><a class="btn btn-info" target="_blank" href="'.$imagen.'">Ver</a></td>';
                                 }
                                 echo"<td>
                                     <a href='Platos-Editar.php?idPlato=".$IIdPlato."' class='btn btn-warning'>
-                                        <span class='glyphicon glyphicon-edit'></span>
+                                        <i class='far fa-edit'></i>
                                     </a>
                                     <a href='Platos-Eliminar-neg.php?idPlato=".$IIdPlato."' class='btn btn-danger'>
-                                        <span class='glyphicon glyphicon-trash'></span>
+                                        <i class='far fa-trash-alt'></i>
                                     </a>
-                                </td>";
+                                    </td>";
                             echo"<tr>";
                         }
                     }                
                 }
-                $nuevo=new Usuarios();
+                $nuevo=new Platos();
                 $nuevo->listar();
 
-            */?>-->
+            ?>
             </tbody>
         </table>
 
@@ -101,7 +84,7 @@
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="LabelModalogin" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                    <form class="formulario" action="" id="FormPlato" autocomplete="off" >
+                    <form method="post" class="formulario" action="" id="FormPlato" autocomplete="off" enctype="multipart/form-data">
                         <div class="container">
                             <div class="row">
                                 <div class="col-md-12">
@@ -143,14 +126,10 @@
             var nombre = $('#nombre').val();
             var descripcion = $('#descripcion').val();
             var costo = $('#costo').val();
-            //var files = $('#imagen');
 
-            var fileName = document.getElementById('imagen').files[0].name;
+            //var fileName = document.getElementById('imagen').files[0].name;
 
-            //var fileName = files[0].name;
-            //var fileSize = files[0].size;
-            //var fileType = files[0].type;
-
+            var parametros = new FormData($("#FormPlato")[0]);
 
             if($.trim(nombre).length > 0 && $.trim(descripcion).length > 0 && $.trim(costo).length > 0){
                 if (isNaN(costo)){
@@ -160,8 +139,10 @@
                 else {
                     $.ajax({
                         url:"Platos-Crear-neg.php",
-                        method:"POST",
-                        data:{nombre:nombre, descripcion:descripcion, costo:costo, fileName:fileName},
+                        type:"POST",
+                        data:parametros,
+                        contentType:false,
+                        processData:false, 
                         cache:"false",
                         beforeSend:function() {
                             $('#Guardar').val("Guardando...");
@@ -169,24 +150,13 @@
                         success:function(data) {
                             $('#Guardar').val("Guardar");
                             var datos = $.parseJSON(data);
-                            // CLIENTE
+                            // SI
                             if (datos.status == "1") {
-                                $(location).attr('href','Cliente/Carrito_compras.php');
+                                $("#result").html("<div class='alert alert-dismissible alert-danger'><button type='button' class='close' data-dismiss='alert'>&times;</button>!Plato creado con exito¡</div>");
                             }
-                            // ADMIN
+                            // NO
                             else if (datos.status == "2") {
-                                $(location).attr('href','capa_admin.php');
-                            }
-                            // CAJERO
-                            else if (datos.status == "3") {
-                                $(location).attr('href','capa_cajero.php');
-                            }   
-                            // NN
-                            else if (datos.status == "4") {
-                                $(location).attr('href','NN.php');
-                            }
-                            else {
-                                $("#result").html("<div class='alert alert-dismissible alert-danger'><button type='button' class='close' data-dismiss='alert'>&times;</button>!El <strong>documento </strong> o <strong>contraseña </strong>son incorrectos¡</div>");
+                                $("#result").html("<div class='alert alert-dismissible alert-danger'><button type='button' class='close' data-dismiss='alert'>&times;</button>!Error al crear el plato¡</div>");
                             }
                         }
                     });

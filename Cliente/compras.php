@@ -18,7 +18,7 @@ $re=mysqli_query($conexion,"SELECT * FROM compras order by numeroventa DESC limi
   $numeroventa=$numeroventa+1;
  }
  for ($i=0; $i <count($arreglo); $i++) { 
-   mysqli_query($conexion,"INSERT INTO compras (numeroventa, imagen, nombre, precio, cantidad, subtotal, idcliente) VALUES (
+   mysqli_query($conexion,"INSERT INTO compras (numeroventa, imagen, nombre, precio, cantidad, subtotal, cliente_idcliente) VALUES (
     ".$numeroventa.",
     '".$arreglo[$i]['Imagen']."',
     '".$arreglo[$i]['Nombre']."',

@@ -6,21 +6,13 @@ $ejecutar=$conexion-> query($consulta);
 															
 while($fila=$ejecutar->fetch_array()):
 
-
-
-		
-		 	
-			 
 			    echo"<div class=''>";
 				echo  $fila['nombre'];
 				echo"</div>";
-				
-		
-		
-			
-			echo"<div class='alert alert-primary'>";
-			echo $fila['comentario'];
-			echo"</div>";
+	
+                echo"<div class='alert alert-primary'>";
+                echo $fila['comentario'];
+                echo"</div>";
 			
 endwhile;  
 ?>

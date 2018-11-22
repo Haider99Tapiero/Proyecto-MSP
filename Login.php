@@ -30,6 +30,7 @@
 			$data = mysqli_fetch_array($result);
 			// SACAMOS LOS DATOS QUE QUEREMOS DE LA PERSONA QUE SE AUTENTIFICA
 			$_SESSION["nombre"] = $data["nombre"];
+            $_SESSION['idcliente']=$data["idcliente"];
 			// ENVIAMOS DE RESPUESTA
 			$response['status'] = '1';
 			echo json_encode($response);

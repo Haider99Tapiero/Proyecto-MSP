@@ -162,10 +162,12 @@
                             // SI
                             if (datos.status == "1") {
                                 $("#result").html("<div class='alert alert-dismissible alert-danger'><button type='button' class='close' data-dismiss='alert'>&times;</button>!Plato creado con exito¡</div>");
+                                location.reload();
                             }
                             // NO
                             else if (datos.status == "2") {
                                 $("#result").html("<div class='alert alert-dismissible alert-danger'><button type='button' class='close' data-dismiss='alert'>&times;</button>!Error al crear el plato¡</div>");
+                                location.reload();
                             }
                         }
                     });
@@ -174,6 +176,7 @@
             } else {
                 $("#result").html("<div class='alert alert-dismissible alert-danger'><button type='button' class='close' data-dismiss='alert'>&times;</button>!Ningun campo puede estar vacio¡</div>");
             };
+
         });
     // FIN GUARDAR EL PLATO
     // ELIMINAR PLATO

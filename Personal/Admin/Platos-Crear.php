@@ -14,8 +14,18 @@
     <meta http-equiv="Pragma" content="no-cache">
     <link rel="stylesheet" type="text/css" href="css/platos.css">
     <title>Inicio</title>
+    <style type="text/css">
+        #resulteliminar{
+            margin: 0 auto;
+            width: 50%;
+        }
+    </style>
 </head>
 <body>
+    <div class="container">
+        <?php
+            include('Menu-Admin.php') 
+         ?>
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -122,6 +132,7 @@
                 </div>
             </div>
         </div>
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -167,7 +178,6 @@
                             // NO
                             else if (datos.status == "2") {
                                 $("#result").html("<div class='alert alert-dismissible alert-danger'><button type='button' class='close' data-dismiss='alert'>&times;</button>!Error al crear el plato¡</div>");
-                                location.reload();
                             }
                         }
                     });
@@ -195,7 +205,11 @@
                     var datos = $.parseJSON(data);
                     // SI
                     if (datos.status == "1") {
+
                         $("#resulteliminar").html("<div class='alert alert-dismissible alert-danger'><button type='button' class='close' data-dismiss='alert'>&times;</button>!Eliminado con exito¡</div>");
+                        location.reload();
+
+
                     }
                     // NO
                     else if (datos.status == "2") {
@@ -205,18 +219,6 @@
             });
         });
     // FIN ELIMINAR PLATO
-    // OTRO
-        /*function myFunction() {
-            var txt;
-            var r = confirm("Press a button!");
-            if (r == true) {
-                txt = "You pressed OK!";
-            } else {
-                txt = "You pressed Cancel!";
-            }
-            document.getElementById("demo").innerHTML = txt;
-        }*/
-    // FIN OTRO
     });
     </script>
 </body>

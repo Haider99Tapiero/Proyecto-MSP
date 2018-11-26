@@ -1,65 +1,60 @@
 <?php
-
     
-
-    $idPlato = $_POST["idPlato"];
-    $nombre = $_POST["nombre"];
-    $descripcion = $_POST["descripcion"];
-    $costo = $_POST["costo"];
-    $cantidad = $_POST["cantidad"];
-    $TipoPlato = $_POST["TipoPlato_id"];
-
-    $cont="0";
-    
+    session_start();
     include ('conexion.php');
 
-    // CONSULTAR SI EXISTE UN USUARIOS
+    sleep(1);
 
-    $cont_existente=0;
+    if(isset($_POST["idplato"]) && isset($_POST["nombre"]) && isset($_POST["descripcion"]) && isset($_POST["precio"])){
 
-    $sql = "SELECT * FROM Plato WHERE nombre='$nombre'";
-
-    if (!$result = $db->query($sql))
-        {
-            die('No hace consulta de verificar plato registrados ['.$db->error.']');
-        }
-
-    while ($row = $result->fetch_assoc())
-    {   
-        $nnombre=stripslashes($row["nombre"]);    
-        $cont_existente=$cont_existente+1;
-    }
-    
-    if ($cont_existente==0)
-    {
+        $idplato = $_POST["idplato"];
+        $nombre = $_POST["nombre"];
+        $descripcion = $_POST["descripcion"];
+        $precio = $_POST["precio"];
+        $imagen = $_FILES["imagen"];
 
         // SUBIR IMAGEN //////////////////////////////////////////////////////////////
 
-        $nombre_img = $_FILES['imagen']['name'];
-        $tipo_img = $_FILES['imagen']['type'];
-        $tamano_img = $_FILES['imagen']['size'];
+        if ($imagen['name'] == "") {
 
-        $img_final=$nombre_img;
+            $img_final = "";
+            
+        }else{
+            
+            date_default_timezone_set('America/Bogota');
 
-        // RUTA IMAGEN
+            $Fecha = date('m-d-Y-g-ia');
 
-        $carpeta = 'img-personal';
+            $nombre_img = $imagen['name'];
+            $tipo_img = $imagen['type'];
+            $tamano_img = $imagen['size'];
 
-        move_uploaded_file($_FILES['imagen']['tmp_name'], $carpeta.'/'.$img_final);
+            $img_final=$Fecha.$nombre_img;
 
-        $sql2 = "UPDATE Plato SET nombre = '$nombre', descripcion = '$descripcion', costo = '$costo', cantidad = '$cantidad', Nombre_img = '$nombre_img', TipoPlato_idTipoPlato = '$TipoPlato' WHERE idPlato = '$idPlato'";
+            $carpeta = 'img-personal';
 
-        if (!$result2 = $db->query($sql2))
-            {
-                die('No hace insercion a la tabla ['.$db->error.']');
-            }
+            move_uploaded_file($_FILES['imagen']['tmp_name'], $carpeta.'/'.$img_final);
+            
+        }
+            
+        $sql2 = "UPDATE Plato SET nombre = '$nombre', descripcion = '$descripcion', imagen = '$img_final', precio = '$precio' 
+        WHERE idPlato = '$idplato'";
+
+        if (!$result2 = $db->query($sql2)){
+            
+            $response['status'] = '2';
+            echo json_encode($response);
+
+            die('No hace insercion a la tabla ['.$db->error.']');
         
+        }
+
+        $response['status'] = '1';
+        echo json_encode($response);
+
         // FIN SUBIR IMAGEN ///////////////////////////////////////////////////////////
 
-        $_SESSION["Plato_editar_ok"] = "";
-
-        header ("location: Platos-Crear.php");
-        
-    } 
-                
+    } else {
+        echo "SE ENTRO DIRECTO A ESTA CAPA";
+    }
 ?>

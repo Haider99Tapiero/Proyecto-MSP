@@ -3,49 +3,53 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Menu</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Last-Modified" content="0">
+    <meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
+    <meta http-equiv="Pragma" content="no-cache">
 </head>
-<style type="text/css">
-	body{
-		margin-top: 100px;
-	}
 </style>
 <body>
-	<div class="container">
-		<header>
-			<nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
-				<div class="container-fluid">
-					<div class="navbar-header">
-						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-1">
-							<span class="sr-only">Menu</span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-						</button>
-						<a href="" class="navbar-brand">Maspro</a>
-					</div>
-					<div class="collapse navbar-collapse" id="navbar-1">
-						<ul class="nav navbar-nav">
-							<li><a href="Crud-empleados.php">Registro de empleados</a></li>
-							<li><a href="Platos-Crear.php">Administrar platos</a></li>
-							<li><a href="Insumos-Reg.php">Administrar insumos</a></li>
-							<li><a href="Insumos-Listar.php">Listar insumos</a></li>
-						</ul>
-						<ul class="nav navbar-nav navbar-right">
-							<li class="dropdown">
-								<a href="" class="dropdown-toggle" data-toggle="dropdown" rol="button"><?php echo $_SESSION["NOMBRE_EMPLEADO"]; ?> <span class="caret"></span></a>
-								<ul class="dropdown-menu">
-									<li><a href=""><span class='glyphicon glyphicon-cog'>   Configuracion de cuenta</a></li>
-									<li><a href=""><span class='glyphicon glyphicon-book'>   Ayuda</a></li>
-									<li><a href="Salir.php"><span class='glyphicon glyphicon-log-out'>   Salir</a></li>
-								</ul>
-							</li>
-						</ul>
-
-					</div>
-				</div>
-			</nav>
-		</header>
-	</div>
+	<header>
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<a class="navbar-brand" href="#">MASPRO</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNavDropdown">
+				<ul class="navbar-nav">
+					<li class="nav-item active">
+						<a class="nav-link" href="Crud-empleados.php">Registro de empleados</a>
+					</li>
+					<li class="nav-item active">
+						<a class="nav-link" href="Platos-Crear.php">Administrar platos</a>
+					</li>
+					<li class="nav-item active">
+						<a class="nav-link" href="Insumos-Reg.php">Administrar insumos</a>
+					</li>
+					<li class="nav-item active">
+						<a class="nav-link" href="Insumos-Listar.php">Listar insumos</a>
+					</li>
+					<li class="nav-item active dropdown">
+						<a href="#" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo $_SESSION["NOMBRE_EMPLEADO"] = "Haider"; ?></a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+							<a class="dropdown-item" href="#">onfiguracion de cuenta</a>
+							<a class="dropdown-item" href="#">Ayuda</a>
+							<a class="dropdown-item" href="Salir.php">Salir</a>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</nav>
+	</header>
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="../../js/jquery-3.3.1.min.js"></script>
 </body>
 </html>

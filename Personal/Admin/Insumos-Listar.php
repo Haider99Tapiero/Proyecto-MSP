@@ -1,41 +1,40 @@
-<?php 
-	include ('S_Admin.php')
-?>
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
-	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta charset="utf-8">
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/css/font-awesome.min.css" rel="stylesheet">
-    <style type="text/css">
-        .input-group{
-            width: 100%;
-            margin-bottom: 10px;
-        }
-    </style>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Last-Modified" content="0">
+    <meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <link rel="stylesheet" type="text/css" href="css/platos.css">
+    <title>Inicio</title>
 </head>
 <body>
-	<?php 
-		require('Menu-Admin.php');
-	?>
 	<div class="container">
-		<table class="table table-striped" border='1'>
+		<?php 
+			require('Menu-Admin.php');
+		?>
+		<table class="table table-striped">
 			<thead>
 				<tr>
 					<th>Id</th>
-					<th>Categoria</th>
-					<th>Proveedor</th>
 					<th>cantidad</th>
 	          		<th>Unidad de medida</th>
 					<th>Descripcion</th>
+					<th>Categoria</th>
 					<th>Empleado</th>
+					<th>Proveedor</th>
 		        </tr>
 			</thead>
 			<tbody>
 				<?php
-					class Usuario
+					class Insumos
 					{
 						public function listar()
 						{
@@ -50,41 +49,41 @@
 							
 							while ($row = $result->fetch_assoc())
 							{
-								$iid=stripslashes($row["idPedidoInsumos"]);
-								$CCategoriaInsumo_idCategoria=stripslashes($row["CategoriaInsumo_idCategoria"]);
-								$PProveedor_idProveedor=stripslashes($row["Proveedor_idProveedor"]);
+								$iid=stripslashes($row["idpedidoInsumos"]);
 								$ccantidad=stripslashes($row["cantidad"]);
 								$uunidad_medida=stripslashes($row["unidad_medida"]); 
 								$ddescripcion=stripslashes($row["descripcion"]); 
-								$EEmpleados_idEmpleados=stripslashes($row["Empleados_idEmpleados"]); 
+								$CCategoriaInsumo_idCategoria=stripslashes($row["categoriainsumo_idcategoria"]);
+								$EEmpleados_idEmpleados=stripslashes($row["empleados_idempleados"]); 
+								$PProveedor_idProveedor=stripslashes($row["proveedor_idproveedor"]);
 								
-								$sql3 ="SELECT * FROM categoriainsumo WHERE idCategoria = '$CCategoriaInsumo_idCategoria'";
+								$sql3 ="SELECT * FROM categoriainsumo WHERE idcategoria = '$CCategoriaInsumo_idCategoria'";
 
 								if(!$result3 = $db-> query($sql3))
 								{
-									die('No conecta [' . $db->error . ']');
+									die('No hace consulta de categoriainsumo [' . $db->error . ']');
 								}
 								while ($row3 = $result3->fetch_assoc())
 								{
 									$ddescripcion_categoria=stripslashes($row3["descripcion"]);
 								}
 								
-								$sql4 ="SELECT * FROM proveedor WHERE idProveedor = '$PProveedor_idProveedor' ";
+								$sql4 ="SELECT * FROM proveedor WHERE idproveedor = '$PProveedor_idProveedor' ";
 
 								if(!$result4 = $db-> query($sql4))
 								{
-									die('No conecta [' . $db->error . ']');
+									die('No hace consulta de proveedor [' . $db->error . ']');
 								}
 								while ($row4 = $result4->fetch_assoc())
 								{
 									$nnombrepro=stripslashes($row4["nombre"]);
 								}
 								
-								$sql2 ="SELECT * FROM empleados WHERE idEmpleados = '$EEmpleados_idEmpleados' ";
+								$sql2 ="SELECT * FROM empleados WHERE idempleados = '$EEmpleados_idEmpleados' ";
 								
 								if(!$result2 = $db-> query($sql2))
 								{
-									die('No conecta [' . $db->error . ']');
+									die('No hace consulta a empleados [' . $db->error . ']');
 								}
 								while ($row2 = $result2->fetch_assoc())
 								{
@@ -93,22 +92,24 @@
 								
 				        		echo "<tr>";
 				        			echo "<td>$iid</td>";
-									echo "<td>$ddescripcion_categoria</td>";
-									echo "<td>$nnombrepro</td>";
 									echo "<td>$ccantidad</td>";
 									echo "<td>$uunidad_medida</td>";
 									echo "<td>$ddescripcion</td>";
+									echo "<td>$ddescripcion_categoria</td>";
 					          		echo "<td>$nnombre</td>";
+									echo "<td>$nnombrepro</td>";
 								echo "</tr>";
 					      	}
 						}
 					}
-					$nuevo=new Usuario();
+					$nuevo=new Insumos();
 					$nuevo->listar()
 				?>
 			</tbody>
 	</div>
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="../../js/jquery-3.3.1.min.js"></script>
 </body>
 </html>

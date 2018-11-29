@@ -71,11 +71,11 @@ section{
 	-webkit-transition: all 1s ease-in-out;
 	-moz-transition: all 1s ease-in-out;
 }
-.producto:hover{
+/*.producto:hover{
 
 	-webkit-transform: scale(1.2);
 	-moz-transform: scale(1.2);
-}
+}*/
 .producto img{
 	width: 200px;
 	height: 200px;
@@ -87,10 +87,10 @@ section{
 	-webkit-transition: all 1s ease-in-out;
 	-moz-transition: all 1s ease-in-out;
 }
-.producto img:hover{
+/*.producto img:hover{
 	-webkit-transform: rotate(355deg);
 	-moz-transform: rotate(355deg);
-}
+}*/
 .producto a{
 	background-color: #4a4a4a;
 	padding: 3px;

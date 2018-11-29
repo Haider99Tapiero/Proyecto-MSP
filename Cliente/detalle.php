@@ -25,6 +25,7 @@
 			<center>
 				<img src="./productos/<?php echo $f['imagen'];?>"><br>
 				<span><?php echo $f['nombre'];?></span><br>
+                <span>Precio: <?php echo $f['descripcion'];?></span><br>
 				<span>Precio: <?php echo $f['precio'];?></span><br>
 				<a href="./carritodecompras.php?id=<?php  echo $f['idPlato'];?>">Añadir al carrito de compras</a>
 			</center>

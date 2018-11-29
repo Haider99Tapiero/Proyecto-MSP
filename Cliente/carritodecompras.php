@@ -74,7 +74,7 @@
   <a href="./carritodecompras.php" title="ver carrito de compras">
    <img src="./imagenes/carrito.png">
   </a>
- </header>
+ </header> 
  <section>
   <?php
    $total=0;

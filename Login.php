@@ -76,6 +76,18 @@
 
 		}
 
+		if ($num_row == "0" && $num_row2 == "0") {
+
+			$response['status'] = '4';
+			echo json_encode($response);
+			
+		} else {
+
+			//echo "Ni puta idea";
+
+		}
+
+
 	} else {
 
 	 	echo "SE ENTRO DIRECTO A ESTA CAPA";

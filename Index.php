@@ -343,9 +343,6 @@
                             }   
                             // NN
                             else if (datos.status == "4") {
-                                $(location).attr('href','NN.php');
-                            }
-                            else {
                                 $("#result").html("<div class='alert alert-dismissible alert-danger'><button type='button' class='close' data-dismiss='alert'>&times;</button>!El <strong>documento </strong> o <strong>contraseña </strong>son incorrectos¡</div>");
                             }
                         }

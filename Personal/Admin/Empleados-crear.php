@@ -277,6 +277,10 @@
 	            //var fileName = document.getElementById('imagen').files[0].name;
 
 	            var parametros = new FormData($("#FormEmpleado")[0]);
+	            
+	           	alert(nombre,apellido,selectipodoc,documento,direccion,email,telefono,contrasena,selecrol,selecgenero);
+	           	alert(nombre,documento);
+
 
 	            if($.trim(nombre).length > 0 && $.trim(apellido).length > 0 && $.trim(documento).length > 0 && $.trim(direccion).length > 0 && $.trim(email).length > 0 && $.trim(telefono).length > 0 && $.trim(contrasena).length > 0){
 	                if (isNaN(documento)){

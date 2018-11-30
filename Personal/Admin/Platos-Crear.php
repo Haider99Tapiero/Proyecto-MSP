@@ -60,7 +60,7 @@
                             $IImagen=stripslashes($row["imagen"]);
 
                             // RUTA
-                            $folder = 'img-personal/';
+                            $folder = '../../Cliente/productos/';
                             $imagen = $folder.$IImagen;
                             // FIN RUTA
 
@@ -73,6 +73,7 @@
                                     echo "<td>Sin asignar imagen</td>";
                                 }else{
                                     echo'<td><a class="btn btn-info" target="_blank" href="'.$imagen.'">Ver</a></td>';
+                                    echo'<td><img src="'.$imagen.'"></td>';
                                 }
                                 echo"<td>
                                     <a href='Platos-Editar.php?idPlato=".$IIdPlato."' class='btn btn-warning'>

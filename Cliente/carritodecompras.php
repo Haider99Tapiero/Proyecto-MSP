@@ -13,7 +13,7 @@
      }
     }
     if($encontro==true){
-     $arreglo[$numero]['Cantidad']=$arreglo[$numero]['Cantidad']+1;
+     $arreglo[$numero]['Cantidad']=$arreglo[$numero]['Cantidad']+0;
      $_SESSION['carrito']=$arreglo;
     }else{
      $nombre="";
@@ -90,7 +90,6 @@
  <table class="table table-striped">
  <thead>
      <tr>
-     <th>Producto img</th>
      <th>Nombre</th>
      <th>Precio</th>
      <th>Cantidad</th>
@@ -110,7 +109,6 @@
     
      <tbody>
       <tr>
-      <td><img src="./productos/<?php echo $datos[$i]['Imagen'];?>"></td>
       <td><span><?php echo $datos[$i]['Nombre'];?></span></td>
       <td><span> $<?php echo $datos[$i]['Precio'];?></span></td>
       <td><span>
@@ -121,7 +119,7 @@
       		>
       </span></td>
       <td><span>$<?php echo $datos[$i]['Cantidad']*$datos[$i]['Precio'];?></span></td>
-          <td><a href="" class="eliminar btn btn-danger" data-id="<?php echo $datos[$i]['Id']?>" ><i class="fas fa-trash-alt"></i></a><a class="btn btn-success" href="./compras.php" class="aceptar"><i class="fas fa-cart-arrow-down"></i></a></td>
+          <td><a href="" class="eliminar btn btn-danger" data-id="<?php echo $datos[$i]['Id']?>" ><i class="fas fa-trash-alt"></i></a></td>
           </tr>
           </tbody>
 
@@ -134,10 +132,10 @@
     echo '<h2>No has añadido ningun producto</h2>';
    }
 
-   echo '<tbody><tr><th id="total">Total a pagar</td><th colspan="3"></th><td> $'.$total.'</td><td></td></tr></tbody>';
+   echo '<tbody><tr><th id="total">Total a pagar</td><th colspan="2"></th><td> $'.$total.'</td><td></td></tr></tbody>';
    if($total!=0)
    {
-    echo '<thead><tr><th><a href="./compras.php" class="aceptar">Comprar</a></th><th><a href=Carrito_compras.php>Ver catalogo</a></th><th colspan="4"></th></tr><</thead>';
+    echo '<thead><tr><th><a class="btn btn-success" href="./compras.php" class="aceptar"><i class="fas fa-cart-arrow-down"></i></a></th><th><a href=Carrito_compras.php>Ver catalogo</a></th><th colspan="4"></th></tr></thead>';
    }
 
   ?> 

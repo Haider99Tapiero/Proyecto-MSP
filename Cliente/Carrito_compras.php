@@ -30,12 +30,13 @@
      $consulta="select * from plato";
  	 $query=mysqli_query($conexion, $consulta); 
   		while ($f=mysqli_fetch_array($query,MYSQLI_ASSOC)) {
+            
   	?>
-
+    
   
    	
     	<tbody><tr>
-        <td><img src="../productos/<?php echo $f['imagen'];?>"></td>
+        <td><img src="./productos/<?php echo $f['imagen'];?>"></td>
         <td><span><?php echo $f['nombre'];?></span><br></td>
         <td><a class="btn btn-info" href="./detalle.php?id=<?php echo $f['idPlato'];?>">ver</a></td>
         <td><a class="btn btn-warning"  href="./carritodecompras.php?id=<?php  echo $f['idPlato'];?>"><i class="fas fa-cart-plus"></i></a></td>

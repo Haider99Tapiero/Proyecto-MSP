@@ -14,9 +14,9 @@ session_start();
 	}
 	if(isset($datosNuevos)){
 		$_SESSION['carrito']=$datosNuevos;
-		echo '0';
+		echo 0;
 	}else{
 		unset($_SESSION['carrito']); 
-		echo '0';
+		echo 0;
 	}
 ?>

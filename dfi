@@ -1,0 +1,105 @@
+[33mcommit ef3a9b3f3c618e558dd02e40fd0b766e428a3589[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: haider tapiero <htapierorobayo@misena.edu.co>
+Date:   Mon Nov 26 00:20:47 2018 -0500
+
+    se modifico el script de edita plato
+
+[33mcommit be2aef7f6585a186ef71b8f71946f750569455cf[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: haider tapiero <htapierorobayo@misena.edu.co>
+Date:   Fri Nov 23 17:01:47 2018 -0500
+
+    Se agrego la funcion de actualizar la paginas despues de cada registro
+
+[33mcommit a067a718764a04ffcae6a297fd371d5c1942f80c[m
+Author: jhonatan1100 <jalvarezlaiton@misena.edu.co>
+Date:   Thu Nov 22 17:34:40 2018 -0500
+
+    modifique index
+    
+    modifique el index , agregando el espacio de comentarios
+
+[33mcommit 5bc7127c68d89e283bf0a6241cca79ab97cf097b[m
+Author: cristian753951 <38296917+cristian753951@users.noreply.github.com>
+Date:   Thu Nov 22 15:14:08 2018 -0500
+
+    insert into
+    
+    nuevo insert into
+
+[33mcommit 1e7794a7531b09db2563d1d3be7ac2d21806b0cb[m
+Author: jhonatan1100 <jalvarezlaiton@misena.edu.co>
+Date:   Thu Nov 22 14:40:19 2018 -0500
+
+    Comentarios del restaurante
+    
+    agregue la carpeta de comentarios para fucionarlos con el index
+
+[33mcommit 527468b02ed97389101878ab983f4af031bd2fb9[m
+Author: haider tapiero <htapierorobayo@misena.edu.co>
+Date:   Thu Nov 22 01:19:11 2018 -0500
+
+    se cambio el metodo eliminar de la tabla plato
+
+[33mcommit db3f9e4a80b6b19753bcf260fa044faccffc6685[m
+Author: haider tapiero <htapierorobayo@misena.edu.co>
+Date:   Wed Nov 21 23:28:27 2018 -0500
+
+    se modifico el metodo listar de la tabla platos
+
+[33mcommit cd591f7fd3b124a6cca9739152748c079866320e[m
+Author: haider tapiero <htapierorobayo@misena.edu.co>
+Date:   Wed Nov 21 17:33:18 2018 -0500
+
+    cambios
+
+[33mcommit 9f6233c02b9f3c42f6c38d7f421bee9580af34da[m
+Author: haider tapiero <htapierorobayo@misena.edu.co>
+Date:   Tue Nov 20 16:02:42 2018 -0500
+
+    Se cambio el directorio de un href
+
+[33mcommit 76906b15098ee76d8a460a3e493f858dff740b32[m
+Author: haider tapiero <htapierorobayo@misena.edu.co>
+Date:   Tue Nov 20 14:50:18 2018 -0500
+
+    Se agregaron comentarios y se cambiaron algunos valores
+
+[33mcommit 1dffc7187fe7548f3fb120dc19febfb850ae4368[m
+Author: haider tapiero <htapierorobayo@misena.edu.co>
+Date:   Thu Nov 8 16:26:30 2018 -0500
+
+    Feat : Delete file
+
+[33mcommit d50cbdb5eb9ed651e55e923048724e0ef381207f[m
+Author: haider tapiero <htapierorobayo@misena.edu.co>
+Date:   Thu Nov 8 16:21:23 2018 -0500
+
+    Feat : New file db
+
+[33mcommit 0c8b1d6e088eed3bcea5317e703250e1045b440b[m
+Author: cristian753951 <cdpulido16@misena.edu.co>
+Date:   Wed Nov 7 21:54:08 2018 -0500
+
+    mi primer commit
+    
+    none
+
+[33mcommit fb9b560d6b114c887492d7d1be8ab13d16c340ec[m
+Author: haider tapiero <htapierorobayo@misena.edu.co>
+Date:   Tue Nov 6 22:23:09 2018 -0500
+
+    nuevo comentario
+
+[33mcommit 26332958ebeb9f2959140496761269ab21ec715c[m
+Author: haider tapiero <htapierorobayo@misena.edu.co>
+Date:   Tue Nov 6 17:01:48 2018 -0500
+
+    Remplazo de consulta
+    
+    Se remplazo la consulta para insertar el dato en la tabla compras
+
+[33mcommit bce1f0b7ee4645c83bfaaa98517c6506322adec9[m
+Author: haider tapiero <htapierorobayo@misena.edu.co>
+Date:   Tue Nov 6 11:45:39 2018 -0500
+
+    Initial commit

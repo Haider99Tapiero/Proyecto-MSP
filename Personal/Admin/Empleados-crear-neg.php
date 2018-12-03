@@ -5,7 +5,7 @@
 
     sleep(1);
 
-    //if(isset($_POST["nombre"]) && isset($_POST["apellido"]) && isset($_POST["selectipodoc"]) && isset($_POST["documento"]) && isset($_POST["direccion"]) && isset($_POST["email"]) && isset($_POST["telefono"]) && isset($_POST["contrasena"]) && isset($_POST["selecrol"]) && isset($_POST["selecgenero"])){
+    if(isset($_POST["nombre"]) && isset($_POST["apellido"]) && isset($_POST["selectipodoc"]) && isset($_POST["documento"]) && isset($_POST["direccion"]) && isset($_POST["email"]) && isset($_POST["telefono"]) && isset($_POST["contrasena"]) && isset($_POST["selecrol"]) && isset($_POST["selecgenero"])){
 
         $nombre = $_POST["nombre"];
         $apellido = $_POST["apellido"];
@@ -17,17 +17,6 @@
         $contrasena = $_POST["contrasena"];
         $selecrol = $_POST["selecrol"];
         $selecgenero = $_POST["selecgenero"];
-
-    /*    $nombre = "hadier";
-        $apellido = "tapiero";
-        $selectipodoc = "1";
-        $documento = "123123";
-        $direccion = "asdasd12312";
-        $email = "dasd1312";
-        $telefono = "2312";
-        $contrasena = "asdas";
-        $selecrol = "1";
-        $selecgenero = "1"; */
 
         $cont="0";
         
@@ -69,7 +58,7 @@
             echo json_encode($response);
         }
 
-    //} else {
-    //    echo "SE ENTRO DIRECTO A ESTA CAPA";
-    //}
+    } else {
+        echo "SE ENTRO DIRECTO A ESTA CAPA";
+        }
 ?>

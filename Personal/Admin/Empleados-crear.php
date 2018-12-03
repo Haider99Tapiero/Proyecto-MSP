@@ -113,7 +113,7 @@
                                 echo"<td>$DDesGenero</td>";  
                                 echo"<td>$DDesRol</td>";
                                 echo"<td>
-                                    <a href='Platos-Editar.php?idPlato=".$IIdEmple."' class='btn btn-warning'>
+                                    <a href='Empleados-eliminar.php?idemple=".$IIdEmple."' class='btn btn-warning'>
                                         <i class='far fa-edit'></i>
                                     </a>
                                     <button type='button' class='btn btn-danger EliminarPlato' value='".$IIdEmple."'>
@@ -171,7 +171,7 @@
 
 					                  while ($row2 = $result2->fetch_assoc())
 					                  { 
-					                  	$IId_Tipo_Doc=stripslashes($row2["idTipoDocumento"]);
+					                  	$IId_Tipo_Doc=stripslashes($row2["idtipodocumento"]);
 					                    $DDes=stripslashes($row2["descripcion"]);
 					                    echo "<option value='$IId_Tipo_Doc'>$DDes</option>";
 					                  }
@@ -212,7 +212,7 @@
 
 					                  while ($row2 = $result2->fetch_assoc())
 					                  { 
-					                  	$IId_Rol=stripslashes($row2["idRoles"]);
+					                  	$IId_Rol=stripslashes($row2["idroles"]);
 					                    $Rrol=stripslashes($row2["rol"]);
 					                    echo "<option value='$IId_Rol'>$Rrol</option>";
 					                  }
@@ -238,7 +238,7 @@
 
 					                  while ($row2 = $result2->fetch_assoc())
 					                  { 
-					                  	$IId_genero=stripslashes($row2["idGenero"]);
+					                  	$IId_genero=stripslashes($row2["idgenero"]);
 					                    $DDes=stripslashes($row2["descripcion"]);
 					                    echo "<option value='$IId_genero'>$DDes</option>";
 					                  }
@@ -278,9 +278,6 @@
 
 	            var parametros = new FormData($("#FormEmpleado")[0]);
 	            
-	           	alert(nombre,apellido,selectipodoc,documento,direccion,email,telefono,contrasena,selecrol,selecgenero);
-	           	alert(nombre,documento);
-
 
 	            if($.trim(nombre).length > 0 && $.trim(apellido).length > 0 && $.trim(documento).length > 0 && $.trim(direccion).length > 0 && $.trim(email).length > 0 && $.trim(telefono).length > 0 && $.trim(contrasena).length > 0){
 	                if (isNaN(documento)){

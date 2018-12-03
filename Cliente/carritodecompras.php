@@ -1,3 +1,4 @@
+
 <?php
  session_start();
  include './conexion.php';
@@ -64,17 +65,27 @@
 <head>
  <meta charset="utf-8"/>
  <title>Carrito de Compras</title>
- 
  <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
  <script type="text/javascript"  src="./js/scripts.js"></script>
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    
 </head>
 <body>
  <header>
-  <?php
-     include('../menu-msp.php');
-     ?>
+   
  </header>
- <section>
+ <div class="container">
+ <table class="table table-striped">
+ <thead>
+     <tr>
+         <th>Producto</th>
+         <th>Nombre</th>
+         <th>Cantidad</th>
+         <th>Precio</th>
+         <th>Accion</th>
+     </tr>
+ </thead>
   <?php
    $total=0;
    if(isset($_SESSION['carrito'])){
@@ -83,38 +94,50 @@
    $total=0;
    for($i=0;$i<count($datos);$i++){
  ?>
-    <div class="producto">
+    
      <center>
-      <img src="./productos/<?php echo $datos[$i]['Imagen'];?>"><br>
-      <span><?php echo $datos[$i]['Nombre'];?></span><br>
-      <span>Precio: <?php echo $datos[$i]['Precio'];?></span><br>
-      <span>Cantidad 
+     <tbody>
+      <tr>
+         <td><img height="50" class="rounded" src="./productos/<?php echo $datos[$i]['Imagen'];?>"><br></td>
+          <td><span class="align-middle"><?php echo $datos[$i]['Nombre'];?></span><br></td>
+          <td><span>
       		<input type="text" value="<?php echo $datos[$i]['Cantidad'];?>"
       		data-precio="<?php echo $datos[$i]['Precio'];?>"
       		data-id="<?php echo $datos[$i]['Id'];?>"
-      		class="cantidad"
-      		>
-      </span><br>
-      <span>Subtotal:<?php echo $datos[$i]['Cantidad']*$datos[$i]['Precio'];?></span><br>
-      <a href="" class="eliminar" data-id="<?php echo $datos[$i]['Id']?>" >Eliminar</a>
-
-     </center>
-    </div>
+      		class="cantidad">
+      </span><br></td>
+      <td><span> <?php echo $datos[$i]['Precio'];?></span><br></td>
+      
+    
+     <td><a href="" class="eliminar btn btn-danger" data-id="<?php echo $datos[$i]['Id']?>" ><i class="fas fa-trash-alt"></i></a></td> 
+    </tr>
+    </tbody>
+   
   <?php
+     
    $total=($datos[$i]['Cantidad']*$datos[$i]['Precio'])+$total;
+    
   }
    }else{
     echo '<center><h2>No has añadido ningun producto</h2></center>';
    }
+  
+    echo '<tr><th>Total a pagar</td><td colspan="2"></th><td><div  id="total"> $'.$total.'</div></td><td></td></tr>';
 
-   echo '<center><h2  id="total">Total: '.$total.'</h2></center>';
    if($total!=0)
    {
-    echo '<center><a href="./compras.php" class="aceptar">Comprar</a></center>';
+       echo"<tr><td>";
+       echo '<a class="btn btn-success col-md-4" href="./compras.php" class="aceptar"><i class="fas fa-cart-arrow-down"></i></a>';
+      
    }
 
   ?> 
-  <center><a href="Carrito_compras.php">Ver catalogo</a></center>
- </section>
+
+ 
+    
+         <a class="btn btn-info col-md-4" href="Carrito_compras.php"><i class="fas fa-eye"></i></a></td></tr>
+</table>
+    </table>
+    </div>
 </body>
 </html>﻿

@@ -59,7 +59,7 @@ include"db.php";
                           
                            <!--//////////////////PHP PARA INSERTAR DATOS//////////////////-->
                             <?php
-                                /*session_start();*/
+                                session_start();
                                 if(isset($_POST['enviar']))
                                  {
                                             if(isset($_SESSION['idcliente']))
@@ -79,6 +79,8 @@ include"db.php";
                                             }		
 
                                 }
+                
+            
                            ?>
                            <!--/////////////////////////////////////////////////////////////////////////////////////-->
                     

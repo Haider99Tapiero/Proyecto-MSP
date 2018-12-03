@@ -22,10 +22,11 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <?php
-            include('Menu-Admin.php') 
+   <?php
+            include('../../Menu-msp.php') 
          ?>
+    <div class="container">
+        
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -72,8 +73,7 @@
                                 if ($IImagen == '') {
                                     echo "<td>Sin asignar imagen</td>";
                                 }else{
-                                    echo'<td><a class="btn btn-info" target="_blank" href="'.$imagen.'">Ver</a></td>';
-                                    echo'<td><img src="'.$imagen.'"></td>';
+                                    echo'<td><a  target="_blank" href="'.$imagen.'"><img height="50" src="'.$imagen.'"></a></td>';
                                 }
                                 echo"<td>
                                     <a href='Platos-Editar.php?idPlato=".$IIdPlato."' class='btn btn-warning'>

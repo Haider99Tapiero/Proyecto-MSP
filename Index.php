@@ -119,7 +119,7 @@
                           
                            <!--//////////////////PHP PARA INSERTAR DATOS//////////////////-->
                             <?php
-                                /*session_start();*/
+                             
                                 if(isset($_POST['enviar']))
                                  {
                                             if(isset($_SESSION['idcliente']))

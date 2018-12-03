@@ -15,12 +15,11 @@
     <meta http-equiv="Last-Modified" content="0">
     <meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
     <meta http-equiv="Pragma" content="no-cache">
+    
 </head>
 <body>
 	<header>
-    <?php
-     include("../menu-msp.php");
-     ?>
+    
 	</header>
 	<div class="form-group"></div>
 	<section>
@@ -43,7 +42,9 @@
         <td><span><?php echo $f['nombre'];?></span><br></td>
         <td><a class="btn btn-info" href="./detalle.php?id=<?php echo $f['idPlato'];?>">ver</a></td>
         <td><a class="btn btn-warning"  href="./carritodecompras.php?id=<?php  echo $f['idPlato'];?>"><i class="fas fa-cart-plus"></i></a></td>
-        </tr></tbody>
+        </tr>
+       
+           
     	
     	
 		
@@ -52,7 +53,12 @@
  	<?php
  	 }
  	?>
-            
+            <tr>
+            <td>
+                <a class="btn btn-info col-md-3" href="carritodecompras.php"><i class="fas fa-shopping-bag"></i></a>
+            </td>
+        </tr>
+        </tbody>
         </table>
     </div>
 		

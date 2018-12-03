@@ -22,7 +22,9 @@
     </style>
 </head>
 <body>
-	<div class="container-fluid">
+<div class="row">
+<div class="col-1"></div>
+	<div class="container-fluit col-md-10">
 		<?php 
 			include('Menu-Admin.php');
 		?>
@@ -257,6 +259,7 @@
         		</div>
 	        </div>
 	    </div>
+	</div>
 	</div>
 
 	<script>

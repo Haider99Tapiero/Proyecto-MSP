@@ -118,7 +118,7 @@
                                     <a href='Empleados-eliminar.php?idemple=".$IIdEmple."' class='btn btn-warning'>
                                         <i class='far fa-edit'></i>
                                     </a>
-                                    <button type='button' class='btn btn-danger EliminarPlato' value='".$IIdEmple."'>
+                                    <button type='button' class='btn btn-danger EliminarEmple' value='".$IIdEmple."'>
                                         <i class='far fa-trash-alt'></i>
                                     </button>
                                     </td>";
@@ -250,6 +250,12 @@
 							</select>
 						</div>
 						<div class="form-group">
+							<label>
+						      	<input id="checkValue" name="checkbox" type="checkbox" />           
+						      	<span class="slider"></span>
+						    </label>
+						</div>
+						<div class="form-group">
                     		<input type="button" name="Guardar" id="Guardar" value="Guardar" class="btn btn-success">
                 		</div>
                         <div class="form-group">
@@ -321,7 +327,37 @@
 	            };
 
 	        });
-	    // FIN GUARDAR EL PLATO
+	    	// FIN GUARDAR EL PLATO
+	    	// ELIMINAR PLATO
+	        $('.EliminarEmple').click(function(){
+	            var idemple = $('.EliminarEmple').val();
+
+	            $.ajax({
+	                url:"Empleados-eliminar.php",
+	                method:"POST",
+	                data:{idemple:idemple},
+	                cache:"false",
+	                beforeSend:function() {
+	                    
+	                },
+	                success:function(data) {
+	                    var datos = $.parseJSON(data);
+	                    // SI
+	                    if (datos.status == "1") {
+
+	                        $("#resulteliminar").html("<div class='alert alert-dismissible alert-danger'><button type='button' class='close' data-dismiss='alert'>&times;</button>!Eliminado con exito¡</div>");
+	                        location.reload();
+
+
+	                    }
+	                    // NO
+	                    else if (datos.status == "2") {
+	                        $("#resulteliminar").html("<div class='alert alert-dismissible alert-danger'><button type='button' class='close' data-dismiss='alert'>&times;</button>!Error al eliminar el empleado</div>");
+	                    }
+	                }
+	            });
+	        });
+	    	// FIN ELIMINAR PLATO
 	    });
 	</script>
 

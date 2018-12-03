@@ -1,4 +1,3 @@
-
 <?php
  session_start();
  include './conexion.php';
@@ -106,7 +105,7 @@
       		data-id="<?php echo $datos[$i]['Id'];?>"
       		class="cantidad">
       </span><br></td>
-      <td><span> <?php echo $datos[$i]['Precio'];?></span><br></td>
+      <td><span> $<?php echo $datos[$i]['Precio'];?></span><br></td>
       
     
      <td><a href="" class="eliminar btn btn-danger" data-id="<?php echo $datos[$i]['Id']?>" ><i class="fas fa-trash-alt"></i></a></td> 
@@ -122,22 +121,24 @@
     echo '<center><h2>No has añadido ningun producto</h2></center>';
    }
   
-    echo '<tr><th>Total a pagar</td><td colspan="2"></th><td><div  id="total"> $'.$total.'</div></td><td></td></tr>';
+    echo '<tr><th>Total a pagar</td><td colspan="2"></th><td><div  id="total"> ----'.$total.'</div></td><td></td></tr>';
 
    if($total!=0)
    {
        echo"<tr><td>";
-       echo '<a class="btn btn-success col-md-4" href="./compras.php" class="aceptar"><i class="fas fa-cart-arrow-down"></i></a>';
+       echo '<a class="btn btn-success col-md-4" href="./compras.php" class="aceptar"><i class="fas fa-cart-arrow-down"></i></a>
+       
+        <a class="btn btn-info col-md-4" href="Carrito_compras.php"><i class="fas fa-eye"></i></a></td></tr>';
       
    }
 
   ?> 
 
  
-    
-         <a class="btn btn-info col-md-4" href="Carrito_compras.php"><i class="fas fa-eye"></i></a></td></tr>
+     </center>
+        
 </table>
-    </table>
+  
     </div>
 </body>
 </html>﻿

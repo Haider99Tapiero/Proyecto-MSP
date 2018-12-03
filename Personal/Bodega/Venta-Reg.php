@@ -1,5 +1,5 @@
 <?php 
-	include ('S_Vendedor.php');
+	
 
 	if (isset($_SESSION["Plato_crear_ok"])) {
         echo "<script>alert('Creado correctamente');</script>";
@@ -20,9 +20,7 @@
     </style>
 </head>
 <body>
-	<?php 
-		require ('Menu-Bodega.php');
-	?>
+	
 	<div class="container">
 		<form class="col-md-4" name="form1" method="post" action="Venta-Reg-neg.php">
 			<div class="input-group">

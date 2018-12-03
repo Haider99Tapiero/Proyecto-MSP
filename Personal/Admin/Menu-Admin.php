@@ -35,6 +35,9 @@
 					<li class="nav-item active">
 						<a class="nav-link" href="Insumos-Listar.php">Listar insumos</a>
 					</li>
+					<li class="nav-item active">
+						<a class="nav-link" href="domicilio-listar.php">Listar Domicilios</a>
+					</li>
 					<li class="nav-item active dropdown">
 						<a href="#" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo $_SESSION["NOMBRE_EMPLEADO"] = "Haider"; ?></a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">

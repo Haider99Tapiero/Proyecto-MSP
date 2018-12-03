@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-11-2018 a las 22:13:40
--- Versión del servidor: 10.1.36-MariaDB
--- Versión de PHP: 7.2.11
+-- Tiempo de generación: 03-12-2018 a las 22:17:43
+-- Versión del servidor: 10.1.37-MariaDB
+-- Versión de PHP: 7.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -33,6 +33,14 @@ CREATE TABLE `categoriainsumo` (
   `descripcion` varchar(45) NOT NULL COMMENT 'nombre o descripcion de las categorias de los insumos'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `categoriainsumo`
+--
+
+INSERT INTO `categoriainsumo` (`idcategoria`, `descripcion`) VALUES
+(5, 'Vegetales'),
+(6, 'Canes');
+
 -- --------------------------------------------------------
 
 --
@@ -50,6 +58,13 @@ CREATE TABLE `cliente` (
   `contrasena` varchar(45) NOT NULL COMMENT 'contraseña de la cuenta del cliente',
   `tipodocumento_idtipodocumento` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `cliente`
+--
+
+INSERT INTO `cliente` (`idcliente`, `nombre`, `apellido`, `documento`, `direccion`, `email`, `telefono`, `contrasena`, `tipodocumento_idtipodocumento`) VALUES
+(3, 'josue', 'carpintero', '4444', 'crr 56 ', 'josue@gmail.com', '3124561234', 'soyjosue', 5);
 
 -- --------------------------------------------------------
 
@@ -111,8 +126,36 @@ CREATE TABLE `empleados` (
   `contrasena` varchar(45) NOT NULL COMMENT 'contraseña con la que el empleado ingresara el sistema',
   `tipodocumento_idtipodocumento` int(11) NOT NULL,
   `genero_idgenero` int(11) NOT NULL,
-  `roles_idroles` int(11) NOT NULL
+  `roles_idroles` int(11) NOT NULL,
+  `estado_idestado` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `empleados`
+--
+
+INSERT INTO `empleados` (`idempleados`, `nombre`, `apellido`, `documento`, `direccion`, `email`, `telefono`, `contrasena`, `tipodocumento_idtipodocumento`, `genero_idgenero`, `roles_idroles`, `estado_idestado`) VALUES
+(3, 'haider', 'tapiero', '1033', 'crr 56 ', 'haider@misena.edu.co', '3123123124', '1033', 6, 3, 3, 1),
+(4, 'alexander', 'robayo', '8169', '8169', 'alexander@gmail.com', '3129871298', '8169', 6, 3, 4, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `estado`
+--
+
+CREATE TABLE `estado` (
+  `idestado` int(11) NOT NULL,
+  `des_estado` varchar(45) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `estado`
+--
+
+INSERT INTO `estado` (`idestado`, `des_estado`) VALUES
+(1, 'habilidato'),
+(2, 'inhabilitado');
 
 -- --------------------------------------------------------
 
@@ -125,6 +168,14 @@ CREATE TABLE `forma_pago` (
   `descripcion` varchar(45) NOT NULL COMMENT 'forma de pago'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `forma_pago`
+--
+
+INSERT INTO `forma_pago` (`idforma_pago`, `descripcion`) VALUES
+(3, 'Efectivo'),
+(4, 'Targeta credito');
+
 -- --------------------------------------------------------
 
 --
@@ -136,6 +187,14 @@ CREATE TABLE `genero` (
   `descripcion` varchar(45) NOT NULL COMMENT 'nombre o descripcion del genero'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `genero`
+--
+
+INSERT INTO `genero` (`idgenero`, `descripcion`) VALUES
+(3, 'Masculino'),
+(4, 'Femenino');
+
 -- --------------------------------------------------------
 
 --
@@ -146,6 +205,14 @@ CREATE TABLE `mesas` (
   `idmesas` int(11) NOT NULL COMMENT 'identificador unico',
   `mesa` varchar(45) NOT NULL COMMENT 'numero de la mesa'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `mesas`
+--
+
+INSERT INTO `mesas` (`idmesas`, `mesa`) VALUES
+(5, 'Mesa 1'),
+(6, 'Mesa 2');
 
 -- --------------------------------------------------------
 
@@ -212,6 +279,14 @@ CREATE TABLE `roles` (
   `rol` varchar(45) NOT NULL COMMENT 'nombre del rol'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `roles`
+--
+
+INSERT INTO `roles` (`idroles`, `rol`) VALUES
+(3, 'Admin'),
+(4, 'Cajero');
+
 -- --------------------------------------------------------
 
 --
@@ -222,6 +297,14 @@ CREATE TABLE `tipodocumento` (
   `idtipodocumento` int(11) NOT NULL COMMENT 'identificador unico',
   `descripcion` varchar(45) NOT NULL COMMENT 'nombre o descripcion del tippo de documento'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `tipodocumento`
+--
+
+INSERT INTO `tipodocumento` (`idtipodocumento`, `descripcion`) VALUES
+(5, 'Cedula ciudadana'),
+(6, 'Nit ');
 
 --
 -- Índices para tablas volcadas
@@ -270,7 +353,14 @@ ALTER TABLE `empleados`
   ADD PRIMARY KEY (`idempleados`),
   ADD KEY `fk_empleados_tipodocumento1_idx` (`tipodocumento_idtipodocumento`),
   ADD KEY `fk_empleados_genero1_idx` (`genero_idgenero`),
-  ADD KEY `fk_empleados_roles1_idx` (`roles_idroles`);
+  ADD KEY `fk_empleados_roles1_idx` (`roles_idroles`),
+  ADD KEY `fk_empleados_estado1_idx` (`estado_idestado`);
+
+--
+-- Indices de la tabla `estado`
+--
+ALTER TABLE `estado`
+  ADD PRIMARY KEY (`idestado`);
 
 --
 -- Indices de la tabla `forma_pago`
@@ -339,13 +429,13 @@ ALTER TABLE `tipodocumento`
 -- AUTO_INCREMENT de la tabla `categoriainsumo`
 --
 ALTER TABLE `categoriainsumo`
-  MODIFY `idcategoria` int(11) NOT NULL AUTO_INCREMENT COMMENT 'identificador unico';
+  MODIFY `idcategoria` int(11) NOT NULL AUTO_INCREMENT COMMENT 'identificador unico', AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `idcliente` int(11) NOT NULL AUTO_INCREMENT COMMENT 'identificador unico';
+  MODIFY `idcliente` int(11) NOT NULL AUTO_INCREMENT COMMENT 'identificador unico', AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `compras`
@@ -363,25 +453,31 @@ ALTER TABLE `detalle_presencial`
 -- AUTO_INCREMENT de la tabla `empleados`
 --
 ALTER TABLE `empleados`
-  MODIFY `idempleados` int(11) NOT NULL AUTO_INCREMENT COMMENT 'identificador unico';
+  MODIFY `idempleados` int(11) NOT NULL AUTO_INCREMENT COMMENT 'identificador unico', AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de la tabla `estado`
+--
+ALTER TABLE `estado`
+  MODIFY `idestado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `forma_pago`
 --
 ALTER TABLE `forma_pago`
-  MODIFY `idforma_pago` int(11) NOT NULL AUTO_INCREMENT COMMENT 'identificador unico';
+  MODIFY `idforma_pago` int(11) NOT NULL AUTO_INCREMENT COMMENT 'identificador unico', AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `genero`
 --
 ALTER TABLE `genero`
-  MODIFY `idgenero` int(11) NOT NULL AUTO_INCREMENT COMMENT 'identificador unico';
+  MODIFY `idgenero` int(11) NOT NULL AUTO_INCREMENT COMMENT 'identificador unico', AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `mesas`
 --
 ALTER TABLE `mesas`
-  MODIFY `idmesas` int(11) NOT NULL AUTO_INCREMENT COMMENT 'identificador unico';
+  MODIFY `idmesas` int(11) NOT NULL AUTO_INCREMENT COMMENT 'identificador unico', AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `observacion`
@@ -399,25 +495,25 @@ ALTER TABLE `pedido_insumos`
 -- AUTO_INCREMENT de la tabla `plato`
 --
 ALTER TABLE `plato`
-  MODIFY `idPlato` int(11) NOT NULL AUTO_INCREMENT COMMENT 'identificador unico', AUTO_INCREMENT=3;
+  MODIFY `idPlato` int(11) NOT NULL AUTO_INCREMENT COMMENT 'identificador unico';
 
 --
 -- AUTO_INCREMENT de la tabla `proveedor`
 --
 ALTER TABLE `proveedor`
-  MODIFY `idproveedor` int(11) NOT NULL AUTO_INCREMENT COMMENT 'identificador unico';
+  MODIFY `idproveedor` int(11) NOT NULL AUTO_INCREMENT COMMENT 'identificador unico', AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `idroles` int(11) NOT NULL AUTO_INCREMENT COMMENT 'identificador unico', AUTO_INCREMENT=3;
+  MODIFY `idroles` int(11) NOT NULL AUTO_INCREMENT COMMENT 'identificador unico', AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `tipodocumento`
 --
 ALTER TABLE `tipodocumento`
-  MODIFY `idtipodocumento` int(11) NOT NULL AUTO_INCREMENT COMMENT 'identificador unico', AUTO_INCREMENT=5;
+  MODIFY `idtipodocumento` int(11) NOT NULL AUTO_INCREMENT COMMENT 'identificador unico', AUTO_INCREMENT=7;
 
 --
 -- Restricciones para tablas volcadas
@@ -447,6 +543,7 @@ ALTER TABLE `detalle_presencial_has_plato`
 -- Filtros para la tabla `empleados`
 --
 ALTER TABLE `empleados`
+  ADD CONSTRAINT `fk_empleados_estado1` FOREIGN KEY (`estado_idestado`) REFERENCES `estado` (`idestado`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_empleados_genero1` FOREIGN KEY (`genero_idgenero`) REFERENCES `genero` (`idgenero`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_empleados_roles1` FOREIGN KEY (`roles_idroles`) REFERENCES `roles` (`idroles`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_empleados_tipodocumento1` FOREIGN KEY (`tipodocumento_idtipodocumento`) REFERENCES `tipodocumento` (`idtipodocumento`) ON DELETE NO ACTION ON UPDATE NO ACTION;

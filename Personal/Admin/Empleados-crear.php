@@ -19,6 +19,62 @@
             margin: 0 auto;
             width: 50%;
         }
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+
     </style>
 </head>
 <body>
@@ -69,6 +125,7 @@
                             $TTelefono=stripslashes($row["telefono"]);
                             $GGenero=stripslashes($row["genero_idgenero"]);
                             $RRol=stripslashes($row["roles_idroles"]);
+                            $EEstado=stripslashes($row["estado_idestado"]);
 
                             $sql2 ="SELECT * FROM tipodocumento WHERE idtipodocumento = '$TTDocumento'";
 
@@ -114,14 +171,25 @@
                                 echo"<td>$TTelefono</td>";
                                 echo"<td>$DDesGenero</td>";  
                                 echo"<td>$DDesRol</td>";
-                                echo"<td>
-                                    <a href='Empleados-eliminar.php?idemple=".$IIdEmple."' class='btn btn-warning'>
-                                        <i class='far fa-edit'></i>
-                                    </a>
-                                    <button type='button' class='btn btn-danger EliminarEmple' value='".$IIdEmple."'>
-                                        <i class='far fa-trash-alt'></i>
-                                    </button>
-                                    </td>";
+                                echo"<td>";
+	                                echo"<a href='Empleados-eliminar.php?idemple=".$IIdEmple."' class='btn btn-warning'>
+	                                        <i class='far fa-edit'></i>
+	                                    </a>";
+										
+	                            if ($EEstado == 1) {
+	                            	// ESTADO ACTIVO
+	                            	echo"<label class='switch'>
+											<input class='estado' type='checkbox' checked  value='".$IIdEmple."'>
+											<span class='slider round'></span>
+										</label>";
+	                            }elseif ($EEstado == 2) {
+	                            	// ESTADO INACTIVO
+	                            	echo"<label class='switch'>
+											<input class='estado' type='checkbox' value='".$IIdEmple."'>
+											<span class='slider round'></span>
+										</label>";
+	                            }									
+                                echo"</td>";
                             echo"<tr>";
 	                    }
 	                }                
@@ -250,12 +318,6 @@
 							</select>
 						</div>
 						<div class="form-group">
-							<label>
-						      	<input id="checkValue" name="checkbox" type="checkbox" />           
-						      	<span class="slider"></span>
-						    </label>
-						</div>
-						<div class="form-group">
                     		<input type="button" name="Guardar" id="Guardar" value="Guardar" class="btn btn-success">
                 		</div>
                         <div class="form-group">
@@ -270,7 +332,40 @@
 
 	<script>
 		$(document).ready(function() {
-			// GUARDAR EL PLATO
+			// ESTADO DEL EMPLEADO
+			$(".estado").change(function(){
+				var idemple = $(this).val();
+				var estado;
+				if ($(this).prop("checked")) {
+	        		estado = 1;
+				}
+				else{
+					estado = 2;
+				}
+
+				$.ajax({
+	                url:"Empleados-estado-neg.php",
+	                method:"POST",
+	                data:{idemple:idemple, estado:estado},
+	                cache:"false",
+	                beforeSend:function() {
+	                    
+	                },
+	                success:function(data) {
+	                    var datos = $.parseJSON(data);
+	                    // SI
+	                    if (datos.status == "1") {
+	                        location.reload();
+	                    }
+	                    // NO
+	                    else if (datos.status == "2") {
+	                        $("#resulteliminar").html("<div class='alert alert-dismissible alert-danger'><button type='button' class='close' data-dismiss='alert'>&times;</button>!No se pudo cambiar el estado¡</div>");
+	                    }
+	                }
+	            });
+	    	});
+			// FIN ESTADO EMPLEADO
+			// GUARDAR EL EMPLEADO
 	        $('#Guardar').click(function(){
 	            var nombre = $('#nombre').val();
 	            var apellido = $('#apellido').val();
@@ -327,37 +422,7 @@
 	            };
 
 	        });
-	    	// FIN GUARDAR EL PLATO
-	    	// ELIMINAR PLATO
-	        $('.EliminarEmple').click(function(){
-	            var idemple = $('.EliminarEmple').val();
-
-	            $.ajax({
-	                url:"Empleados-eliminar.php",
-	                method:"POST",
-	                data:{idemple:idemple},
-	                cache:"false",
-	                beforeSend:function() {
-	                    
-	                },
-	                success:function(data) {
-	                    var datos = $.parseJSON(data);
-	                    // SI
-	                    if (datos.status == "1") {
-
-	                        $("#resulteliminar").html("<div class='alert alert-dismissible alert-danger'><button type='button' class='close' data-dismiss='alert'>&times;</button>!Eliminado con exito¡</div>");
-	                        location.reload();
-
-
-	                    }
-	                    // NO
-	                    else if (datos.status == "2") {
-	                        $("#resulteliminar").html("<div class='alert alert-dismissible alert-danger'><button type='button' class='close' data-dismiss='alert'>&times;</button>!Error al eliminar el empleado</div>");
-	                    }
-	                }
-	            });
-	        });
-	    	// FIN ELIMINAR PLATO
+	    	// FIN GUARDAR EL EMPLEADO
 	    });
 	</script>
 

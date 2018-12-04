@@ -121,7 +121,7 @@
     echo '<center><h2>No has añadido ningun producto</h2></center>';
    }
   
-    echo '<tr><th>Total a pagar</td><td colspan="2"></th><td><div  id="total"> ----'.$total.'</div></td><td></td></tr>';
+    echo '<tr><th>Total a pagar</td><td colspan="2"></th><td><div  id="total">$'.$total.'</div></td><td></td></tr>';
 
    if($total!=0)
    {

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,9 +6,7 @@
 	<title></title>
 </head>
 <body>
-	<?php
-		require('Menu-Bodega.php')
-	?>
+	
 	<div class="container">
 		<div class="row">
 			<form class="form-inline" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="post">
@@ -41,7 +38,7 @@
 							{
 								include ('conexion.php');
 
-								$sql ="SELECT * FROM ventas ";
+								$sql ="SELECT * FROM detalle_presencial ";
 								
 								if (isset($_POST['fecha-enviar'])) {
 									$Fecha_Con = $_POST['fecha_venta'];
@@ -63,9 +60,9 @@
 									$iid=stripcslashes($row["iddetalle_presencial"]);
 									$ffecha=stripslashes($row["fecha_venta"]);
 									$ccantidad=stripslashes($row["cantidad"]);
-									$fforma_pago_idformapago=stripslashes($row["forma_pago_idformapago"]);
+									$fforma_pago_idformapago=stripslashes($row["forma_pago_idforma_pago"]);
 									$MMesas_idMesas=stripslashes($row["mesas_idmesas"]);
-									$PPlato_idPlato=stripslashes($row["plato_idPlato"]);
+									$PPlato_idPlato=stripslashes($row["plato_idplato"]);
 									
 									 
 									$sql2 ="SELECT * FROM forma_pago WHERE idforma_pago = '$fforma_pago_idformapago'";
@@ -96,7 +93,7 @@
 									{
 										die('No conecta [' . $db->error . ']');
 									}
-									while ($row3 = $result4->fetch_assoc())
+									while ($row4 = $result4->fetch_assoc())
 									{
 										$nnombreplato=stripslashes($row4["nombre"]);
 									}

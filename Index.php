@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="Css/index.css">
     <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+     <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
     <title>Inicio</title>
 </head>
 <body>
@@ -72,7 +73,27 @@
     
     
     
-    <!--/////////////////////////// COMENTARIOS/ //////////////////////////////////////////////-->
+  
+    
+    
+ <div class="container">  
+    <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+  <i class="fas fa-comment-alt"></i>
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+  <!--/////////////////////////// COMENTARIOS/ //////////////////////////////////////////////-->
     
     <script type="text/javascript">
 			function ajax(){
@@ -96,53 +117,21 @@
     
        <div class="container">
                		<!--//////////////////////SE INCLUYE CAPA OBSERVACION///////////////-->
-				<div id="contenedor" >
-					<div id="caja-chat">
-						<div id="chat">									
+				<div id="contenedor" class="container">
+					<div id="caja-chat" class="alert alert-primary">
+						<div id="chat" class="alert alert-danger">									
 						</div>
 					</div>
 				</div>						
 				<span></span>
-                <form action="index.php" method="post" class="">
-                    <div class="form-group"></div>
-                        <div class="row">
-                            <div class="col-11 ">
-                            <input name="comentario" class="form-control"  placeholder="mensaje">
-                            </div>
-                            <div class="col-1">
-                            <input  class="btn btn-primary"  type="submit" name="enviar" value="enviar">
-                            </div>
-                        </div>
-                     </form>
+               
 				 
 		
                           
-                           <!--//////////////////PHP PARA INSERTAR DATOS//////////////////-->
-                            <?php
-                             
-                                if(isset($_POST['enviar']))
-                                 {
-                                            if(isset($_SESSION['idcliente']))
-                                             {
-
-                                            $idcliente = $_SESSION["idcliente"];
-                                            $comentario=$_POST['comentario'];
-
-                                                $consulta ="INSERT INTO observacion( comentario,cliente_idcliente) VALUES ('$comentario','$idcliente')";
-                                                $ejecutar =$conexion->query($consulta);								
-                                            }
-                                            else
-                                            {   
-                                                    echo"<div class='alert alert-danger'>";
-                                                    echo"no se inicio sesion";
-                                                    echo"<div>";
-                                            }		
-
-                                }
-                           ?>
-                           <!--/////////////////////////////////////////////////////////////////////////////////////-->
+                           
                     
-			</div>		
+			</div>	
+    
 			<!--/////////////////////////////////////////////////////////////////////////////////////////////////-->		 
 	
 	         <script type="text/javascript">
@@ -151,6 +140,17 @@
                   return false;
                 }
              </script>
+    <div class="form-group"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div> 
+    <p></p>
         
     <!--////////////////////////// FIN COMENTARIOS ///////////////////////////////////////////-->
     

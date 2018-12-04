@@ -5,14 +5,14 @@ $consulta="SELECT comentario, cliente.nombre FROM observacion INNER JOIN cliente
 $ejecutar=$conexion-> query($consulta);
 															
 while($fila=$ejecutar->fetch_array()):
-
-			    echo"<div class=''>";
+         
+			    echo"<div  style=''  ><div class=''><b>";
 				echo  $fila['nombre'];
-				echo"</div>";
+				echo"</div></b>";
 	
-                echo"<div class='alert alert-primary'>";
+                echo"<div style='' class=''>";
                 echo $fila['comentario'];
-                echo"</div>";
+                echo"</div><br></div>";
 			
 endwhile;  
 ?>

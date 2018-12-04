@@ -63,7 +63,7 @@
 						}
 						while ($row4 = $result4->fetch_assoc())
 						{
-							$MMesas_idMesas=stripslashes($row4["idMesas"]);
+							$MMesas_idMesas=stripslashes($row4["idmesas"]);
 							$mmesa=stripslashes($row4["mesa"]);
 							echo "<option value=$MMesas_idMesas>$mmesa</option>";
 						}

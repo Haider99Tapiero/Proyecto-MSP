@@ -1,7 +1,7 @@
 <?php
 	class Registro
 	{
-		public function registrar($cantidad,$Empleados_idEmpleados,$Plato_idPlato,$Mesas_idMesas)
+		public function registrar($cantidad,$forma_pago_idforma_pago,$Mesas_idMesas,$Plato_idPlato)
 		{
 			session_start();
 
@@ -10,7 +10,7 @@
 			date_default_timezone_set('America/Bogota');
         	$Fecha = date("Y-m-d");  
 
-			$sql ="INSERT INTO ventas (fecha, cantidad, forma_pago_idforma_pago, Mesas_idMesas, Plato_idPlato) 
+			$sql ="INSERT INTO detalle_presencial (fecha_venta, cantidad, forma_pago_idforma_pago, Mesas_idMesas, Plato_idPlato) 
 			VALUES ('$Fecha','$cantidad','$forma_pago_idforma_pago','$Mesas_idMesas','$Plato_idPlato')";
 			if(!$result = $db-> query($sql))
 			{
@@ -24,5 +24,5 @@
 		}
 	}
 	$nuevo = new Registro();
-	$nuevo->registrar($_POST["cantidad"],$_POST["forma_pago_idforma_pago"],$_POST["Mesas_idMesas"],$_POST["Plato_idPlato"])
+	$nuevo->registrar($_POST["cantidad"],$_POST["idforma_pago"],$_POST["Mesas_idMesas"],$_POST["Plato_idPlato"])
 ?>

@@ -16,7 +16,7 @@
 		$num_row = mysqli_num_rows($result);
 
 		// CONSULTAMOS LA TABLA DE EMPLEADOS
-		$sql2 = "SELECT idempleados, nombre, rol FROM empleados INNER JOIN roles ON empleados.roles_idroles = roles.idroles WHERE documento='$docu' AND contrasena='$pass'";
+		$sql2 = "SELECT idempleados, nombre, rol, estado_idestado FROM empleados INNER JOIN roles ON empleados.roles_idroles = roles.idroles WHERE documento='$docu' AND contrasena='$pass'";
 
 		$result2 = mysqli_query($connect, $sql2);
 		$num_row2 = mysqli_num_rows($result2);
@@ -42,9 +42,10 @@
 		}
 
 		// ENVIAMOS LA RESPUESTA A EL INDEX POR PARTE DE LA TABLA USUARIOS
-		if ($num_row2 == "1") {
+		$data2 = mysqli_fetch_array($result2);
+		$estado = $data2["estado_idestado"];
+		if ($num_row2 == "1" && $estado == "1") {
 				
-			$data2 = mysqli_fetch_array($result2);
 			// SACAMOS LOS DATOS QUE QUEREMOS DE LA PERSONA QUE SE AUTENTIFICA
 			$_SESSION["idempleado"] = $data2["idempleados"];
 			$_SESSION["nombre"] = $data2["nombre"];
@@ -63,16 +64,12 @@
 				$response['status'] = '3';
 				echo json_encode($response);
 
-			}else if ($rol == "NN") {
-				// ENVIAMOS DE RESPUESTA
-				$response['status'] = '4';
-				echo json_encode($response);
-				
 			}
 
-		} else {
+		} elseif ($num_row2 == "1" && $estado == "2") {
 
-			//echo "NO EXISTE UN USUARIO CON ESOS DATOS EN EMPLEADOS";
+			$response['status'] = '5';
+				echo json_encode($response);
 
 		}
 

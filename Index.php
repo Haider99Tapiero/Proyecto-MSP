@@ -341,9 +341,13 @@
                             else if (datos.status == "3") {
                                 $(location).attr('href','capa_cajero.php');
                             }   
-                            // NN
+                            // DATOS INCORRECTOS
                             else if (datos.status == "4") {
                                 $("#result").html("<div class='alert alert-dismissible alert-danger'><button type='button' class='close' data-dismiss='alert'>&times;</button>!El <strong>documento </strong> o <strong>contraseña </strong>son incorrectos¡</div>");
+                            }
+                            // uSUARIO BLOQUEADO
+                            else if (datos.status == "5") {
+                                $("#result").html("<div class='alert alert-dismissible alert-danger'><button type='button' class='close' data-dismiss='alert'>&times;</button>!El <strong>usuario </strong>esta <strong>bloqueado </strong>!</div>");
                             }
                         }
                     });

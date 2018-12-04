@@ -10,8 +10,8 @@
 			date_default_timezone_set('America/Bogota');
         	$Fecha = date("Y-m-d");  
 
-			$sql ="INSERT INTO ventas (fecha, cantidad, Empleados_idEmpleados, Plato_idPlato, Mesas_idMesas) 
-			VALUES ('$Fecha','$cantidad','$Empleados_idEmpleados','$Plato_idPlato','$Mesas_idMesas')";
+			$sql ="INSERT INTO ventas (fecha, cantidad, forma_pago_idforma_pago, Mesas_idMesas, Plato_idPlato) 
+			VALUES ('$Fecha','$cantidad','$forma_pago_idforma_pago','$Mesas_idMesas','$Plato_idPlato')";
 			if(!$result = $db-> query($sql))
 			{
 				die('No conecta [' . $db->error . ']');
@@ -24,5 +24,5 @@
 		}
 	}
 	$nuevo = new Registro();
-	$nuevo->registrar($_POST["cantidad"],$_POST["Empleados_idEmpleados"],$_POST["Plato_idPlato"],$_POST["Mesas_idMesas"])
+	$nuevo->registrar($_POST["cantidad"],$_POST["forma_pago_idforma_pago"],$_POST["Mesas_idMesas"],$_POST["Plato_idPlato"])
 ?>

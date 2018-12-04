@@ -27,45 +27,28 @@
 		  		<label>Cantidad</label>
            		<input class="form-control" name="cantidad" type="text" id="cantidad" required/>
 			</div>
+			<div class="container">
+		<form class="col-md-4" name="form1" method="post" action="Venta-Reg-neg.php">
+			
 			<div class="input-group">
-				<label>Nombre Empleado</label>
-				<select class="form-control" name="Empleados_idEmpleados" id="Empleados_idEmpleados" required="required">
+				<label>Forma de pago</label>
+				<select class="form-control" name="idforma_pago" id="idforma_pago" required="required">
            			<option value="Seleccione:">Seleccione:</option>
 					<?php
 						include ('conexion.php');
-						$sql2 ="SELECT * FROM empleados WHERE Roles_idRoles = 4 ";
+						$sql2 ="SELECT * FROM forma_pago";
 						if(!$result2 = $db-> query($sql2))
 						{
 							die('No conecta [' . $db->error . ']');
 						}
 						while ($row2 = $result2->fetch_assoc())
 						{
-							$EEmpleados_idEmpleados=stripslashes($row2["idEmpleados"]);
-							$nnombre=stripslashes($row2["nombre"]);
-							echo "<option value=$EEmpleados_idEmpleados>$nnombre</option>";
+							$iidforma_pago=stripslashes($row2["idforma_pago"]);
+							$nnombre=stripslashes($row2["descripcion"]);
+							echo "<option value=$iidforma_pago>$nnombre</option>";
 						}
 					?>
             	</select>
-			</div>
-			<div class="input-group">
-				<label>Plato</label>
-				<select class="form-control" name="Plato_idPlato" id="Plato_idPlato" required>
-	             	<option value=Seleccione:>Seleccione:</option>
-		            <?php
-						include ('conexion.php');
-						$sql3 ="SELECT * FROM plato ";
-						if(!$result3 = $db-> query($sql3))
-						{
-							die('No conecta [' . $db->error . ']');
-						}
-						while ($row3 = $result3->fetch_assoc())
-						{
-							$PPlato_idPlato=stripslashes($row3["idPlato"]);
-							$nnombre=stripslashes($row3["nombre"]);
-							echo "<option value=$PPlato_idPlato>$nnombre</option>";
-						}
-					?>
-	            </select>
 			</div>
 			<div class="input-group">
 				<label>Mesa</label>
@@ -83,6 +66,26 @@
 							$MMesas_idMesas=stripslashes($row4["idMesas"]);
 							$mmesa=stripslashes($row4["mesa"]);
 							echo "<option value=$MMesas_idMesas>$mmesa</option>";
+						}
+					?>
+	            </select>
+			</div>
+			<div class="input-group">
+				<label>Plato</label>
+				<select class="form-control" name="Plato_idPlato" id="Plato_idPlato" required>
+	             	<option value=Seleccione:>Seleccione:</option>
+		            <?php
+						include ('conexion.php');
+						$sql3 ="SELECT * FROM plato ";
+						if(!$result3 = $db-> query($sql3))
+						{
+							die('No conecta [' . $db->error . ']');
+						}
+						while ($row3 = $result3->fetch_assoc())
+						{
+							$PPlato_idPlato=stripslashes($row3["idPlato"]);
+							$nnombre=stripslashes($row3["nombre"]);
+							echo "<option value=$PPlato_idPlato>$nnombre</option>";
 						}
 					?>
 	            </select>

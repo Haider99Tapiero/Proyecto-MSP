@@ -178,7 +178,7 @@
                                 echo"<td>$DDesGenero</td>";  
                                 echo"<td>$DDesRol</td>";
                                 echo"<td>";
-	                                echo"<a href='Empleados-eliminar.php?idemple=".$IIdEmple."' class='btn btn-warning'>
+	                                echo"<a href='Empleados-Editar.php?idemple=".$IIdEmple."' class='btn btn-warning'>
 	                                        <i class='far fa-edit'></i>
 	                                    </a>";
 										

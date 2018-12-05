@@ -84,6 +84,7 @@
     </style>
 </head>
 <body>
+<
 <div class="row">
 <div class="col-1"></div>
 	<div class="container-fluit col-md-10">

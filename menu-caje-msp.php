@@ -33,8 +33,8 @@
           Dropdown
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="Empleados-crear.php">Registrar empleado</a>
-          <a class="dropdown-item" href="Platos-Crear.php">Registrar platos</a>
+          <a class="dropdown-item" href="Empleados-crear.php">Nueva venta</a>
+          <a class="dropdown-item" href="Platos-Crear.php">Info ventas</a>
            <a class="dropdown-item" href="Insumos-listar.php">Insumos</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">Something else here</a>

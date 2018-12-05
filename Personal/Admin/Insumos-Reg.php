@@ -1,280 +1,109 @@
+<?php 
+    
+
+    if (isset($_SESSION["insumos_crear"])) {
+        echo "<script>alert('Creado correctamente');</script>";
+        unset($_SESSION["insumos_crear"]);
+    }
+?>
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
-    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
-    <meta http-equiv="Expires" content="0">
-    <meta http-equiv="Last-Modified" content="0">
-    <meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <link rel="stylesheet" type="text/css" href="css/platos.css">
-    <title>Inicio</title>
+    <title></title>
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/font-awesome.min.css" rel="stylesheet">
     <style type="text/css">
-        #resulteliminar{
-            margin: 0 auto;
-            width: 50%;
+        .input-group{
+            width: 100%;
+            margin-bottom: 10px;
         }
-
-        .switch {
-          position: relative;
-          display: inline-block;
-          width: 60px;
-          height: 34px;
-          margin-left: 5px;
-        }
-
-        .switch input { 
-          opacity: 0;
-          width: 0;
-          height: 0;
-        }
-
-        .slider {
-          position: absolute;
-          cursor: pointer;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          background-color: #ccc;
-          -webkit-transition: .4s;
-          transition: .4s;
-        }
-
-        .slider:before {
-          position: absolute;
-          content: "";
-          height: 26px;
-          width: 26px;
-          left: 4px;
-          bottom: 4px;
-          background-color: white;
-          -webkit-transition: .4s;
-          transition: .4s;
-        }
-
-        input:checked + .slider {
-          background-color: #2196F3;
-        }
-
-        input:focus + .slider {
-          box-shadow: 0 0 1px #2196F3;
-        }
-
-        input:checked + .slider:before {
-          -webkit-transform: translateX(26px);
-          -ms-transform: translateX(26px);
-          transform: translateX(26px);
-        }
-
-        /* Rounded sliders */
-        .slider.round {
-          border-radius: 34px;
-        }
-
-        .slider.round:before {
-          border-radius: 50%;
-        }
-
     </style>
 </head>
 <body>
-<div class="row">
-<div class="col-1"></div>
-    <div class="container-fluit col-md-10">
-        
-       <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>cantidad</th>
-                    <th>Unidad de medida</th>
-                    <th>Descripcion</th>
-                    <th>Categoria</th>
-                    <th>Empleado</th>
-                    <th>Proveedor</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                    class Insumos
-                    {
-                        public function listar()
-                        {
-                            include ('conexion.php');
-
-                            $sql ="SELECT * FROM pedido_insumos ";
-
-                            if(!$result = $db-> query($sql))
-                            {
-                                die('No conecta [' . $db->error . ']');
-                            }           
-                            
-                            while ($row = $result->fetch_assoc())
-                            {
-                                $iid=stripslashes($row["idpedidoInsumos"]);
-                                $ccantidad=stripslashes($row["cantidad"]);
-                                $uunidad_medida=stripslashes($row["unidad_medida"]); 
-                                $ddescripcion=stripslashes($row["descripcion"]); 
-                                $CCategoriaInsumo_idCategoria=stripslashes($row["categoriainsumo_idcategoria"]);
-                                $EEmpleados_idEmpleados=stripslashes($row["empleados_idempleados"]); 
-                                $PProveedor_idProveedor=stripslashes($row["proveedor_idproveedor"]);
-                                
-                                $sql3 ="SELECT * FROM categoriainsumo WHERE idcategoria = '$CCategoriaInsumo_idCategoria'";
-
-                                if(!$result3 = $db-> query($sql3))
-                                {
-                                    die('No hace consulta de categoriainsumo [' . $db->error . ']');
-                                }
-                                while ($row3 = $result3->fetch_assoc())
-                                {
-                                    $ddescripcion_categoria=stripslashes($row3["descripcion"]);
-                                }
-                                
-                                $sql4 ="SELECT * FROM proveedor WHERE idproveedor = '$PProveedor_idProveedor' ";
-
-                                if(!$result4 = $db-> query($sql4))
-                                {
-                                    die('No hace consulta de proveedor [' . $db->error . ']');
-                                }
-                                while ($row4 = $result4->fetch_assoc())
-                                {
-                                    $nnombrepro=stripslashes($row4["nombre"]);
-                                }
-                                
-                                $sql2 ="SELECT * FROM empleados WHERE idempleados = '$EEmpleados_idEmpleados' ";
-                                
-                                if(!$result2 = $db-> query($sql2))
-                                {
-                                    die('No hace consulta a empleados [' . $db->error . ']');
-                                }
-                                while ($row2 = $result2->fetch_assoc())
-                                {
-                                    $nnombre=stripslashes($row2["nombre"]);
-                                }
-                                
-                                echo "<tr>";
-                                    echo "<td>$iid</td>";
-                                    echo "<td>$ccantidad</td>";
-                                    echo "<td>$uunidad_medida</td>";
-                                    echo "<td>$ddescripcion</td>";
-                                    echo "<td>$ddescripcion_categoria</td>";
-                                    echo "<td>$nnombre</td>";
-                                    echo "<td>$nnombrepro</td>";
-                                echo "</tr>";
-                            }
-                        }
-                    }
-                    $nuevo=new Insumos();
-                    $nuevo->listar()
-                ?>
-            </tbody>
-    </div></table>      <div class="row">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Agregar</button>
-        </div>
-        <div class="row">
-            <span id="resulteliminar"></span>
-        </div>
-
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="LabelModalogin" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <form method="post" class="formulario" action="" id="FormEmpleado" autocomplete="off" enctype="multipart/form-data">
-                       <div class="container">
-        <form id="form1" name="form1" method="post" action="Insumos-Reg-neg.php">
-            <div class="form-group">
-                <label>Categoria: </label>
-                <select class="form-control" name="CategoriaInsumo" id="CategoriaInsumo" required>
-                    <option value=Seleccione:>Seleccione:</option>
-                    <?php
-                        include ('conexion.php');
-                        $sql3 ="SELECT * FROM CategoriaInsumo ";
-
-                        if(!$result3 = $db-> query($sql3))
-                        {
-                            die('No conecta [' . $db->error . ']');
-                        }
-                        while ($row3 = $result3->fetch_assoc())
-                        {
-                            $IIdCategoria=stripslashes($row3["idCategoria"]);
-                            $ddescripcion=stripslashes($row3["descripcion"]);
-                            echo "<option value=$IIdCategoria>$ddescripcion</option>";
-                        }
-                    ?>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Proveedor: </label>
-                <select class="form-control" name="Proveedor" id="Proveedor" required>
-                    <option value=Seleccione:>Seleccione:</option>
-                    <?php
-                        include ('conexion.php');
-                        $sql4 ="SELECT * FROM Proveedor";
-
-                        if(!$result4 = $db-> query($sql4))
-                        {
-                            die('No conecta [' . $db->error . ']');
-                        }
-                        while ($row4 = $result4->fetch_assoc())
-                        {
-                            $IIdProveedor=stripslashes($row4["idProveedor"]);
-                            $nnombre=stripslashes($row4["nombre"]);
-                            $CCategoriaInsumos_id=stripslashes($row4["CategoriaInsumo_idCategoria"]);
-
-                            echo "<option value=$IIdProveedor>$nnombre</option>";
-                        }
-                    ?>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Cantidad: </label>
+    
+    <div class="container">
+        <form class="col-md-4" name="form1" method="post" action="Venta-Reg-neg.php">
+            <div class="input-group">
+                <label>Cantidad</label>
                 <input class="form-control" name="cantidad" type="text" id="cantidad" required/>
             </div>
-            <div class="form-group">
-                <label>Unidad de medida: </label>
-                <input class="form-control" name="unidad_medida" type="text" id="unidad_meida" required/>
+            <div class="container">
+                <div class="input-group">
+                <label>unidad de medida</label>
+                <input class="form-control" name="unidad_de_medida" type="text" id="cantidad" required/>
             </div>
-            <div class="form-group">
-                <label>Descripcion: </label>
-                <input class="form-control" name="descripcion" type="text" id="descripcion" required/>
-            </div>
-            <div class="form-group">
-                <label>Nombre empleado</label>
-                <select class="form-control" name="Empleados_id" id="Empleados_id" required>
+            <div class="container">
+        <form class="col-md-4" name="form1" method="post" action="Venta-Reg-neg.php">
+            
+            <div class="input-group">
+                <label>Forma de pago</label>
+                <select class="form-control" name="idforma_pago" id="idforma_pago" required="required">
                     <option value="Seleccione:">Seleccione:</option>
                     <?php
                         include ('conexion.php');
-                        $sql2 ="SELECT * FROM empleados ";
-                        
+                        $sql2 ="SELECT * FROM forma_pago";
                         if(!$result2 = $db-> query($sql2))
                         {
                             die('No conecta [' . $db->error . ']');
                         }
                         while ($row2 = $result2->fetch_assoc())
                         {
-                            $IIdempleado=stripslashes($row2["idEmpleados"]);
-                            $nnombre=stripslashes($row2["nombre"]);
-                            echo "<option value=$IIdempleado>$nnombre</option>";
+                            $iidforma_pago=stripslashes($row2["idforma_pago"]);
+                            $nnombre=stripslashes($row2["descripcion"]);
+                            echo "<option value=$iidforma_pago>$nnombre</option>";
                         }
                     ?>
                 </select>
             </div>
-            <div class="form-group">
-                <input class="btn btn-success" type="submit" name="Submit" value="Registrar insumo" />
+            <div class="input-group">
+                <label>Mesa</label>
+                <select class="form-control" name="Mesas_idMesas" id="Mesas_idMesas" required>
+                    <option value=Seleccione:>Seleccione:</option>
+                    <?php
+                        include ('conexion.php');
+                        $sql4 ="SELECT * FROM mesas ";
+                        if(!$result4 = $db-> query($sql4))
+                        {
+                            die('No conecta [' . $db->error . ']');
+                        }
+                        while ($row4 = $result4->fetch_assoc())
+                        {
+                            $MMesas_idMesas=stripslashes($row4["idmesas"]);
+                            $mmesa=stripslashes($row4["mesa"]);
+                            echo "<option value=$MMesas_idMesas>$mmesa</option>";
+                        }
+                    ?>
+                </select>
             </div>
+            <div class="input-group">
+                <label>Plato</label>
+                <select class="form-control" name="Plato_idPlato" id="Plato_idPlato" required>
+                    <option value=Seleccione:>Seleccione:</option>
+                    <?php
+                        include ('conexion.php');
+                        $sql3 ="SELECT * FROM plato ";
+                        if(!$result3 = $db-> query($sql3))
+                        {
+                            die('No conecta [' . $db->error . ']');
+                        }
+                        while ($row3 = $result3->fetch_assoc())
+                        {
+                            $PPlato_idPlato=stripslashes($row3["idPlato"]);
+                            $nnombre=stripslashes($row3["nombre"]);
+                            echo "<option value=$PPlato_idPlato>$nnombre</option>";
+                        }
+                    ?>
+                </select>
+            </div>
+            <div class="input-group">
+                <input class="btn btn-success" type="submit" name="Submit" value="Finalizar Venta"/>
+            </div>
+            <div class="input-group">
+                <a class="btn btn-danger" href="xxxxx">cancelar</a>
+            </div>
+        </form>
     </div>
-
-  </form>
-
-
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script src="../../js/jquery-3.3.1.min.js"></script>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
 </body>
 </html>

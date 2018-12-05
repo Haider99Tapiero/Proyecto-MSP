@@ -1,7 +1,7 @@
 <?php 
 	
 
-	if (isset($_SESSION["Plato_crear_ok"])) {
+	if (isset($_SESSION["Venta_Registrar"])) {
         echo "<script>alert('Creado correctamente');</script>";
         unset($_SESSION["Plato_crear_ok"]);
     }

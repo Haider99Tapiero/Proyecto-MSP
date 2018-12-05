@@ -107,7 +107,7 @@
             </thead>
             <tbody>
             <?php
-                class Platos
+                class Empleados
                 {
                     public function listar()
                     {
@@ -200,7 +200,7 @@
 	                    }
 	                }                
                 }
-                $nuevo=new Platos();
+                $nuevo=new Empleados();
                 $nuevo->listar();
 
 	        ?>

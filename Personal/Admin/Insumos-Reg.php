@@ -22,7 +22,7 @@
 <body>
     
     <div class="container">
-        <form class="col-md-4" name="form1" method="post" action="Venta-Reg-neg.php">
+        <form class="col-md-4" name="form1" method="post" action="Insumos-Reg-neg.php">
             <div class="input-group">
                 <label>Cantidad</label>
                 <input class="form-control" name="cantidad" type="text" id="cantidad" required/>
@@ -30,67 +30,72 @@
             <div class="container">
                 <div class="input-group">
                 <label>unidad de medida</label>
-                <input class="form-control" name="unidad_de_medida" type="text" id="cantidad" required/>
+                <input class="form-control" name="unidad_medida" type="text" id="cantidad" required/>
             </div>
             <div class="container">
-        <form class="col-md-4" name="form1" method="post" action="Venta-Reg-neg.php">
+                <div class="input-group">
+                <label>Descripcion</label>
+                <input class="form-control" name="descripcion" type="text" id="cantidad" required/>
+            </div>
+            <div class="container">
+        <form class="col-md-4" name="form1" method="post" action="Insumos-Reg-neg.php">
             
             <div class="input-group">
-                <label>Forma de pago</label>
-                <select class="form-control" name="idforma_pago" id="idforma_pago" required="required">
+                <label>Categoria insumo</label>
+                <select class="form-control" name="categoriainsumo_idcategoriainsumo" id="categoriainsumo_idcategoriainsumo" required="required">
                     <option value="Seleccione:">Seleccione:</option>
                     <?php
                         include ('conexion.php');
-                        $sql2 ="SELECT * FROM forma_pago";
+                        $sql2 ="SELECT * FROM categoriainsumo";
                         if(!$result2 = $db-> query($sql2))
                         {
                             die('No conecta [' . $db->error . ']');
                         }
                         while ($row2 = $result2->fetch_assoc())
                         {
-                            $iidforma_pago=stripslashes($row2["idforma_pago"]);
+                            $iidcategoria=stripslashes($row2["idcategoria"]);
                             $nnombre=stripslashes($row2["descripcion"]);
-                            echo "<option value=$iidforma_pago>$nnombre</option>";
+                            echo "<option value=$iidcategoria>$nnombre</option>";
                         }
                     ?>
                 </select>
             </div>
             <div class="input-group">
-                <label>Mesa</label>
-                <select class="form-control" name="Mesas_idMesas" id="Mesas_idMesas" required>
+                <label>Empleado</label>
+                <select class="form-control" name="empleados_idempleados" id="empleados_idempleados" required>
                     <option value=Seleccione:>Seleccione:</option>
                     <?php
                         include ('conexion.php');
-                        $sql4 ="SELECT * FROM mesas ";
+                        $sql4 ="SELECT * FROM empleados WHERE roles_idroles = 5 ";
                         if(!$result4 = $db-> query($sql4))
                         {
                             die('No conecta [' . $db->error . ']');
                         }
                         while ($row4 = $result4->fetch_assoc())
                         {
-                            $MMesas_idMesas=stripslashes($row4["idmesas"]);
-                            $mmesa=stripslashes($row4["mesa"]);
-                            echo "<option value=$MMesas_idMesas>$mmesa</option>";
+                            $iidempleados=stripslashes($row4["idempleados"]);
+                            $nnombre=stripslashes($row4["nombre"]);
+                            echo "<option value=$iidempleados>$nnombre</option>";
                         }
                     ?>
                 </select>
             </div>
             <div class="input-group">
-                <label>Plato</label>
-                <select class="form-control" name="Plato_idPlato" id="Plato_idPlato" required>
+                <label>Provedor</label>
+                <select class="form-control" name="proveedor_idproveedor" id="proveedor_idproveedor" required>
                     <option value=Seleccione:>Seleccione:</option>
                     <?php
                         include ('conexion.php');
-                        $sql3 ="SELECT * FROM plato ";
+                        $sql3 ="SELECT * FROM proveedor ";
                         if(!$result3 = $db-> query($sql3))
                         {
                             die('No conecta [' . $db->error . ']');
                         }
                         while ($row3 = $result3->fetch_assoc())
                         {
-                            $PPlato_idPlato=stripslashes($row3["idPlato"]);
-                            $nnombre=stripslashes($row3["nombre"]);
-                            echo "<option value=$PPlato_idPlato>$nnombre</option>";
+                            $iidproveedor=stripslashes($row3["idproveedor"]);
+                            $nnombres=stripslashes($row3["nombre"]);
+                            echo "<option value=$iidproveedor>$nnombres</option>";
                         }
                     ?>
                 </select>
@@ -98,9 +103,7 @@
             <div class="input-group">
                 <input class="btn btn-success" type="submit" name="Submit" value="Finalizar Venta"/>
             </div>
-            <div class="input-group">
-                <a class="btn btn-danger" href="xxxxx">cancelar</a>
-            </div>
+            
         </form>
     </div>
     <script src="assets/js/jquery.min.js"></script>

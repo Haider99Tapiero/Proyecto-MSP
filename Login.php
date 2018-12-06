@@ -69,7 +69,7 @@
 		} elseif ($num_row2 == "1" && $estado == "2") {
 
 			$response['status'] = '5';
-				echo json_encode($response);
+			echo json_encode($response);
 
 		}
 

@@ -17,7 +17,6 @@
         $contrasena = $_POST["contrasena"];
         $selecrol = $_POST["selecrol"];
         $selecgenero = $_POST["selecgenero"];
-        $estado = "1";
 
         $cont="0";
         
@@ -40,8 +39,8 @@
 
             // INSERTAR DATOS //////////////////////////////////////////////////////////////
                 
-            $sql2 = "INSERT INTO empleados (nombre, apellido, documento, direccion, email, telefono, contrasena, tipodocumento_idtipodocumento, genero_idgenero, roles_idroles, estado_idestado)
-            VALUES ('$nombre','$apellido','$documento','$direccion','$email','$telefono','$contrasena','$selectipodoc','$selecgenero','$selecrol','$estado')";
+            $sql2 = "INSERT INTO empleados (nombre, apellido, documento, direccion, email, telefono, contrasena, tipodocumento_idtipodocumento, genero_idgenero, roles_idroles)
+            VALUES ('$nombre','$apellido','$documento','$direccion','$email','$telefono','$contrasena','$selectipodoc','$selecgenero','$selecrol')";
 
             if (!$result2 = $db->query($sql2)){
                     die('No hace insercion a la tabla ['.$db->error.']');

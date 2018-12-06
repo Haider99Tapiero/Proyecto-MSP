@@ -270,7 +270,39 @@
 
 	<script>
 		$(document).ready(function() {
-			// GUARDAR EL PLATO
+
+			// ESTADO DEL EMPLEADO
+			$(".estado").change(function(){
+				var idemple = $(this).val();
+				var estado;
+				if ($(this).prop("checked")) {
+	        		estado = 1;
+				}
+				else{
+					estado = 2;
+				}
+
+				$.ajax({
+	                url:"Empleados-estado-neg.php",
+	                method:"POST",
+	                data:{idemple:idemple, estado:estado},
+	                cache:"false",
+	                beforeSend:function() {
+	                    
+	                },
+	                success:function(data) {
+	                    var datos = $.parseJSON(data);
+	                    // SI
+	                    if (datos.status == "1") {
+	                        location.reload();
+	                    }
+	                    // NO
+	                    else if (datos.status == "2") {
+	                        $("#resulteliminar").html("<div class='alert alert-dismissible alert-danger'><button type='button' class='close' data-dismiss='alert'>&times;</button>!No se pudo cambiar el estado¡</div>");
+	                    }
+	                }
+	            });
+	    	});
 	        $('#Guardar').click(function(){
 	            var nombre = $('#nombre').val();
 	            var apellido = $('#apellido').val();

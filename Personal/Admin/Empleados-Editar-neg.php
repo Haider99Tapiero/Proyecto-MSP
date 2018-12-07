@@ -5,54 +5,32 @@
 
     sleep(1);
 
-    if(isset($_POST["idplato"]) && isset($_POST["nombre"]) && isset($_POST["descripcion"]) && isset($_POST["precio"])){
+    if(isset($_POST["IIdempleado"]) && isset($_POST["nombre"]) && isset($_POST["apellido"]) && isset($_POST["selectipodoc"]) && isset($_POST["documento"]) && isset($_POST["direccion"]) && isset($_POST["email"]) && isset($_POST["telefono"]) && isset($_POST["selecrol"]) && isset($_POST["selecgenero"])){
 
-        $idplato = $_POST["idplato"];
+        $IIdempleado = $_POST["IIdempleado"];
         $nombre = $_POST["nombre"];
-        $descripcion = $_POST["descripcion"];
-        $precio = $_POST["precio"];
-        $imagen = $_FILES["imagen"];
-
-        // SUBIR IMAGEN //////////////////////////////////////////////////////////////
-
-        if ($imagen['name'] == "") {
-
-            $img_final = "";
-            
-        }else{
-            
-            date_default_timezone_set('America/Bogota');
-
-            $Fecha = date('m-d-Y-g-ia');
-
-            $nombre_img = $imagen['name'];
-            $tipo_img = $imagen['type'];
-            $tamano_img = $imagen['size'];
-
-            $img_final=$Fecha.$nombre_img;
-
-            $carpeta = 'img-personal';
-
-            move_uploaded_file($_FILES['imagen']['tmp_name'], $carpeta.'/'.$img_final);
-            
-        }
-            
-        $sql2 = "UPDATE Plato SET nombre = '$nombre', descripcion = '$descripcion', imagen = '$img_final', precio = '$precio' 
-        WHERE idPlato = '$idplato'";
+        $apellido = $_POST["apellido"];
+        $selectipodoc = $_POST["selectipodoc"];
+        $documento = $_POST["documento"];
+        $direccion = $_POST["direccion"];
+        $email = $_POST["email"];
+        $telefono = $_POST["telefono"];
+        $selecrol = $_POST["selecrol"];
+        $selecgenero = $_POST["selecgenero"];
+        
+        $sql2 = "UPDATE empleados SET nombre='$nombre', apellido='$apellido', direccion='$direccion', email='$email', telefono='$telefono', roles_idroles='$selecrol', genero_idgenero='$selecgenero' WHERE idempleados = '$IIdempleado'";
 
         if (!$result2 = $db->query($sql2)){
             
             $response['status'] = '2';
             echo json_encode($response);
 
-            die('No hace insercion a la tabla ['.$db->error.']');
+            die('No hace insercion a la empledos ['.$db->error.']');
         
         }
 
         $response['status'] = '1';
         echo json_encode($response);
-
-        // FIN SUBIR IMAGEN ///////////////////////////////////////////////////////////
 
     } else {
         echo "SE ENTRO DIRECTO A ESTA CAPA";

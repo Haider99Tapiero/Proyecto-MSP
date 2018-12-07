@@ -86,14 +86,43 @@
                             </div>
                         </div>
                     </div>
+                    <div class="form-group" style="display: none;">
+                        <input class="form-control" value="<?php echo $IIdempleado ?>" name="IIdempleado" type="text" id="IIdempleado" placeholder="idEmpleado"/>
+                    </div>
                     <div class="form-group">
                         <input class="form-control" value="<?php echo $NNombre ?>"  type="text" name="nombre" id="nombre" placeholder="Nombre emplado" />
                     </div>
                     <div class="form-group">
                         <input class="form-control" value="<?php echo $AApellido ?>" type="text" name="apellido" id="apellido" placeholder="Apellido emplado" />
                     </div>
-                    <div class="form-group">        
-                        <select class="form-control" id="selectipodoc" name="selectipodoc" required disabled>
+                    <div class="form-group">
+                        <select class="form-control" id="selectipodoc1" name="selectipodoc1" required disabled>
+                            <option value="<?php echo $TTipoDocum_idtipodocu ?>"><?php echo $DDes_tipo_docu ?></option>
+                            <?php
+                                //  CONSULTA PARA TRAER LOS TIPODOCUMENTO
+
+                                include ('conexion.php');
+
+                                $sql2 = "SELECT * FROM tipodocumento"; 
+
+                                  if (!$result2 = $db->query($sql2))
+                                    {
+                                      die('No hace subconsulta a tipo documento del select ['.$db->error.']');
+                                    }
+
+                                  while ($row2 = $result2->fetch_assoc())
+                                  { 
+                                    $IId_Tipo_Doc=stripslashes($row2["idtipodocumento"]);
+                                    $DDes=stripslashes($row2["descripcion"]);
+                                    echo "<option value='$IId_Tipo_Doc'>$DDes</option>";
+                                  }
+
+                                // FIN CONSULTA DE TRAER LOS TIPODOCUMENTO
+                            ?>
+                        </select>
+                    </div>
+                    <div class="form-group" style="display: none;">
+                        <select class="form-control" id="selectipodoc" name="selectipodoc" required>
                             <option value="<?php echo $TTipoDocum_idtipodocu ?>"><?php echo $DDes_tipo_docu ?></option>
                             <?php
                                 //  CONSULTA PARA TRAER LOS TIPODOCUMENTO
@@ -119,7 +148,10 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <input class="form-control" value="<?php echo $DDocumento ?>" type="text" name="documento" id="documento" placeholder="Documento" disabled/>
+                        <input class="form-control" value="<?php echo $DDocumento ?>" type="text" name="documento1" id="documento1" placeholder="Documento" disabled/>
+                    </div>
+                    <div class="form-group" style="display: none;">
+                        <input class="form-control" value="<?php echo $DDocumento ?>" type="text" name="documento" id="documento" placeholder="Documento"/>
                     </div>
                     <div class="form-group">
                         <input class="form-control" value="<?php echo $DDireccion ?>" type="text" name="direccion" id="direccion" placeholder="Direccion residencia" />
@@ -129,9 +161,6 @@
                     </div>
                     <div class="form-group">
                         <input class="form-control" value="<?php echo $TTelefono ?>" type="text" name="telefono" id="telefono" placeholder="Telefono" />
-                    </div>
-                    <div class="form-group" style="">
-                        <input class="form-control" value="<?php echo $CContrasena ?>" type="password" name="contrasena" id="contrasena" placeholder="Contraseña" />
                     </div>
                     <div class="form-group">    
                         <select class="form-control" id="selecrol" name="selecrol" required>
@@ -186,7 +215,7 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <input type="button" name="Guardar" id="Guardar" value="Guardar" class="btn btn-success">
+                        <input type="button" name="Actualizar" id="Actualizar" value="Actualizar" class="btn btn-warning">
                     </div>
                     <div class="form-group">
                         <span id="result"></span>
@@ -203,8 +232,9 @@
 
     <script>
         $(document).ready(function() {
-            // ACTUALIZAR EL PLATO
-            $('#Guardar').click(function(){
+            // ACTUALIZAR EL EMPLEADOS
+            $('#Actualizar').click(function(){
+                var IIdempleado = $('#IIdempleado').val();
                 var nombre = $('#nombre').val();
                 var apellido = $('#apellido').val();
                 var selectipodoc = $('#selectipodoc').val();
@@ -212,7 +242,6 @@
                 var direccion = $('#direccion').val();
                 var email = $('#email').val();
                 var telefono = $('#telefono').val();
-                var contrasena = $('#contrasena').val();
                 var selecrol = $('#selecrol').val();
                 var selecgenero = $('#selecgenero').val();
 
@@ -221,7 +250,7 @@
                 var parametros = new FormData($("#FormEmpleado")[0]);
                 
 
-                if($.trim(nombre).length > 0 && $.trim(apellido).length > 0 && $.trim(documento).length > 0 && $.trim(direccion).length > 0 && $.trim(email).length > 0 && $.trim(telefono).length > 0 && $.trim(contrasena).length > 0){
+                if($.trim(nombre).length > 0 && $.trim(apellido).length > 0 && $.trim(documento).length > 0 && $.trim(direccion).length > 0 && $.trim(email).length > 0 && $.trim(telefono).length > 0){
                     if (isNaN(documento)){
                         $("#result").html("<div class='alert alert-dismissible alert-danger'><button type='button' class='close' data-dismiss='alert'>&times;</button>!Solo se permite numeros en el campo <strong>documento</strong>¡</div>");
                         $('#documento').value = "";
@@ -230,26 +259,26 @@
                         $('#telefono').value = "";
                     }else {
                         $.ajax({
-                            url:"Empleados-crear-neg.php",
+                            url:"Empleados-Editar-neg.php",
                             type:"POST",
                             data:parametros,
                             contentType:false,
                             processData:false, 
                             cache:"false",
                             beforeSend:function() {
-                                $('#Guardar').val("Guardando...");
+                                $('#Actualizar').val("ACtualizando...");
                             },
                             success:function(data) {
-                                $('#Guardar').val("Guardar");
+                                $('#Actualizar').val("Actualizar");
                                 var datos = $.parseJSON(data);
                                 // SI
                                 if (datos.status == "1") {
-                                    $("#result").html("<div class='alert alert-dismissible alert-danger'><button type='button' class='close' data-dismiss='alert'>&times;</button>!Usuario registrado con exito¡</div>");
+                                    $("#result").html("<div class='alert alert-dismissible alert-danger'><button type='button' class='close' data-dismiss='alert'>&times;</button>!Actualizado correctamente¡</div>");
                                     location.reload();
                                 }
                                 // NO
                                 else if (datos.status == "2") {
-                                    $("#result").html("<div class='alert alert-dismissible alert-danger'><button type='button' class='close' data-dismiss='alert'>&times;</button>!Error al registrar el usuario</div>");
+                                    $("#result").html("<div class='alert alert-dismissible alert-danger'><button type='button' class='close' data-dismiss='alert'>&times;</button>!Error actualizar el empleado</div>");
                                 }
                             }
                         });
@@ -257,8 +286,9 @@
 
                 } else {
                     $("#result").html("<div class='alert alert-dismissible alert-danger'><button type='button' class='close' data-dismiss='alert'>&times;</button>!Ningun campo puede estar vacio¡</div>");
-                };
-        // FIN ACTUALIZAR EL PLATO
+                }
+                // FIN ACTUALIZAR EL PLATO
+            });
         });
     </script>
 </body>

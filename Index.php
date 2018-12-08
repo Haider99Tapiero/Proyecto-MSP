@@ -79,24 +79,18 @@
     
  <div class="container">  
     <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-  <i class="fas fa-comment-alt"></i>
-</button>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg"> <i class="fas fa-comment-alt"></i></button>
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLongTitle">Comentarios</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-  <!--/////////////////////////// COMENTARIOS/ //////////////////////////////////////////////-->
-    
-    <script type="text/javascript">
+      	   <script type="text/javascript">
 			function ajax(){
 				var req =new XMLHttpRequest();
 				
@@ -119,41 +113,31 @@
        <div class="container">
                		<!--//////////////////////SE INCLUYE CAPA OBSERVACION///////////////-->
 				<div id="contenedor" class="container">
-					<div id="caja-chat" class="alert alert-primary">
-						<div id="chat" class="alert alert-danger">									
+					<div id="caja-chat" class="">
+						<div id="chat" class="">									
 						</div>
 					</div>
 				</div>						
-				<span></span>
-               
-				 
-		
-                          
-                           
-                    
+				<span></span>          
 			</div>	
-    
 			<!--/////////////////////////////////////////////////////////////////////////////////////////////////-->		 
-	
 	         <script type="text/javascript">
                valor = document.getElementById("mens").value;
                 if( valor == null ) {
                   return false;
                 }
              </script>
-    <div class="form-group"></div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+       <div class="form-group"></div>
+       <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <a id="hover" class="btn btn-primary navbar-brand" data-toggle="modal" data-target="#Modalogin" href="#"> Iniciar sesion</a>
+      </div>
       </div>
     </div>
   </div>
 </div>
-</div> 
-    <p></p>
-        
-    <!--////////////////////////// FIN COMENTARIOS ///////////////////////////////////////////-->
+
     
     
     

@@ -7,7 +7,8 @@ include"db.php";
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<!-- Bbootstrap css -->
-		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="../menuclient.css">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 		
 		<!--/////////////////////////////////////ABRIR CAPA OBSERVACION.PHP//////////////////////////////////////-->
 		<script type="text/javascript">
@@ -34,6 +35,12 @@ include"db.php";
 		<title></title>
 	</head>
 	<body onload="ajax();">
+		<header>
+			<?php
+			session_start();
+			include("../menu-cliente.php");
+			?>
+		</header>
 			<div class="container">
                		<!--//////////////////////SE INCLUYE CAPA OBSERVACION///////////////-->
 				<div id="contenedor" >
@@ -59,15 +66,15 @@ include"db.php";
                           
                            <!--//////////////////PHP PARA INSERTAR DATOS//////////////////-->
                             <?php
-                                session_start();
+                              
                                 if(isset($_POST['enviar']))
                                  {
+								
                                             if(isset($_SESSION['idcliente']))
                                              {
 
                                             $idcliente = $_SESSION["idcliente"];
                                             $comentario=$_POST['comentario'];
-
                                                 $consulta ="INSERT INTO observacion( comentario,cliente_idcliente) VALUES ('$comentario','$idcliente')";
                                                 $ejecutar =$conexion->query($consulta);								
                                             }
@@ -79,6 +86,7 @@ include"db.php";
                                             }		
 
                                 }
+				  
                 
             
                            ?>

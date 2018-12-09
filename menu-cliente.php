@@ -13,9 +13,9 @@
 						<li class="parent">
 							<a href="http://www.freshdesignweb.com/responsive-drop-down-menu-jquery-css3-using-icon-symbol.html">Features</a>
 							<ul class="sub-menu">
-								<li><a href="http://www.freshdesignweb.com/responsive-drop-down-menu-jquery-css3-using-icon-symbol.html"><i class="icon-wrench"></i> Elements</a></li>
-								<li><a href="http://www.freshdesignweb.com/responsive-drop-down-menu-jquery-css3-using-icon-symbol.html"><i class="icon-credit-card"></i>  Pricing Tables</a></li>
-								<li><a href="http://www.freshdesignweb.com/responsive-drop-down-menu-jquery-css3-using-icon-symbol.html"><i class="icon-gift"></i> Icons</a></li>
+								<li><a href="Carrito_compras.php"><i class="icon-credit-card"></i>  Comprar</a></li>
+									<li><a href="carritodecompras.php"><i class="icon-wrench"></i> Mis compras</a></li>
+								<li><a href="Chat.php"><i class="icon-gift"></i>Comentar</a></li>
 								<li>
 									<a class="parent" href="#"><i class="icon-file-alt"></i> Pages</a>
 									<ul class="sub-menu">
@@ -33,11 +33,9 @@
 							  <?php echo $_SESSION["nombre"];?> 
 							</a>
 							<ul class="sub-menu">
-								<li><a href="http://www.freshdesignweb.com/responsive-drop-down-menu-jquery-css3-using-icon-symbol.html">Large Image</a></li>
-								<li><a href="http://www.freshdesignweb.com/responsive-drop-down-menu-jquery-css3-using-icon-symbol.html">Medium Image</a></li>
-								<li><a href="http://www.freshdesignweb.com/responsive-drop-down-menu-jquery-css3-using-icon-symbol.html">Masonry</a></li>
-								<li><a href="http://www.freshdesignweb.com/responsive-drop-down-menu-jquery-css3-using-icon-symbol.html">Double Sidebar</a></li>
-								<li><a href="http://www.freshdesignweb.com/responsive-drop-down-menu-jquery-css3-using-icon-symbol.html">Single Post</a></li>
+								<li><a href="http://www.freshdesignweb.com/responsive-drop-down-menu-jquery-css3-using-icon-symbol.html">Configuracion</a></li>
+								<li><a href="http://www.freshdesignweb.com/responsive-drop-down-menu-jquery-css3-using-icon-symbol.html">Salir</a></li>
+								
 							</ul>
 						</li>
 						

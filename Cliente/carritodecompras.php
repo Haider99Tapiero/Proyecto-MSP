@@ -88,7 +88,7 @@
     <div class="producto">
      <center>
      <span><?php echo $datos[$i]['Nombre'];?></span><br>
-     <img height="50" class="rounded" src="./productos/<?php echo $datos[$i]['Imagen'];?>"><p>
+     <img height="20" class="rounded" src="./productos/<?php echo $datos[$i]['Imagen'];?>"><p>
 		 <span><b>Precio</b><br>$<?php echo $datos[$i]['Precio'];?></span><p>
       <span><b>Cantidad:</b><br> 
       		<input type="text" value="<?php echo $datos[$i]['Cantidad'];?>"

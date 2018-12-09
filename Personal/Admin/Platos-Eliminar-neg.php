@@ -7,12 +7,12 @@
 
 		$idPlato = $_POST['idPlato'];
 
-		$sql = "DELETE FROM Plato where idPlato = '$idPlato'";
+		$sql = "DELETE FROM plato WHERE idPlato = '$idPlato'";
 		if (!$result = $db->query($sql))
 		{
-		    die('No hace consulta a Usuarios ['.$db->error.']');
 		    $response['status'] = '2';
             echo json_encode($response);
+		    //die('No hace consulta a platos ['.$db->error.']');
 		}else{
 			$response['status'] = '1';
             echo json_encode($response);

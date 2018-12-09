@@ -19,7 +19,7 @@
     <?php
         require('Conexion.php');
 
-        $idPlato = $_REQUEST['idplato'];
+        $idPlato = $_REQUEST['idPlato'];
 
         $sql = "SELECT * FROM Plato WHERE idPlato = '$idPlato'";
 

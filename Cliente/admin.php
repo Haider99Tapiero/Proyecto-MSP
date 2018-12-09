@@ -19,35 +19,12 @@
 	</header>
 	<section>
 	
-	<center><h1>Últimas Compras</h1></center>
-	<table border="0px" width="100%">	
-		<tr>
-			<td>Imagen</td>
-			<td>Nombre</td>
-			<td>Precio</td>
-			<td>Cantidad</td>
-			<td>Subtotal</td>
-		</tr>	
-
-		<?php
-			$re=mysqli_query($conexion,"SELECT * FROM compras");
-			$numeroventa=0;
-			while ($f=mysqli_fetch_array($re)) {
-					if($numeroventa	!=$f['numeroventa']){
-						echo '<tr><td>Compra Número: '.$f['numeroventa'].' </td></tr>';
-					}
-					$numeroventa=$f['numeroventa'];
-					echo '<tr>
-						<td><img src="./productos/'.$f['imagen'].'" width="100px" heigth="100px" /></td>
-						<td>'.$f['nombre'].'</td>
-						<td>'.$f['precio'].'</td>
-						<td>'.$f['cantidad'].'</td>
-						<td>'.$f['subtotal'].'</td>
-
-					</tr>';
-			}
-		?>
-	</table>
+	<center><h1>Copmpra Finalizada</h1>
+	<a href="./carritodecompras.php" title="ver carrito de compras">
+			volver
+		</a>
+		</center>
+	
 	</section>
 </body>
 </html>

@@ -8,8 +8,10 @@
 </head>
 <body>
 	<header>
-		
-	
+		<img src="./imagenes/logo.png" id="logo">
+		<a href="./carritodecompras.php" title="ver carrito de compras">
+			<img src="./imagenes/carrito.png">
+		</a>
 	</header>
 	<section>
 		
@@ -21,9 +23,8 @@
   	?>
 			
 			<center>
-				<img class="rounded float-left" src="./productos/<?php echo $f['imagen'];?>" height="45" ><br>
+				<img src="./productos/<?php echo $f['imagen'];?>"><br>
 				<span><?php echo $f['nombre'];?></span><br>
-                <span>Precio: <?php echo $f['descripcion'];?></span><br>
 				<span>Precio: <?php echo $f['precio'];?></span><br>
 				<a href="./carritodecompras.php?id=<?php  echo $f['idPlato'];?>">Añadir al carrito de compras</a>
 			</center>

@@ -68,9 +68,14 @@
  <link rel="stylesheet" type="text/css" href="./css/estilos.css">
  <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
  <script type="text/javascript"  src="./js/scripts.js"></script>
+ <link rel="stylesheet" href="../menuclient.css">
 </head>
 <body>
- 
+	 <header>
+ 	   <?php
+	 include("../menu-cliente.php");
+	 ?>
+ </header>
  <section>
   <?php
    $total=0;

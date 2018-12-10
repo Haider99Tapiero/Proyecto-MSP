@@ -12,7 +12,6 @@
     <meta http-equiv="Last-Modified" content="0">
     <meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
     <meta http-equiv="Pragma" content="no-cache">
-    <link rel="stylesheet" type="text/css" href="css/platos.css">
     <title>Inicio</title>
     <style type="text/css">
         #resulteliminar{
@@ -66,7 +65,7 @@
                         </div>            
                         <div class="form-group">
                             <label>Categoria insumo</label>
-                            <select class="form-control" name="categoriainsumo_idcategoriainsumo" id="categoriainsumo_idcategoriainsumo" required>
+                            <select class="form-control" name="idcategoriainsumo" id="idcategoriainsumo" required>
                                 <option value="">Seleccione:</option>
                                 <?php
                                     include ('conexion.php');
@@ -84,29 +83,10 @@
                                 ?>
                             </select>
                         </div>
-                        <div class="form-group">
-                            <label>Empleado</label>
-                            <select class="form-control" name="empleados_idempleados" id="empleados_idempleados" required>
-                                <option value=" ">Seleccione:</option>
-                                <?php
-                                    include ('conexion.php');
-                                    $sql4 ="SELECT * FROM empleados";
-                                    if(!$result4 = $db-> query($sql4))
-                                    {
-                                        die('No conecta [' . $db->error . ']');
-                                    }
-                                    while ($row4 = $result4->fetch_assoc())
-                                    {
-                                        $iidempleados=stripslashes($row4["idempleados"]);
-                                        $nnombre=stripslashes($row4["nombre"]);
-                                        echo "<option value=$iidempleados>$nnombre</option>";
-                                    }
-                                ?>
-                            </select>
-                        </div>
+                        
                         <div class="form-group">
                             <label>Provedor</label>
-                            <select class="form-control" name="proveedor_idproveedor" id="proveedor_idproveedor" required>
+                            <select class="form-control" name="idproveedor" id="idproveedor" required>
                                 <option value="">Seleccione:</option>
                                 <?php
                                     include ('conexion.php');
@@ -144,23 +124,24 @@
         $(document).ready(function() {
             // Registrar EL PLATO
             $('#Registrar').click(function(){
-                var idplato = $('#idplato').val();
-                var nombre = $('#nombre').val();
+                var cantidad = $('#cantidad').val();
+                var unidad_medida = $('#unidad_medida').val();
                 var descripcion = $('#descripcion').val();
-                var precio = $('#precio').val();     
+                var idcategoriainsumo = $('#idcategoriainsumo').val();
+                var idproveedor = $('#idproveedor').val();     
 
                 //var fileName = document.getElementById('imagen').files[0].name;
 
                 var parametros = new FormData($("#FormPlato")[0]);
 
-                if($.trim(nombre).length > 0 && $.trim(descripcion).length > 0 && $.trim(precio).length > 0){
-                    if (isNaN(precio)){
-                        $("#result").html("<div class='alert alert-dismissible alert-danger'><button type='button' class='close' data-dismiss='alert'>&times;</button>!Solo se permite numeros en el campo <strong>precio</strong>¡</div>");
+                if($.trim(cantidad).length > 0 && $.trim(unidad_medida).length > 0 && $.trim(descripcion).length > 0 ){
+                    if (isNaN(cantidad)){
+                        $("#result").html("<div class='alert alert-dismissible alert-danger'><button type='button' class='close' data-dismiss='alert'>&times;</button>!Solo se permite numeros en el campo <strong>Cantidad</strong>¡</div>");
                         $('#precio').value = "";
                     }
                     else {
                         $.ajax({
-                            url:"Platos-Editar-neg.php",
+                            url:"insumos-reg-neg.php",
                             type:"POST",
                             data:parametros,
                             contentType:false,
@@ -175,8 +156,8 @@
                                 // SI
                                 if (datos.status == "1") {
                                     $("#result").html("<div class='alert alert-dismissible alert-danger'><button type='button' class='close' data-dismiss='alert'>&times;</button>!Plato actualizado con exito¡</div>");
-                                    //location.reload();
-                                    location.href = 'Platos-Crear.php';
+                                    location.reload();
+                                    //location.href = 'Platos-Crear.php';
                                 }
                                 // NO
                                 else if (datos.status == "2") {

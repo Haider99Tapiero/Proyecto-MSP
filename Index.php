@@ -84,10 +84,12 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Comentarios</h5>
+        <h5 class="modal-title" id="exampleModalLongTitle">Comentarios <p  style="font-size: 14px; color: silver;"> Para comentar inicia sesion</p></h5>
+
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
-        </button>
+        </button><br>
+        
       </div>
       <div class="modal-body">
       	   <script type="text/javascript">
@@ -130,8 +132,9 @@
       </div>
        <div class="form-group"></div>
        <div class="modal-footer">
+
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <a id="hover" class="btn btn-primary navbar-brand" data-toggle="modal" data-target="#Modalogin" href="#"> Iniciar sesion</a>
+        <!--<a id="hover" class="btn btn-primary navbar-brand" data-toggle="modal" data-target="#Modalogin" href="#"> Iniciar sesion</a>-->
       </div>
       </div>
     </div>

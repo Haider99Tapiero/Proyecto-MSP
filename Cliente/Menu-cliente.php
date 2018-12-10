@@ -220,15 +220,13 @@
 	<div id="wrap">
 		<header>
 			<div class="inner relative">
-				<a class="logo" href="#"><img src="../../cliente/imagenes/logo.png" style="border-radius: 5px" height="40" width="100" alt="fresh design web"></a>
+				<a class="logo" href="#"><img src="imagenes/logo.png" style="border-radius: 5px" height="40" width="100" alt="fresh design web"></a>
 				<nav id="navigation">
 					<ul id="main-menu">
 						<li class="current-menu-item"><a href=""><i class="fas fa-home"></i> Home</a></li>
-						<li><a href="domicilio-listar.php"><i class="fas fa-utensils"></i> Ventas</a></li>
-						<li><a href="Empleados-crear.php"><i class="fas fa-shopping-cart"></i> Empleados</a></li>
-						<li><a href="Platos-Crear.php"><i class="fas fa-comments"></i> Registrar un plato</a></li>
-						<li><a href="Insumos-Listar.php"><i class="fas fa-comments"></i> Insumos</a></li>
-						<li><a href="Insumos-Reg.php"><i class="fas fa-comments"></i> Registrar insumo</a></li>
+						<li><a href="Carrito_compras.php"><i class="fas fa-utensils"></i> Lista de productos</a></li>
+						<li><a href="carritodecompras.php"><i class="fas fa-shopping-cart"></i> Mi carrito</a></li>
+						<li><a href="Chat.php"><i class="fas fa-comments"></i> Haz un comentario</a></li>
 						<li class="parent">
 							<a href=""><i class="fas fa-user"></i> <?php echo $_SESSION["nombre"];?></a>
 							<ul class="sub-menu">
@@ -241,7 +239,7 @@
 			</div>
 		</header>	
 	</div>
-<!--
+
 	<script type="text/javascript">
 		$(document).ready(function() {
 
@@ -262,4 +260,3 @@
 
 	});
 	</script>
--->

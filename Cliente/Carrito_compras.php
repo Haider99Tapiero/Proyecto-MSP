@@ -10,35 +10,103 @@
 	<link rel="stylesheet" href="../menuclient.css">
 </head>
 <body>
-	 <header>
- 	   <?php
-		 session_start();
-	 include("../menu-cliente.php");
-	 ?>
- </header>
-	<section>
-		
+	<header>
+	 	<?php
+			session_start();
+			include("Menu-cliente.php");
+		?>
+ 	</header>
+	<div class="container col-md-10">
+
 	<?php
-  include ("conexion.php");
-     $consulta="select * from plato";
- 	 $query=mysqli_query($conexion, $consulta); 
-  		while ($f=mysqli_fetch_array($query,MYSQLI_ASSOC)) {
+	  	include ("conexion.php");
+	    $consulta="select * from plato";
+	 	$query=mysqli_query($conexion, $consulta); 
+	  	while ($f=mysqli_fetch_array($query,MYSQLI_ASSOC)) {
   	?>
 
-   <div class="producto">
-   	<center>
-   		<span><?php echo $f['nombre'];?></span><p>
-    	<img src="./productos/<?php echo $f['imagen'];?> " height="150"><p>
-    	<a class="btn btn-info col-3" href="./detalle.php?id=<?php echo $f['idPlato'];?>"><i class="fas fa-eye"></i></a>
-
-		<a class="btn btn-success" href="./carritodecompras.php?id=<?php  echo $f['idPlato'];?>">Añadir  </a>
-  		<p>
-   		</center>
+   	<div class="producto">
+	   	<center>
+	   		<span><?php echo $f['nombre'];?></span>
+			<br><br>
+	    	<img src="./productos/<?php echo $f['imagen'];?> " height="150">
+	    	<br><br>
+	    	<a class="btn btn-info col-3" href="Carrito_compras.php?id=<?php echo $f['idPlato'];?>"><i class="fas fa-eye"></i></a>
+			<a class="btn btn-success" href="./carritodecompras.php?id=<?php  echo $f['idPlato'];?>">Añadir  </a>
+	   	</center>
   	</div>
+
  	<?php
- 	 }
+ 		}
  	?>
-		
-	</section>
+
+	<?php
+		if (isset($_GET['id'])) {
+		    $consulta="select * from plato where idPlato=".$_GET['id'];
+		 	$query=mysqli_query($conexion, $consulta); 
+		  	while ($f=mysqli_fetch_array($query,MYSQLI_ASSOC)) {
+  	?>
+		<div id="modal" class="" tabindex="-1" role="dialog" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button id="tacha" type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div class="row">
+							<div class="col-md-6">
+								<div>
+									<img style="border-radius:5px" src="./productos/<?php echo $f['imagen'];?>" width="220" height="250">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div>
+									<div>
+										<h5>Nombre:</h5>
+									</div>
+									<div>
+										<p><?php echo $f['nombre'];?></p>
+									</div>
+									<!--///////-->
+									<div>
+										<h5>Descripcion:</h5>	
+									</div>
+									<div>
+										<p><?php echo $f['descripcion'];?></p>
+									</div>
+									<!--///////-->
+									<div>
+										<h5>Precio:</h5>	
+									</div>
+									<div>
+										<p><?php echo $f['precio'];?></p>
+									</div>
+								</div >
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	<?php 
+  			}
+  		}
+	?>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <script src="js/jquery-3.3.1.min.js"></script>
+
+    <script type="text/javascript">
+    	$(document).ready(function(){
+    		$("#tacha").click(function(){
+			    $("#modal").addClass("modal");
+			});
+    	});
+    </script>
 </body>
 </html>

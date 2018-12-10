@@ -31,7 +31,7 @@
 
             $img_final=$Fecha.$nombre_img;
 
-            $carpeta = 'img-personal';
+            $carpeta = '../../Cliente/productos/';
 
             move_uploaded_file($_FILES['imagen']['tmp_name'], $carpeta.'/'.$img_final);
             

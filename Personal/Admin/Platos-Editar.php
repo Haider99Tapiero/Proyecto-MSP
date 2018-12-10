@@ -14,8 +14,32 @@
     <meta http-equiv="Pragma" content="no-cache">
     <link rel="stylesheet" type="text/css" href="css/platos.css">
     <title>Inicio</title>
+    <style type="text/css">
+        #resulteliminar{
+            margin: 0 auto;
+            width: 50%;
+        }
+
+        .formulario{
+            background-color: #FAFAFA;
+            width: 450px;
+            padding: 10px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            background: #FFF;
+            box-sizing: border-box;
+        }
+    </style>
 </head>
 <body>
+    <header>
+    <?php
+        session_start();
+        include("Menu-Admin.php");
+      ?>
+  </header>
     <?php
         require('Conexion.php');
 

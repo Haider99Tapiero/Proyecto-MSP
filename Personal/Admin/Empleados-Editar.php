@@ -14,8 +14,27 @@
     <meta http-equiv="Pragma" content="no-cache">
     <link rel="stylesheet" type="text/css" href="css/platos.css">
     <title>Inicio</title>
+    <style type="text/css">
+        .formulario{
+            background-color: #FAFAFA;
+            width: 450px;
+            padding: 10px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            background: #FFF;
+            box-sizing: border-box;
+        }
+    </style>
 </head>
 <body>
+    <header>
+        <?php 
+            session_start();
+            include ("Menu-Admin.php");
+        ?>
+    </header>
     <?php
         require('Conexion.php');
 
@@ -266,7 +285,7 @@
                             processData:false, 
                             cache:"false",
                             beforeSend:function() {
-                                $('#Actualizar').val("ACtualizando...");
+                                $('#Actualizar').val("Actualizando...");
                             },
                             success:function(data) {
                                 $('#Actualizar').val("Actualizar");
@@ -275,6 +294,8 @@
                                 if (datos.status == "1") {
                                     $("#result").html("<div class='alert alert-dismissible alert-danger'><button type='button' class='close' data-dismiss='alert'>&times;</button>!Actualizado correctamente¡</div>");
                                     location.reload();
+                                    window.location.href = 'Empleados-crear.php';
+
                                 }
                                 // NO
                                 else if (datos.status == "2") {

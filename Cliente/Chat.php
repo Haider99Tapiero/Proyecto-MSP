@@ -38,8 +38,22 @@
 				include("menu-cliente.php");
 			?>
 		</header>
-		<div class="container col-md-10">
+		<div class="form-group"></div>
+		<div class="container ">
 	    <!--//////////////////////SE INCLUYE CAPA OBSERVACION///////////////-->
+			
+			<form action="chat.php" method="post" class="">
+				<div class="form-group">
+				</div>
+			  <div class="row">
+			      <div class="col-11 ">
+			      	<input name="comentario" class="form-control" id="mens" placeholder="mensaje">
+			      </div>
+			      <div class="col-1">
+			      	<input  class="btn btn-primary"  type="submit" name="enviar" value="enviar">
+			      </div>
+			  </div>
+			</form>
 			<div id="contenedor" >
 				<div id="caja-chat">
 					<div id="chat">									
@@ -47,18 +61,6 @@
 				</div>
 			</div>						
 			<span></span>
-			<form action="chat.php" method="post" class="">
-				<div class="form-group">
-				</div>
-			  <div class="row">
-			      <div class="col-11 ">
-			      	<input name="comentario" class="form-control"  placeholder="mensaje">
-			      </div>
-			      <div class="col-1">
-			      	<input  class="btn btn-primary"  type="submit" name="enviar" value="enviar">
-			      </div>
-			  </div>
-			</form>
 	    <!--//////////////////PHP PARA INSERTAR DATOS//////////////////-->
 			<?php
 			  if(isset($_POST['enviar'])){

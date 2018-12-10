@@ -101,7 +101,7 @@
 				}
 				
 				/*///////////////HACE QUE LA PAGINA SE RECARGUE CADA SEGUNDO ////////////////*/
-				req.open('GET','comentariosV1.1/observacion.php',true);
+				req.open('GET','cliente/observacion.php',true);
 				req.send();
                 /*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
                 

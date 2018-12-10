@@ -12,7 +12,7 @@ section{
 .producto{
 	width: 25%;
 	height: auto;
-	background-color: #f5f5f5 ;
+	border-radius:30px;
 	display: inline-block;
 	vertical-align: top;
 	margin-left: 1%;
@@ -21,9 +21,9 @@ section{
 	font-weight: bolder;
 	font-size: 1.2rem;
 	padding: 1%;
-	-webkit-box-shadow: 0px 0px 10px rgba(240, 240, 240, 0.75);
-	-moz-box-shadow:    0px 0px 10px rgba(240, 240, 240, 0.75);
-	box-shadow:         0px 0px 10px rgba(240, 240, 240, 0.75);
+	-webkit-box-shadow: 20px 30px 20px rgba(240, 240, 240, 0.75);
+	-moz-box-shadow:    20px 30px 20px rgba(240, 240, 240, 0.75);
+	box-shadow:         20px 30px 20px rgba(240, 240, 240, 0.75);
 	-webkit-transition: all 1s ease-in-out;
 	-moz-transition: all 1s ease-in-out;
 }

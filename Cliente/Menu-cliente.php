@@ -1,5 +1,5 @@
     <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>	
-	<style type="text/css">
+		<style type="text/css">
 		@import url(http://fonts.googleapis.com/css?family=Open+Sans);
 		a {
 			color: #23dbdb;
@@ -39,10 +39,13 @@
 		.logo {
 			display: inline-block;
 			font-size: 0;
+			
+			margin-left: -500px;
+
 		}
 		#navigation {
 			position: absolute;
-			right: 40px;
+			right: -400px;
 			bottom: 0px;
 		}
 

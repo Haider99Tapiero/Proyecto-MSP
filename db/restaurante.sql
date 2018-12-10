@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-12-2018 a las 22:17:43
--- Versión del servidor: 10.1.37-MariaDB
--- Versión de PHP: 7.2.12
+-- Tiempo de generación: 10-12-2018 a las 21:56:51
+-- Versión del servidor: 10.1.36-MariaDB
+-- Versión de PHP: 7.2.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -92,21 +92,10 @@ CREATE TABLE `compras` (
 CREATE TABLE `detalle_presencial` (
   `iddetalle_presencial` int(11) NOT NULL,
   `fecha_venta` date NOT NULL,
+  `cantidad` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `forma_pago_idforma_pago` int(11) NOT NULL,
-  `mesas_idmesas` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `detalle_presencial_has_plato`
---
-
-CREATE TABLE `detalle_presencial_has_plato` (
-  `detalle_presencial_iddetalle_presencial` int(11) NOT NULL,
-  `plato_idPlato` int(11) NOT NULL,
-  `cantidad` int(11) NOT NULL,
-  `total` double NOT NULL
+  `mesas_idmesas` int(11) NOT NULL,
+  `plato_idplato` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -136,7 +125,8 @@ CREATE TABLE `empleados` (
 
 INSERT INTO `empleados` (`idempleados`, `nombre`, `apellido`, `documento`, `direccion`, `email`, `telefono`, `contrasena`, `tipodocumento_idtipodocumento`, `genero_idgenero`, `roles_idroles`, `estado_idestado`) VALUES
 (3, 'haider', 'tapiero', '1033', 'crr 56 ', 'haider@misena.edu.co', '3123123124', '1033', 6, 3, 3, 1),
-(4, 'alexander', 'robayo', '8169', '8169', 'alexander@gmail.com', '3129871298', '8169', 6, 3, 4, 2);
+(4, 'alexander', 'robayo', '8169', '8169', 'alexander@gmail.com', '3129871298', '8169', 6, 3, 4, 1),
+(5, 'dsffdsfds', 'fdsfsdfsd', '321321', 'gfdnbvm', 'jhghgvhm', '1321', '321321', 6, 3, 4, 1);
 
 -- --------------------------------------------------------
 
@@ -226,6 +216,14 @@ CREATE TABLE `observacion` (
   `cliente_idcliente` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `observacion`
+--
+
+INSERT INTO `observacion` (`idobservacion`, `comentario`, `cliente_idcliente`) VALUES
+(1, 'djjfdjdfgdgd', 3),
+(2, 'djjfdjdfgdgd', 3);
+
 -- --------------------------------------------------------
 
 --
@@ -242,6 +240,15 @@ CREATE TABLE `pedido_insumos` (
   `proveedor_idproveedor` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `pedido_insumos`
+--
+
+INSERT INTO `pedido_insumos` (`idpedidoInsumos`, `cantidad`, `unidad_medida`, `descripcion`, `categoriainsumo_idcategoria`, `empleados_idempleados`, `proveedor_idproveedor`) VALUES
+(1, '231', 'hkgf', 'hfjh', 5, 3, 1),
+(2, '231', 'hkgf', 'hfjh', 5, 3, 1),
+(3, '2342', 'ASDAS', 'DASDA', 6, 3, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -256,6 +263,17 @@ CREATE TABLE `plato` (
   `precio` varchar(45) NOT NULL COMMENT 'precio del plato'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `plato`
+--
+
+INSERT INTO `plato` (`idPlato`, `nombre`, `descripcion`, `imagen`, `precio`) VALUES
+(3, 'Arroz con pollo', 'pollo y arroz', '12-10-2018-3-02pmdescarga.jpg', '12000'),
+(4, 'pollo', 'asdo y gaseos', '12-10-2018-3-02pmpollo-asado.jpg', '23334'),
+(5, 'sopas', 'sopas pas', '12-10-2018-3-03pmasd.jpg', '2300'),
+(6, 'papa', 'sssddsd', '12-10-2018-3-04pmasd.jpg', '34455'),
+(7, 'el jugo', 'el jugo es de sangre', '12-10-2018-3-04pmdescarga.jpg', '5000');
+
 -- --------------------------------------------------------
 
 --
@@ -267,6 +285,13 @@ CREATE TABLE `proveedor` (
   `nombre` varchar(45) NOT NULL COMMENT 'nombre del proveedor',
   `categoriainsumo_idcategoria` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `proveedor`
+--
+
+INSERT INTO `proveedor` (`idproveedor`, `nombre`, `categoriainsumo_idcategoria`) VALUES
+(1, 'cocacola', 6);
 
 -- --------------------------------------------------------
 
@@ -336,15 +361,8 @@ ALTER TABLE `compras`
 ALTER TABLE `detalle_presencial`
   ADD PRIMARY KEY (`iddetalle_presencial`),
   ADD KEY `fk_detalle_presencial_forma_pago_idx` (`forma_pago_idforma_pago`),
-  ADD KEY `fk_detalle_presencial_mesas1_idx` (`mesas_idmesas`);
-
---
--- Indices de la tabla `detalle_presencial_has_plato`
---
-ALTER TABLE `detalle_presencial_has_plato`
-  ADD PRIMARY KEY (`detalle_presencial_iddetalle_presencial`,`plato_idPlato`),
-  ADD KEY `fk_detalle_presencial_has_plato_plato1_idx` (`plato_idPlato`),
-  ADD KEY `fk_detalle_presencial_has_plato_detalle_presencial1_idx` (`detalle_presencial_iddetalle_presencial`);
+  ADD KEY `fk_detalle_presencial_mesas1_idx` (`mesas_idmesas`),
+  ADD KEY `plato_idplato` (`plato_idplato`);
 
 --
 -- Indices de la tabla `empleados`
@@ -441,19 +459,19 @@ ALTER TABLE `cliente`
 -- AUTO_INCREMENT de la tabla `compras`
 --
 ALTER TABLE `compras`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `detalle_presencial`
 --
 ALTER TABLE `detalle_presencial`
-  MODIFY `iddetalle_presencial` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `iddetalle_presencial` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `empleados`
 --
 ALTER TABLE `empleados`
-  MODIFY `idempleados` int(11) NOT NULL AUTO_INCREMENT COMMENT 'identificador unico', AUTO_INCREMENT=5;
+  MODIFY `idempleados` int(11) NOT NULL AUTO_INCREMENT COMMENT 'identificador unico', AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `estado`
@@ -483,25 +501,25 @@ ALTER TABLE `mesas`
 -- AUTO_INCREMENT de la tabla `observacion`
 --
 ALTER TABLE `observacion`
-  MODIFY `idobservacion` int(11) NOT NULL AUTO_INCREMENT COMMENT 'identificador unico';
+  MODIFY `idobservacion` int(11) NOT NULL AUTO_INCREMENT COMMENT 'identificador unico', AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `pedido_insumos`
 --
 ALTER TABLE `pedido_insumos`
-  MODIFY `idpedidoInsumos` int(11) NOT NULL AUTO_INCREMENT COMMENT 'identificador unico';
+  MODIFY `idpedidoInsumos` int(11) NOT NULL AUTO_INCREMENT COMMENT 'identificador unico', AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `plato`
 --
 ALTER TABLE `plato`
-  MODIFY `idPlato` int(11) NOT NULL AUTO_INCREMENT COMMENT 'identificador unico';
+  MODIFY `idPlato` int(11) NOT NULL AUTO_INCREMENT COMMENT 'identificador unico', AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `proveedor`
 --
 ALTER TABLE `proveedor`
-  MODIFY `idproveedor` int(11) NOT NULL AUTO_INCREMENT COMMENT 'identificador unico', AUTO_INCREMENT=5;
+  MODIFY `idproveedor` int(11) NOT NULL AUTO_INCREMENT COMMENT 'identificador unico', AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
@@ -530,14 +548,8 @@ ALTER TABLE `cliente`
 --
 ALTER TABLE `detalle_presencial`
   ADD CONSTRAINT `fk_detalle_presencial_forma_pago` FOREIGN KEY (`forma_pago_idforma_pago`) REFERENCES `forma_pago` (`idforma_pago`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_detalle_presencial_mesas1` FOREIGN KEY (`mesas_idmesas`) REFERENCES `mesas` (`idmesas`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `detalle_presencial_has_plato`
---
-ALTER TABLE `detalle_presencial_has_plato`
-  ADD CONSTRAINT `fk_detalle_presencial_has_plato_detalle_presencial1` FOREIGN KEY (`detalle_presencial_iddetalle_presencial`) REFERENCES `detalle_presencial` (`iddetalle_presencial`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_detalle_presencial_has_plato_plato1` FOREIGN KEY (`plato_idPlato`) REFERENCES `plato` (`idPlato`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_detalle_presencial_mesas1` FOREIGN KEY (`mesas_idmesas`) REFERENCES `mesas` (`idmesas`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `plato_idplato` FOREIGN KEY (`plato_idplato`) REFERENCES `plato` (`idPlato`);
 
 --
 -- Filtros para la tabla `empleados`

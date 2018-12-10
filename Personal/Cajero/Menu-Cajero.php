@@ -39,7 +39,6 @@
 		.logo {
 			display: inline-block;
 			font-size: 0;
-			
 			margin-left: -500px;
 
 		}
@@ -227,11 +226,8 @@
 				<nav id="navigation">
 					<ul id="main-menu">
 						<li class="current-menu-item"><a href=""><i class="fas fa-home"></i> Home</a></li>
-						<li><a href="domicilio-listar.php"><i class="fas fa-utensils"></i> Ventas</a></li>
-						<li><a href="Empleados-crear.php"><i class="fas fa-shopping-cart"></i> Empleados</a></li>
-						<li><a href="Platos-Crear.php"><i class="fas fa-comments"></i> Registrar un plato</a></li>
-						<li><a href="Insumos-Listar.php"><i class="fas fa-comments"></i> Insumos</a></li>
-						<li><a href="Insumos-Reg.php"><i class="fas fa-comments"></i> Registrar insumo</a></li>
+						<li><a href="Venta-Reg.php"><i class="fas fa-utensils"></i> Registrar Ventas</a></li>
+						<li><a href="Venta-Listar.php"><i class="fas fa-shopping-cart"></i> Ventas realizadas</a></li>
 						<li class="parent">
 							<a href=""><i class="fas fa-user"></i> <?php echo $_SESSION["nombre"];?></a>
 							<ul class="sub-menu">

@@ -72,7 +72,6 @@
 		  transform: translateX(26px);
 		}
 
-		/* Rounded sliders */
 		.slider.round {
 		  border-radius: 34px;
 		}
@@ -84,7 +83,12 @@
     </style>
 </head>
 <body>
-<
+<?php 
+session_start();
+include 'Menu-Cajero.php';
+?>
+<div class="form-group"></div>
+
 <div class="row">
 <div class="col-1"></div>
 	<div class="container-fluit col-md-10">

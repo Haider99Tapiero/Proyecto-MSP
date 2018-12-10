@@ -67,16 +67,18 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="./css/estilos.css">
   <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   <script type="text/javascript"  src="./js/scripts.js"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
   <link rel="stylesheet" href="../menuclient.css">
 </head>
-<body>
+<body >
 	<header>
    	<?php
   	  include("Menu-cliente.php");
   	?>
   </header>
-  <div class="container col-md-10">
+  <div class="container col-md-9">
     <?php
       $total=0;
       if(isset($_SESSION['carrito'])){
@@ -87,18 +89,19 @@
     ?>
     <div class="producto">
       <center>
-        <span><?php echo $datos[$i]['Nombre'];?></span><br>
-        <img height="20" class="rounded" src="./productos/<?php echo $datos[$i]['Imagen'];?>"><p>
-  		  <span><b>Precio</b><br>$<?php echo $datos[$i]['Precio'];?></span><p>
-        <span><b>Cantidad:</b><br> 
+        <span><?php echo $datos[$i]['Nombre'];?></span>
+        <div class="form-group"></div>
+        <img height="20"  src="./productos/<?php echo $datos[$i]['Imagen'];?>"><p>
+  		  <span><b>Precio</b>    $<?php echo $datos[$i]['Precio'];?></span><p>
+        <span><b>Cant:</b> 
         	<input type="text" value="<?php echo $datos[$i]['Cantidad'];?>"
         		data-precio="<?php echo $datos[$i]['Precio'];?>"
         		data-id="<?php echo $datos[$i]['Id'];?>"
-        		class="cantidad col-6"
+        		class="cantidad col-5"
         		>
         </span><p>
-  		  <span><b>Subtotal:</b><br> $<?php echo $datos[$i]['Cantidad']*$datos[$i]['Precio'];?></span><p>
-        <a href="" class="eliminar btn btn-primary" data-id="<?php echo $datos[$i]['Id']?>" >Eliminar</a>
+  		  <!--<span><b>Subt:</b>   $<?php //echo $datos[$i]['Cantidad']*$datos[$i]['Precio'];?></span><p>-->
+        <a href="" class="eliminar btn btn-danger " data-id="<?php echo $datos[$i]['Id']?>" ><i class="fas fa-trash-alt"></i></a>
       </center>
     </div>
       <?php
@@ -117,5 +120,9 @@
       <a href="Carrito_compras.php">Ver catalogo</a>
     </center>
   </div>
+
+
+ 
+
 </body>
 </html>﻿

@@ -1,4 +1,5 @@
 <?php
+	include("../Seguridad-cliente.php");
 	include "conexion.php";
 ?>
 <!DOCTYPE html>

@@ -1,4 +1,5 @@
 <?php
+	include("../Seguridad-cliente.php");
 	include"db.php";
 ?>
 <!DOCTYPE html>
@@ -34,7 +35,7 @@
 	<body onload="ajax();">
 		<header>
 			<?php
-				session_start();
+				
 				include("menu-cliente.php");
 			?>
 		</header>

@@ -1,3 +1,7 @@
+<?php 
+	include("../../Seguridad-admin.php");
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -98,7 +102,7 @@
 <body>
 <header>
 	<?php
-		session_start();
+		
 		include("Menu-Admin.php");
 	?>
 </header>

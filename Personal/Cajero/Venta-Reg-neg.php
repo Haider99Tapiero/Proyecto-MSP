@@ -1,28 +1,35 @@
 <?php
-	class Registro
-	{
-		public function registrar($cantidad,$forma_pago_idforma_pago,$Mesas_idMesas,$Plato_idPlato)
-		{
-			session_start();
+    session_start();
+    include ('conexion.php');
 
-			include ('conexion.php');
+    sleep(1);
 
-			date_default_timezone_set('America/Bogota');
-        	$Fecha = date("Y-m-d");  
+    if(isset($_POST["cantidad"]) && isset($_POST["idforma_pago"]) && isset($_POST["Mesas_idMesas"]) && isset($_POST["Plato_idPlato"])){
 
-			$sql ="INSERT INTO detalle_presencial (fecha_venta, cantidad, forma_pago_idforma_pago, Mesas_idMesas, Plato_idPlato) 
-			VALUES ('$Fecha','$cantidad','$forma_pago_idforma_pago','$Mesas_idMesas','$Plato_idPlato')";
-			if(!$result = $db-> query($sql))
-			{
-				die('No conecta [' . $db->error . ']');
-			}
-			
-			$_SESSION["Plato_crear_ok"] = "";
+        $cantidad = $_POST["cantidad"];
+        $idforma_pago = $_POST["idforma_pago"];
+        $Mesas_idMesas = $_POST["Mesas_idMesas"];
+        $Plato_idPlato = $_POST["Plato_idPlato"];
 
-        	header ("location: Venta-Reg.php");
+        date_default_timezone_set('America/Bogota');
+        	$Fecha = date("Y-m-d");
 
-		}
-	}
-	$nuevo = new Registro();
-	$nuevo->registrar($_POST["cantidad"],$_POST["idforma_pago"],$_POST["Mesas_idMesas"],$_POST["Plato_idPlato"])
+              
+            $sql2 = "INSERT INTO datalle_presencial (fecha_venta, cantidad, forma_pago_idforma_pago, mesas_idmesas, plato_idplato)
+            VALUES ('$Fecha','$cantidad','$idforma_pago','$Mesas_idMesas','$Plato_idPlato')";
+
+            if (!$result2 = $db->query($sql2)){
+                $response['status'] = '2';
+                echo json_encode($response);
+
+                die('No hace insercion a la tabla ['.$db->error.']');
+        
+            }
+
+            $response['status'] = '1';
+            echo json_encode($response);
+    } else {
+        echo "SE ENTRO DIRECTO A ESTA CAPA";
+    }
 ?>
+

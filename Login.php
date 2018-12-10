@@ -29,6 +29,7 @@
 
 			$data = mysqli_fetch_array($result);
 			// SACAMOS LOS DATOS QUE QUEREMOS DE LA PERSONA QUE SE AUTENTIFICA
+			$_SESSION["estado_cliente"] = "1";
 			$_SESSION["nombre"] = $data["nombre"];
             $_SESSION['idcliente']=$data["idcliente"];
 			// ENVIAMOS DE RESPUESTA
@@ -55,11 +56,13 @@
 			$rol = $data2["rol"];
 
 			if ($rol == "Admin")  {
+				$_SESSION["estado_admin"] = "1";
 				// ENVIAMOS DE RESPUESTA
 				$response['status'] = '2';
 				echo json_encode($response);
 
 			}else if ($rol == "Cajero") {
+				$_SESSION["estado_cajero"] = "1";
 				// ENVIAMOS DE RESPUESTA
 				$response['status'] = '3';
 				echo json_encode($response);

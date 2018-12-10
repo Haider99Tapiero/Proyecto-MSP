@@ -1,3 +1,6 @@
+<?php 
+	include("../Seguridad-cliente.php");
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -12,7 +15,7 @@
 <body>
 	<header>
 	 	<?php
-			session_start();
+			
 			include("Menu-cliente.php");
 		?>
  	</header>

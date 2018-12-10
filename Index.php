@@ -1,3 +1,20 @@
+<?php 
+    session_start ();
+    if(isset($_SESSION["estado_admin"]) == "1")
+        {
+            header("location: Personal/Admin/domicilio-listar.php");
+        }
+    elseif(isset($_SESSION["estado_cajero"]) == "1")
+        {
+            header("location: Personal/Cajero/Venta-Reg.php");
+        }
+    elseif(isset($_SESSION["estado_cliente"]) == "1")
+    {
+        header("location: Cliente/Carrito_compras.php");
+    }
+
+?>
+
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -320,17 +337,17 @@
                             }
                             // ADMIN
                             else if (datos.status == "2") {
-                                $(location).attr('href','capa_admin.php');
+                                $(location).attr('href','Personal/Admin/domicilio-listar.php');
                             }
                             // CAJERO
                             else if (datos.status == "3") {
-                                $(location).attr('href','capa_cajero.php');
+                                $(location).attr('href','Personal/Cajero/Venta-Reg.php');
                             }   
                             // DATOS INCORRECTOS
                             else if (datos.status == "4") {
                                 $("#result").html("<div class='alert alert-dismissible alert-danger'><button type='button' class='close' data-dismiss='alert'>&times;</button>!El <strong>documento </strong> o <strong>contraseña </strong>son incorrectos¡</div>");
                             }
-                            // uSUARIO BLOQUEADO
+                            // USUARIO BLOQUEADO
                             else if (datos.status == "5") {
                                 $("#result").html("<div class='alert alert-dismissible alert-danger'><button type='button' class='close' data-dismiss='alert'>&times;</button>!El <strong>usuario </strong>esta <strong>bloqueado </strong>!</div>");
                             }

@@ -1,3 +1,6 @@
+<?php 
+    include("../../Seguridad-cajero.php");
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,8 +38,8 @@
 <body>
     <header>
         <?php
-            session_start();
-            include ("Menu-Admin.php");
+            
+            include ("Menu-cajero.php");
         ?>
     </header>
 	<div class="container col-md-10">
@@ -47,7 +50,7 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <p style="font-size: 20px; text-align: center;">Registrar insumo</p>
+                                    <p style="font-size: 20px; text-align: center;">Registrar venta</p>
                                 </div>
                             </div>
                         </div>
@@ -116,7 +119,7 @@
 				            </select>
 						</div>
 						<div class="form-group">
-                            <input type="button" name="Registrar" id="Registrar" value="Registrar" class="btn btn-success">
+                            <input type="button" name="Realizar compra" id="Realizar compra" value="Realizar compra" class="btn btn-success">
                         </div>
                         <div class="form-group">
                             <span id="result"></span>
@@ -134,46 +137,44 @@
 
     <script>
         $(document).ready(function() {
-            // Registrar EL PLATO
-            $('#Registrar').click(function(){
+            // Realizar compra EL PLATO
+            $('#Realizar compra').click(function(){
                 var cantidad = $('#cantidad').val();
-                var unidad_medida = $('#unidad_medida').val();
-                var descripcion = $('#descripcion').val();
-                var idcategoriainsumo = $('#idcategoriainsumo').val();
-                var idproveedor = $('#idproveedor').val();     
+                var idforma_pago = $('#idforma_pago').val();
+                var Mesas_idMesas = $('#Mesas_idMesas').val();
+                var Plato_idPlato = $('#Plato_idPlato').val(); 
 
                 //var fileName = document.getElementById('imagen').files[0].name;
 
                 var parametros = new FormData($("#FormPlato")[0]);
 
-                if($.trim(cantidad).length > 0 && $.trim(unidad_medida).length > 0 && $.trim(descripcion).length > 0 ){
+                if($.trim(cantidad).length > 0){
                     if (isNaN(cantidad)){
-                        $("#result").html("<div class='alert alert-dismissible alert-danger'><button type='button' class='close' data-dismiss='alert'>&times;</button>!Solo se permite numeros en el campo <strong>Cantidad</strong>¡</div>");
-                        $('#precio').value = "";
+                        $("#result").html("<div class='alert alert-dismissible alert-danger'><button type='button' class='close' data-dismiss='alert'>&times;</button>!Solo se permite numeros en el campo <strong>cantidad</strong>¡</div>");
                     }
                     else {
                         $.ajax({
-                            url:"insumos-reg-neg.php",
+                            url:"Venta-Reg-neg.php",
                             type:"POST",
                             data:parametros,
                             contentType:false,
                             processData:false, 
                             cache:"false",
                             beforeSend:function() {
-                                $('#Registrar').val("Registrando...");
+                                $('#Realizar compra').val("Realizando...");
                             },
                             success:function(data) {
-                                $('#Registrar').val("Registrar");
+                                $('#Realizar compra').val("Realizar compra");
                                 var datos = $.parseJSON(data);
                                 // SI
                                 if (datos.status == "1") {
-                                    $("#result").html("<div class='alert alert-dismissible alert-danger'><button type='button' class='close' data-dismiss='alert'>&times;</button>!Plato actualizado con exito¡</div>");
+                                    $("#result").html("<div class='alert alert-dismissible alert-danger'><button type='button' class='close' data-dismiss='alert'>&times;</button>!Venta realizada¡</div>");
                                     location.reload();
                                     //location.href = 'Platos-Crear.php';
                                 }
                                 // NO
                                 else if (datos.status == "2") {
-                                    $("#result").html("<div class='alert alert-dismissible alert-danger'><button type='button' class='close' data-dismiss='alert'>&times;</button>!Error al registrar el plato¡</div>");
+                                    $("#result").html("<div class='alert alert-dismissible alert-danger'><button type='button' class='close' data-dismiss='alert'>&times;</button>!Imposible realizar venta¡</div>");
                                 }
                             }
                         });

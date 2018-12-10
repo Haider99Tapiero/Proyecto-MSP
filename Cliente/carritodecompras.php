@@ -1,5 +1,5 @@
 <?php
-session_start();
+  include("../Seguridad-cliente.php");
   include './conexion.php';
   if(isset($_SESSION['carrito'])){
   if(isset($_GET['id'])){

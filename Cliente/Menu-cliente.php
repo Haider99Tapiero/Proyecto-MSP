@@ -233,7 +233,7 @@
 						<li class="parent">
 							<a href=""><i class="fas fa-user"></i> <?php echo $_SESSION["nombre"];?></a>
 							<ul class="sub-menu">
-								<li><a href=""><i class="fas fa-sign-out-alt"></i> Salir</a></li>
+								<li><a href="Salir.php"><i class="fas fa-sign-out-alt"></i> Salir</a></li>
 							</ul>
 						</li>
 					</ul>

@@ -1,3 +1,6 @@
+<?php 
+	include("../../Seguridad-cajero.php");
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -84,7 +87,6 @@
 </head>
 <body>
 <?php 
-session_start();
 include 'Menu-Cajero.php';
 ?>
 <div class="form-group"></div>

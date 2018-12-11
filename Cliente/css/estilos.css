@@ -6,7 +6,7 @@
 	padding: 2%;
 	margin:0 auto;
 	margin-left: 10cm;
-	margin-top: 50px; 
+	margin-top: 20px; 
 	
 }
 
@@ -44,7 +44,7 @@
 }
 .producto img:hover{
 	/*-webkit-transform: rotate(355deg);*/
-	-moz-transform: rotate(355deg);
+	-moz-transform: rotate(200deg);
 }
 .producto a{
 

@@ -106,8 +106,9 @@
 		include("Menu-Admin.php");
 	?>
 </header>
+<br><br>
 <div class="container col-md-10">
-	<table class="table table-striped">
+	<table class="table table-striped" >
         <thead>
             <tr>
                 <th>ID</th>
@@ -120,9 +121,10 @@
                 <th>TELEFONO</th>
                 <th>GENERO</th>
                 <th>ROL</th>
+                <th>ACCION</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody >
         <?php
             class Empleados
             {
@@ -237,7 +239,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-md-12">
-                                <p style="font-size: 20px; text-align: center;">Registrar plato</p>
+                                <p style="font-size: 20px; text-align: center;">Registrar Empleado</p>
                             </div>
                         </div>
                     </div>

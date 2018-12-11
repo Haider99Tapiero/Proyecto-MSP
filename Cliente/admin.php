@@ -12,15 +12,12 @@
 	<script type="text/javascript"  href="./js/scripts.js"></script>
 </head>
 <body>
-	<header>
-		<img src="./imagenes/logo.png" id="logo">
-		<a href="./carritodecompras.php" title="ver carrito de compras">
-			<img src="./imagenes/carrito.png">
-		</a>
-	</header>
+		<?php  
+		include 'Menu-cliente.php';
+		?>
 	<section>
 	
-	<center><h1>Copmpra Finalizada</h1>
+	<center><h1>Compra Finalizada</h1>
 	<a href="./carritodecompras.php" title="ver carrito de compras">
 			volver
 		</a>

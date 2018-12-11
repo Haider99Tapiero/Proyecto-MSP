@@ -78,6 +78,7 @@
   	  include("Menu-cliente.php");
   	?>
   </header>
+
   <div class="container col-md-9">
     <?php
       $total=0;
@@ -87,6 +88,7 @@
       $total=0;
       for($i=0;$i<count($datos);$i++){
     ?>
+    
     <div class="producto">
       <center>
         <span><?php echo $datos[$i]['Nombre'];?></span>

@@ -102,13 +102,11 @@
        <table class="table table-striped" >
             <thead>
                 <tr>
-                    <th>Id</th>
-                    <th>cantidad</th>
-                    <th>Unidad de medida</th>
-                    <th>Descripcion</th>
-                    <th>Categoria</th>
-                    <th>Empleado</th>
-                    <th>Proveedor</th>
+                    <th>ID</th>
+                    <th>PROVEEDOR</th>
+                    <th>CONTACTO</th>
+                    <th>CATEGORIA</th>
+                    
                 </tr>
             </thead>
             <tbody>
@@ -119,7 +117,7 @@
                         {
                             include ('conexion.php');
 
-                            $sql ="SELECT * FROM pedido_insumos ";
+                            $sql ="SELECT * FROM proveedor ";
 
                             if(!$result = $db-> query($sql))
                             {
@@ -128,13 +126,11 @@
                             
                             while ($row = $result->fetch_assoc())
                             {
-                                $iid=stripslashes($row["idpedidoInsumos"]);
-                                $ccantidad=stripslashes($row["cantidad"]);
-                                $uunidad_medida=stripslashes($row["unidad_medida"]); 
-                                $ddescripcion=stripslashes($row["descripcion"]); 
+                                $iid=stripslashes($row["idproveedor"]);
+                                $nnombre=stripslashes($row["nombre"]);
+                                $ccelular=stripslashes($row["celular"]); 
                                 $CCategoriaInsumo_idCategoria=stripslashes($row["categoriainsumo_idcategoria"]);
-                                $EEmpleados_idEmpleados=stripslashes($row["empleados_idempleados"]); 
-                                $PProveedor_idProveedor=stripslashes($row["proveedor_idproveedor"]);
+                       
                                 
                                 $sql3 ="SELECT * FROM categoriainsumo WHERE idcategoria = '$CCategoriaInsumo_idCategoria'";
 
@@ -147,36 +143,15 @@
                                     $ddescripcion_categoria=stripslashes($row3["descripcion"]);
                                 }
                                 
-                                $sql4 ="SELECT * FROM proveedor WHERE idproveedor = '$PProveedor_idProveedor' ";
-
-                                if(!$result4 = $db-> query($sql4))
-                                {
-                                    die('No hace consulta de proveedor [' . $db->error . ']');
-                                }
-                                while ($row4 = $result4->fetch_assoc())
-                                {
-                                    $nnombrepro=stripslashes($row4["nombre"]);
-                                }
                                 
-                                $sql2 ="SELECT * FROM empleados WHERE idempleados = '$EEmpleados_idEmpleados' ";
-                                
-                                if(!$result2 = $db-> query($sql2))
-                                {
-                                    die('No hace consulta a empleados [' . $db->error . ']');
-                                }
-                                while ($row2 = $result2->fetch_assoc())
-                                {
-                                    $nnombre=stripslashes($row2["nombre"]);
-                                }
                                 
                                 echo "<tr>";
                                     echo "<td>$iid</td>";
-                                    echo "<td>$ccantidad</td>";
-                                    echo "<td>$uunidad_medida</td>";
-                                    echo "<td>$ddescripcion</td>";
-                                    echo "<td>$ddescripcion_categoria</td>";
                                     echo "<td>$nnombre</td>";
-                                    echo "<td>$nnombrepro</td>";
+                                    echo "<td>$ccelular</td>";
+                                    echo "<td>$ddescripcion_categoria</td>";
+                                   
+                                    
                                 echo "</tr>";
                             }
                         }

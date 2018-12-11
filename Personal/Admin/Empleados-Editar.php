@@ -105,7 +105,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-md-12">
-                                <p style="font-size: 20px; text-align: center;">Registrar plato</p>
+                                <p style="font-size: 20px; text-align: center;">Editar Empleado</p>
                             </div>
                         </div>
                     </div>

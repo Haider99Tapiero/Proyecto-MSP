@@ -232,6 +232,8 @@
 						<li><a href="Platos-Crear.php"><i class="fas fa-comments"></i> Registrar un plato</a></li>
 						<li><a href="Insumos-Listar.php"><i class="fas fa-comments"></i> Insumos</a></li>
 						<li><a href="Insumos-Reg.php"><i class="fas fa-comments"></i> Registrar insumo</a></li>
+						<li><a href="proveedor-crear.php"><i class="fas fa-comments"></i> Registrar proveedor</a></li>
+						<li><a href="proveedor-listar.php"><i class="fas fa-comments"></i> Listar proveedor</a></li>
 						<li class="parent">
 							<a href=""><i class="fas fa-user"></i> <?php echo $_SESSION["nombre"];?></a>
 							<ul class="sub-menu">

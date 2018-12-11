@@ -17,32 +17,11 @@
 	 	<?php
 			
 			include("Menu-cliente.php");
+			include ("conexion.php");
 		?>
  	</header>
+ 	
 <div class="container col-md-10">
-
-	<?php
-	  	include ("conexion.php");
-	    $consulta="select * from plato";
-	 	$query=mysqli_query($conexion, $consulta); 
-	  	while ($f=mysqli_fetch_array($query,MYSQLI_ASSOC)) {
-  	?>
-
-   	<div class="producto">
-	   	<center>
-	   		<span><?php echo $f['nombre'];?></span>
-			<br><br>
-	    	<img src="./productos/<?php echo $f['imagen'];?> " height="150">
-	    	<br><br>
-	    	<a class="btn btn-info col-3" href="Carrito_compras.php?id=<?php echo $f['idPlato'];?>"><i class="fas fa-eye"></i></a>
-			<a class="btn btn-success" href="./carritodecompras.php?id=<?php  echo $f['idPlato'];?>">Añadir  </a>
-	   	</center>
-  	</div>
-
- 	<?php
- 		}
- 	?>
-
 	<?php
 		if (isset($_GET['id'])) {
 		    $consulta="select * from plato where idPlato=".$_GET['id'];
@@ -97,6 +76,30 @@
   			}
   		}
 	?>
+
+	<?php
+	  	
+	    $consulta="select * from plato";
+	 	$query=mysqli_query($conexion, $consulta); 
+	  	while ($f=mysqli_fetch_array($query,MYSQLI_ASSOC)) {
+  	?>
+
+   	<div class="producto">
+	   	<center>
+	   		<span><?php echo $f['nombre'];?></span>
+			<br><br>
+	    	<img src="./productos/<?php echo $f['imagen'];?> " height="150">
+	    	<br><br>
+	    	<a class="btn btn-info col-3" href="Carrito_compras.php?id=<?php echo $f['idPlato'];?>"><i class="fas fa-eye"></i></a>
+			<a class="btn btn-success" href="./carritodecompras.php?id=<?php  echo $f['idPlato'];?>">Añadir  </a>
+	   	</center>
+  	</div>
+
+ 	<?php
+ 		}
+ 	?>
+
+	
 	</div>
 	   <footer class="bg-black small text-center text-white-50">
       <div class="container">

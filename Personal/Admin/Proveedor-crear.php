@@ -1,5 +1,5 @@
 <?php 
-    include("../../Seguridad-cajero.php");
+    include("../../Seguridad-admin.php");
 ?>
 <!DOCTYPE html>
 <html>
@@ -39,10 +39,10 @@
     <header>
         <?php
             
-            include ("Menu-cajero.php");
+            include ("Menu-Admin.php");
         ?>
     </header>
-	<div class="container col-md-10">
+    <div class="container col-md-10">
         <div class="" id="myModal" tabindex="-1" role="dialog" aria-labelledby="LabelModalogin" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -50,40 +50,44 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <p style="font-size: 20px; text-align: center;">Registrar venta</p>
+                                    <p style="font-size: 20px; text-align: center;">Registrar proveedor</p>
                                 </div>
                             </div>
                         </div>
+                        
+                        
                         <div class="form-group">
-                                <label for="cantidad">Numero Venta</label>
-                            <input class="form-control" type="text" name="Numeroventa" id="Numeroventa" placeholder="Numeroventa" />
-                            </div>
+                            <label>Nombre proveedor</label>
+                            <input class="form-control" name="proveedor" type="text" id="proveedor" required/>
+                        </div> 
                         <div class="form-group">
-								<label for="cantidad">Cantidad</label>
-                            <input class="form-control" type="text" name="cantidad" id="cantidad" placeholder="cantidad" />
-							</div>
-						<div class="form-group">
-							<label>Plato</label>
-							<select class="form-control" name="Plato_idPlato" id="Plato_idPlato" required>
-				             	<option value=Seleccione:>Seleccione:</option>
-					            <?php
-									include ('conexion.php');
-									$sql3 ="SELECT * FROM plato ";
-									if(!$result3 = $db-> query($sql3))
-									{
-										die('No conecta [' . $db->error . ']');
-									}
-									while ($row3 = $result3->fetch_assoc())
-									{
-										$PPlato_idPlato=stripslashes($row3["idPlato"]);
-										$nnombre=stripslashes($row3["nombre"]);
-										echo "<option value=$PPlato_idPlato>$nnombre</option>";
-									}
-								?>
-				            </select>
-						</div>
-						<div class="form-group">
-                            <input type="button" name="Realizar" id="Realizar" value="Realizar compra" class="btn btn-success">
+                            <label>Celular</label>
+                            <input class="form-control" name="numero" type="text" id="numero" required/>
+                        </div>            
+                        <div class="form-group">
+                            <label>Categoria insumo</label>
+                            <select class="form-control" name="idcategoriainsumo" id="idcategoriainsumo" required>
+                                <option value="">Seleccione:</option>
+                                <?php
+                                    include ('conexion.php');
+                                    $sql2 ="SELECT * FROM categoriainsumo";
+                                    if(!$result2 = $db-> query($sql2))
+                                    {
+                                        die('No conecta [' . $db->error . ']');
+                                    }
+                                    while ($row2 = $result2->fetch_assoc())
+                                    {
+                                        $iidcategoria=stripslashes($row2["idcategoria"]);
+                                        $nnombre=stripslashes($row2["descripcion"]);
+                                        echo "<option value=$iidcategoria>$nnombre</option>";
+                                    }
+                                ?>
+                            </select>
+                        </div>
+                        
+                       
+                        <div class="form-group">
+                            <input type="button" name="Registrar" id="Registrar" value="Registrar" class="btn btn-success">
                         </div>
                         <div class="form-group">
                             <span id="result"></span>
@@ -93,7 +97,6 @@
             </div>
         </div>
     </div>
-
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
@@ -101,46 +104,45 @@
 
     <script>
         $(document).ready(function() {
-            // Realizar compra EL PLATO
-            $('#Realizar').click(function(){
-                var Numeroventa = $('#Numeroventa').val();
-                var cantidad = $('#cantidad').val();
-                var Plato_idPlato = $('#Plato_idPlato').val(); 
+            // Registrar EL PLATO
+            $('#Registrar').click(function(){
+                var proveedor = $('#proveedor').val();
+                var idcategoriainsumo = $('#idcategoriainsumo').val();
+                var numero = $('#numero').val();
+                   
 
                 //var fileName = document.getElementById('imagen').files[0].name;
 
                 var parametros = new FormData($("#FormPlato")[0]);
 
-                if($.trim(cantidad).length > 0){
-                    if (isNaN(cantidad)){
-                        $("#result").html("<div class='alert alert-dismissible alert-danger'><button type='button' class='close' data-dismiss='alert'>&times;</button>!Solo se permite numeros en el campo <strong>cantidad</strong>¡</div>");
-                    }
-                    else if (isNaN(Numeroventa)){
-                        $("#result").html("<div class='alert alert-dismissible alert-danger'><button type='button' class='close' data-dismiss='alert'>&times;</button>!Solo se permite numeros en el campo <strong>Numero de venta</strong>¡</div>");
-                    }
+                if($.trim(proveedor).length > 0 ){
+                   if (isNaN(numero)){
+                    $("#result").html("<div class='alert alert-dismissible alert-danger'><button type='button' class='close' data-dismiss='alert'>&times;</button>!Solo se permite numeros en el campo <strong>Celular</strong>¡</div>");
+                    $('#costo').value = "";
+                }
                     else {
                         $.ajax({
-                            url:"Venta-Reg-neg.php",
+                            url:"proveedor-reg-neg.php",
                             type:"POST",
                             data:parametros,
                             contentType:false,
                             processData:false, 
                             cache:"false",
                             beforeSend:function() {
-                                $('#Realizar compra').val("Realizando...");
+                                $('#Registrar').val("Registrando...");
                             },
                             success:function(data) {
-                                $('#Realizar compra').val("Realizar compra");
+                                $('#Registrar').val("Registrar");
                                 var datos = $.parseJSON(data);
                                 // SI
                                 if (datos.status == "1") {
-                                    $("#result").html("<div class='alert alert-dismissible alert-danger'><button type='button' class='close' data-dismiss='alert'>&times;</button>!Venta realizada¡</div>");
+                                    $("#result").html("<div class='alert alert-dismissible alert-danger'><button type='button' class='close' data-dismiss='alert'>&times;</button>!Proveedor actualizado con exito¡</div>");
                                     location.reload();
                                     //location.href = 'Platos-Crear.php';
                                 }
                                 // NO
                                 else if (datos.status == "2") {
-                                    $("#result").html("<div class='alert alert-dismissible alert-danger'><button type='button' class='close' data-dismiss='alert'>&times;</button>!Imposible realizar venta¡</div>");
+                                    $("#result").html("<div class='alert alert-dismissible alert-danger'><button type='button' class='close' data-dismiss='alert'>&times;</button>!Error al registrar el proveedor¡</div>");
                                 }
                             }
                         });

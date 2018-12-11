@@ -4,19 +4,19 @@
 
     sleep(1);
 
-    if(isset($_POST["cantidad"]) && isset($_POST["idforma_pago"]) && isset($_POST["Mesas_idMesas"]) && isset($_POST["Plato_idPlato"])){
+    if(isset($_POST["Plato_idPlato"]) && isset($_POST["Numeroventa"]) && isset($_POST["cantidad"])){
 
-        $cantidad = $_POST["cantidad"];
-        $idforma_pago = $_POST["idforma_pago"];
-        $Mesas_idMesas = $_POST["Mesas_idMesas"];
+        
+        $numero_venta = $_POST["Numeroventa"];
         $Plato_idPlato = $_POST["Plato_idPlato"];
+        $cantidad = $_POST["cantidad"];
 
         date_default_timezone_set('America/Bogota');
         	$Fecha = date("Y-m-d");
 
               
-            $sql2 = "INSERT INTO datalle_presencial (fecha_venta, cantidad, forma_pago_idforma_pago, mesas_idmesas, plato_idplato)
-            VALUES ('$Fecha','$cantidad','$idforma_pago','$Mesas_idMesas','$Plato_idPlato')";
+            $sql2 = "INSERT INTO detalle_presencial (fecha_venta, plato_idplato, numero_venta, cantidad)
+            VALUES ('$Fecha','$Plato_idPlato','$numero_venta','$cantidad')";
 
             if (!$result2 = $db->query($sql2)){
                 $response['status'] = '2';

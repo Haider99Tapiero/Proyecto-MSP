@@ -101,7 +101,7 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Comentarios <p  style="font-size: 14px; color: silver;"> Para comentar inicia sesion</p></h5>
+        <h5 class="modal-title" id="exampleModalLongTitle">Comentarios <p  style="font-size: 14px; color: silver;"> Para dejar un comentario sobre el restaurante  inicia sesion</p></h5>
 
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>

@@ -25,6 +25,7 @@
 			include("Menu-Admin.php");
 		?>
 	</header>
+	<br><br>
 	<?php
 		include ('conexion.php');
 		if (isset($_GET['id'])) {
@@ -33,6 +34,7 @@
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
 						<div class="modal-header">
+							<h5>jhsjshsj</h5>
 							<button id="tacha" type="button" class="close" aria-label="Close">
 								<span aria-hidden="true">&times;</span>
 							</button>
@@ -42,7 +44,7 @@
 								<table class="table table-striped">
 									<thead>
 										<th>Producto</th>
-										<th>Preciop</th>
+										<th>Precio</th>
 										<th>Cantidad</th>
 										<th>SubTotal</th>
 									</thead>
@@ -67,7 +69,7 @@
 					echo "<td>$nnombre</td>";
 					echo "<td>$pprecio</td>";
 					echo "<td>$ccantidad</td>";
-					echo "<td>$ssubtotal</td>";
+					echo "<td>$$ssubtotal</td>";
 				echo "</tr>";
 			}
 		}
@@ -83,10 +85,10 @@
 		<table class="table table-striped">
 			<thead>
 				<tr>	
-					<th>Numero de venta</th>
-	          		<th>ver</th>
-					<th>P. en la venta</th>
-					<th>Total</th>
+					<th>NUMERO DE VENTA</th>
+	          		<th>INFORMACION</th>
+					<th>P. EN LA VENTA</th>
+					<th>TOTAL</th>
 		        </tr>
 			</thead>
 			<tbody>
@@ -103,6 +105,8 @@
 								die('No conecta [' . $db->error . ']');
 							}			
 							
+							
+							//$acumsubtotal = 0;
 							while ($row = $result->fetch_assoc())
 							{
 								$iid=stripslashes($row["id"]);
@@ -113,13 +117,17 @@
 								$ssubtotal=stripslashes($row["subtotal"]);
 								$totalcol=stripslashes($row["totalcol"]);
 								$totalpagar=stripslashes($row["totalpagar"]);
+
+								
 																
 				        		echo "<tr>";
 									echo "<td>$nnumeroventa</td>";
-									echo "<td><a class='btn btn-info' href='domicilio-listar.php?id=$nnumeroventa'><i class='fas fa-eye'></i></a></td>";
+									echo "<td><a class='btn btn-info col-3' href='domicilio-listar.php?id=$nnumeroventa'><i class='fas fa-eye'></i></a></td>";
 					          		echo "<td>$totalcol</td>";
-					          		echo "<td>$totalpagar</td>";
+					          		echo "<td>$$totalpagar</td>";
 								echo "</tr>";
+
+								//$acumsubtotal = 0;
 
 					      	}
 						}

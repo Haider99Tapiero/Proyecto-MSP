@@ -48,13 +48,14 @@
 				</div>
 			  <div class="row">
 			      <div class="col-11 ">
-			      	<input name="comentario" class="form-control" id="mens" placeholder="mensaje">
+			      	<input name="comentario" class="form-control"  placeholder="mensaje">
 			      </div>
 			      <div class="col-1">
 			      	<input  class="btn btn-primary"  type="submit" name="enviar" value="enviar">
 			      </div>
 			  </div>
 			</form>
+			<div class="form-group"></div>
 			<div id="contenedor" >
 				<div id="caja-chat">
 					<div id="chat">									

@@ -15,6 +15,7 @@
 		$tipdoc = mysqli_real_escape_string($connect, $_POST["tipdoc"]);
 		$docu = mysqli_real_escape_string($connect, $_POST["docu"]);
 		$contr = mysqli_real_escape_string($connect, $_POST["contr"]);
+		$contr_cifrado = password_hash($contr,PASSWORD_DEFAULT);
 
 		// CONSULTAMOS SI EXISTE USUARIOS REGISTRADOS CON EL MISMO CORREO
 		$sql2 = "SELECT email FROM cliente WHERE email = '$emai' ";
@@ -31,7 +32,7 @@
 		else if ($num_row2 == "0") {
 
 			$sql = "INSERT INTO cliente (nombre,apellido,documento,direccion,email,telefono,contrasena,tipodocumento_idtipodocumento)
-							VALUES ('$nom','$apell','$docu','$direc','$emai','$tele','$contr','$tipdoc')";
+							VALUES ('$nom','$apell','$docu','$direc','$emai','$tele','$contr_cifrado','$tipdoc')";
 
 			if (mysqli_query($connect,$sql)) { 
 				

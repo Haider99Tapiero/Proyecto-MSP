@@ -198,6 +198,7 @@
                     </div>
                     <div class="form-group">
                         <input type="button" name="login" id="login" value="Iniciar sesion" class="btn btn-success">
+                        <a href="recuperar-contrasena.php">Olvidaste tu contraseña?</a>
                     </div>
                     <div class="form-group">
                         <span id="result"></span>

@@ -18,6 +18,7 @@
         $selecrol = $_POST["selecrol"];
         $selecgenero = $_POST["selecgenero"];
         $estado = "1";
+        $contr_cifrado = password_hash($contrasena,PASSWORD_DEFAULT);
 
         $cont="0";
         
@@ -41,7 +42,7 @@
             // INSERTAR DATOS //////////////////////////////////////////////////////////////
                 
             $sql2 = "INSERT INTO empleados (nombre, apellido, documento, direccion, email, telefono, contrasena, tipodocumento_idtipodocumento, genero_idgenero, roles_idroles, estado_idestado)
-            VALUES ('$nombre','$apellido','$documento','$direccion','$email','$telefono','$contrasena','$selectipodoc','$selecgenero','$selecrol','$estado')";
+            VALUES ('$nombre','$apellido','$documento','$direccion','$email','$telefono','$contr_cifrado','$selectipodoc','$selecgenero','$selecrol','$estado')";
 
             if (!$result2 = $db->query($sql2)){
                     die('No hace insercion a la tabla ['.$db->error.']');

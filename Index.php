@@ -195,10 +195,15 @@
                     <div class="form-group">
                         <label for="idcontrasena">Contraseña</label>
                         <input class="form-control" type="password" name="contrasena" id="idcontrasena" placeholder="Contraseña" />
+                   <center>
+                    <div>
+                        <a href="recuperar-contrasena.php">Olvidaste tu contraseña</a>
                     </div>
+                 <br>
                     <div class="form-group">
                         <input type="button" name="login" id="login" value="Iniciar sesion" class="btn btn-success">
                     </div>
+                    </center>
                     <div class="form-group">
                         <span id="result"></span>
                     </div>
